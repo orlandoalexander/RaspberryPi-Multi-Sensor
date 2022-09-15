@@ -87,15 +87,59 @@
 # origin = repo.remotes.origin
 # origin.push()
 
-from concurrent.futures import thread
+# from concurrent.futures import thread
+# import time
+# import threading
+
+# def func():
+#     while True:
+#         print('Hello world')
+#         time.sleep(5)
+
+# t = threading.Thread(target = func)
+# t.start()
+# print('hey')
+
 import time
 import threading
+import random
 
 def func():
+    
     while True:
-        print('Hello world')
-        time.sleep(5)
+        r = random.randint(0,2)
+        print('hey')
+        if r == 0:
+            print('break')
+            break
+        time.sleep(3)
+         
 
-t = threading.Thread(target = func)
-t.start()
-print('hey')
+
+while True:
+    inp = input('Type: ')
+    print(threading.active_count())
+    if inp == 'i':
+        t = threading.Thread(target=func)
+        t.start()
+        
+# import threading
+# import time
+# def hey():
+#     print('Hey')
+#     return
+
+    
+# def func(freq, start, dur): # appends 'pm' method to queue every 'freq' secs to take readings at desired intervals, whilst avoiding collisions which may occur if multiple sensors take readings simultaneously 
+#     print(time.time()-start)
+#     if time.time() - start >= dur:
+#         print('done')
+#         return
+#     threading.Timer(freq, func, [freq, start, dur]).start() # recursively call 'pm' method at frequency specified by 'freq' to take readings at desired frequency
+#     print('hey')
+    
+
+# func(3, time.time(), 9)
+
+
+

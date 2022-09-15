@@ -3,9 +3,9 @@
 import time
 import requests
 from git import Repo
-# from lcd_display import display_text
+from lcd_display import display_text
 
-#time.sleep(20) # delay to allow Raspberry Pi to connect to WiFi and latest changes to be pulled from git repo
+time.sleep(20) # delay to allow Raspberry Pi to connect to WiFi and latest changes to be pulled from git repo
 
 while True:
     try: 
@@ -18,7 +18,6 @@ while True:
         git_message = 'Latest version of data files will be uploaded to GitHub Repo every 60s'
     except:
         git_message = 'Cannot upload latest version of data files to GitHub Repo\nNo internet connection' 
-    print(git_message)
 
-    # display_text(git_message) # display git push status on LCD screen
+    display_text(git_message) # display git push status on LCD screen
     time.sleep(60)

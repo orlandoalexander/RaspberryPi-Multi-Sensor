@@ -1,7 +1,6 @@
 '''Take measurements of desired environmental factors and save data to CSV file'''
 
 import sensor_settings
-import sys
 import time
 import threading
 import os.path
@@ -34,6 +33,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         self.factor = sensor_settings.factor # adjust factor by which temperature reading is compensated
         self.sensors_dict = {1:self.temp_queue(), 2:self.pressure_queue(), 3:self.humidity_queue(), 4:self.light_queue(), 5:self.co_queue(), 6:self.no2_queue(), 7:self.nh3_queue(), 8:self.pm_queue()} # dictionary to translate between sensor number and sensor queue method (which triggers sensor execution)
         self.queue = [] # queue stores sensors which are due to take readings - this avoids multiple sensors taking readings simultaneously and therefore prevents collisions
+        self.sensor_status = [False for i in range(8)] # queue stores status of each sensor (True = active, False = inactive)
 
     def get_cpu_temperature(self): # get the temperature of the CPU for compensation
             with open("/sys/class/thermal/thermal_zone0/temp", "r") as f:
@@ -41,9 +41,11 @@ class SensorReadings(): # class containing methods to take sensor readings
                 temp = int(temp) / 1000.0
             return temp
 
-    def temp_queue(self, freq): # appends 'temp' method to queue every 'freq' secs to take readings at desired intervals, whilst avoiding collisions which may occur if multiple sensors take readings simultaneously 
-        threading.Timer(freq, self.temp).start() # recursively call 'temp' method at frequency specified by 'freq' to take readings at desired frequency
-        self.queue.append(self.temp())
+    def temp_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
+        self.queue_op(freq, dur, stime, self.temp()) # add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
+        display_text('Temperature readings complete') # display sensor reading status on LCD once all readings are complete
+        self.sensor_status[0] = False # change temp sensor status to False (i.e. inactive) as all readings are now complete
+        return
 
     def temp(self): # measure temperature
         sensor = 'temp'
@@ -58,9 +60,11 @@ class SensorReadings(): # class containing methods to take sensor readings
         self.save_data(sensor, freq, data, data_heading)
         return
 
-    def pressure_queue(self, freq): # appends 'pressure' method to queue every 'freq' secs to take readings at desired intervals, whilst avoiding collisions which may occur if multiple sensors take readings simultaneously 
-        threading.Timer(freq, self.pressure).start() # recursively call 'pressure' method at frequency specified by 'freq' to take readings at desired frequency
-        self.queue.append(self.pressure())
+    def pressure_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'pressure' method to 'queue' at set intervals to take sensor readings at desired frequency
+        self.queue_op(freq, dur, stime, self.pressure()) # add 'pressure' method to 'queue' at set intervals to take sensor readings at desired frequency
+        display_text('Pressure readings complete') # display sensor reading status on LCD once all readings are complete
+        self.sensor_status[1] = False # change pressure sensor status to False (i.e. inactive) as all readings are now complete
+        return
 
     def pressure(self): # measure pressue
         sensor = 'pressure'
@@ -71,9 +75,11 @@ class SensorReadings(): # class containing methods to take sensor readings
         self.save_data(sensor, freq, data, data_heading)
         return
 
-    def humidity_queue(self, freq): # appends 'humidity' method to queue every 'freq' secs to take readings at desired intervals, whilst avoiding collisions which may occur if multiple sensors take readings simultaneously 
-        threading.Timer(freq, self.humidity).start() # recursively call 'humidity' method at frequency specified by 'freq' to take readings at desired frequency
-        self.queue.append(self.humidity())
+    def humidity_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'humidity' method to 'queue' at set intervals to take sensor readings at desired frequency
+        self.queue_op(freq, dur, stime, self.humidity()) # add 'humidity' method to 'queue' at set intervals to take sensor readings at desired frequency
+        display_text('Humidity readings complete') # display sensor reading status on LCD once all readings are complete
+        self.sensor_status[2] = False # change humidity sensor status to False (i.e. inactive) as all readings are now complete
+        return
 
     def humidity(self): # measure humidiity
         sensor = 'humidity'
@@ -84,9 +90,11 @@ class SensorReadings(): # class containing methods to take sensor readings
         self.save_data(sensor, freq, data, data_heading)
         return
 
-    def light_queue(self, freq): # appends 'light' method to queue every 'freq' secs to take readings at desired intervals, whilst avoiding collisions which may occur if multiple sensors take readings simultaneously 
-        threading.Timer(freq, self.light).start() # recursively call 'light' method at frequency specified by 'freq' to take readings at desired frequency
-        self.queue.append(self.light())
+    def light_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'light' method to 'queue' at set intervals to take sensor readings at desired frequency
+        self.queue_op(freq, dur, stime, self.light()) # add 'light' method to 'queue' at set intervals to take sensor readings at desired frequency
+        display_text('Light readings complete') # display sensor reading status on LCD once all readings are complete
+        self.sensor_status[3] = False # change light sensor status to False (i.e. inactive) as all readings are now complete
+        return 
 
     def light(self): # measure light intensity
         sensor = 'light'
@@ -101,10 +109,11 @@ class SensorReadings(): # class containing methods to take sensor readings
         self.save_data(sensor, freq, data, data_heading)
         return
 
-
-    def co_queue(self, freq): # appends 'co' method to queue every 'freq' secs to take readings at desired intervals, whilst avoiding collisions which may occur if multiple sensors take readings simultaneously 
-        threading.Timer(freq, self.co).start() # recursively call 'co' method at frequency specified by 'freq' to take readings at desired frequency
-        self.queue.append(self.co())
+    def co_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'co' method to 'queue' at set intervals to take sensor readings at desired frequency
+        self.queue_op(freq, dur, stime, self.co()) # add 'co' method to 'queue' at set intervals to take sensor readings at desired frequency
+        display_text('Carbon monoxide readings complete') # display sensor reading status on LCD once all readings are complete
+        self.sensor_status[4] = False # change co sensor status to False (i.e. inactive) as all readings are now complete
+        return 
 
     def co(self): # measures concentration of carbon monoxide (reducing) gas
         sensor = 'co'
@@ -115,10 +124,12 @@ class SensorReadings(): # class containing methods to take sensor readings
         data = [co]
         self.save_data(sensor, freq, data, data_heading)
         return
-
-    def no2_queue(self, freq): # appends 'no2' method to queue every 'freq' secs to take readings at desired intervals, whilst avoiding collisions which may occur if multiple sensors take readings simultaneously 
-        threading.Timer(freq, self.no2).start() # recursively call 'no2' method at frequency specified by 'freq' to take readings at desired frequency
-        self.queue.append(self.no2())
+    
+    def no2_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'no2' method to 'queue' at set intervals to take sensor readings at desired frequency
+        self.queue_op(freq, dur, stime, self.no2()) # add 'no2' method to 'queue' at set intervals to take sensor readings at desired frequency
+        display_text('Nitrogen dioxide readings complete') # display sensor reading status on LCD once all readings are complete
+        self.sensor_status[5] = False # change no2 sensor status to False (i.e. inactive) as all readings are now complete
+        return 
 
     def no2(self): # measures concentration of nitrogen dioxide (oxidising) gas
         sensor = 'no2'
@@ -129,11 +140,13 @@ class SensorReadings(): # class containing methods to take sensor readings
         data = [no2]
         self.save_data(sensor, freq, data, data_heading)
         return
-
-    def nh3_queue(self, freq): # appends 'nh3' method to queue every 'freq' secs to take readings at desired intervals, whilst avoiding collisions which may occur if multiple sensors take readings simultaneously 
-        threading.Timer(freq, self.nh3).start() # recursively call 'nh3' method at frequency specified by 'freq' to take readings at desired frequency
-        self.queue.append(self.nh3())
-
+    
+    def nh3_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'nh3' method to 'queue' at set intervals to take sensor readings at desired frequency
+        self.queue_op(freq, dur, stime, self.nh3()) # add 'nh3' method to 'queue' at set intervals to take sensor readings at desired frequency
+        display_text('Ammonia readings complete') # display sensor reading status on LCD once all readings are complete
+        self.sensor_status[6] = False # change nh3 sensor status to False (i.e. inactive) as all readings are now complete
+        return 
+        
     def nh3(self): # measures concentration of ammonia gas
         sensor = 'nh3'
         freq = list(filter(lambda x: x[0] == 7, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors and sensor reading frequency in tuple format: (active sensor number, sensor reading frequency)) to access reading frequency for ammonia sensor (sensor number 7)
@@ -144,9 +157,11 @@ class SensorReadings(): # class containing methods to take sensor readings
         self.save_data(sensor, freq, data, data_heading)
         return
 
-    def pm_queue(self, freq): # appends 'pm' method to queue every 'freq' secs to take readings at desired intervals, whilst avoiding collisions which may occur if multiple sensors take readings simultaneously 
-        threading.Timer(freq, self.pm).start() # recursively call 'pm' method at frequency specified by 'freq' to take readings at desired frequency
-        self.queue.append(self.pm())
+    def pm_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'pm' method to 'queue' at set intervals to take sensor readings at desired frequency
+        self.queue_op(freq, dur, stime, self.pm()) # add 'pm' method to 'queue' at set intervals to take sensor readings at desired frequency
+        display_text('Particulate matter readings complete') # display sensor reading status on LCD once all readings are complete
+        self.sensor_status[7] = False # change pm sensor status to False (i.e. inactive) as all readings are now complete
+        return 
 
     def pm(self): # measures concentration of PM1.0, PM2.5 and PM10 particulate matter
         sensor = 'pm'
@@ -155,7 +170,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         try:
             data = pms5003.read() # get readings of concentration of PM1.0, PM2.5 and PM10 particulate matter
         except pmsReadTimeoutError:
-            display_text('Failed to read PMS5003')
+            display_text('Failed to read PMS5003') # display error message on LCD screen
             pass
         else:
             pm1 = float(data.pm_ug_per_m3(1.0)) # get readings of concentration of PM1.0
@@ -180,20 +195,32 @@ class SensorReadings(): # class containing methods to take sensor readings
         row = [data, time] + data # enables unlimited number of data readings to be stored as 'data' stores an array of each data reading (applicable as pm sensor takes three readings (PM1.0, PM2.5 and PM10), whereas all other sensor only take one reading)
         writer.writerow(row) # write current date, current time, data reading to file
         f.close() # close file
- 
+        return
+
+    def queue_op(self, freq, dur, stime, sensor_method): # general operation for sensor queue - adds sensor execution method to 'self.queue' every 'freq' seconds to take sensor readings at desired intervals to take sensor readings for 'dur' secs, whilst avoiding collisions which may occur if multiple sensors take readings simultaneously 
+        if time.time() - stime >= dur: # if duration for which sensor readings should be taken (as defined by the user in 'sensor_settings.py') has been reached, terminate execution of sensor readings
+            return
+        else:
+            threading.Timer(freq, self.queue_op, [freq, dur, stime, sensor_method]).start() # recursively call 'queue_op' method at frequency specified by 'freq' to add sensor method to 'queue' (which executes sensor readings such that collisions are avoided) at desired frequency and pass required arguments in list
+            self.queue.append(sensor_method) # add sensor method to 'self.queue' to schedule execution of sensor reading
+
     def dequeue(self): # remove each queued sensor reading from the queue and execute the sensor reading, avoiding multiple sensors taking readings simultaneously  
         while True:
             if len(self.queue) >= 1: # if there are sensors readings to be taken
                self.queue.pop(0) # execute reading for front sensor in queue and remove sensor from queue
                time.sleep(1) # 1 second delay between each sensor reading
+            if True not in self.sensor_status: # if all sensors are inactive
+                display_text('All readings are now complete\nYou can safely power off the Raspberry Pi now') # display sensor reading status on LCD screen
+                break # all readings are complete, so terminate
 
     def main(self): # control operation of active sensors
         queue_thread = threading.Thread(target=self.dequeue) # run queue in background thread
         queue_thread.start()
         for sensor in self.sensors: # iterate through active sensors as defined by user in 'sensor_settings.py'
-            sensor_num, sensor_freq = sensor[0], sensor[1] # first element in tuple stores sensor number, second element stores reading frequency for sensor 
+            sensor_num, sensor_freq, sensor_dur = sensor[0], sensor[1], sensor[2]*60 # first element in tuple stores sensor number, second element stores reading frequency for sensor, third element stores duration of sensor recordings (in minutes)
+            self.sensor_status[sensor_num-1] = True # change sensor status to True (i.e. active) for each sensor which user has defined to be active in 'sensor_settings.py'
             sensor_method = self.sensors_dict[sensor_num] # lookup sensor method that is associated with the sensor number ('sensor_num') using 'sensors_dict'
-            sensor_method(sensor_freq) # call method to executed readings for desired sensor, passing the frequency (secs) at which readings should be taken
+            sensor_method(sensor_freq, sensor_dur, time.time()) # call method to executed readings for desired sensor, passing frequency (secs) at which readings should be taken, duration (secs) for which the readings should be taken, current time (i.e. time at which sensor readings begin)
 
 
 

@@ -1,7 +1,7 @@
 '''Edit this file to modify the settings of the sensor'''
 
 '''
-ACTIVE SENSORS & READING FREQUENCY
+ACTIVE SENSORS, FREQUENCY OF DATA RECORDING & DURATION OF DATA RECORDING 
 
 The sensor has the following sensors: 
 
@@ -14,9 +14,9 @@ The sensor has the following sensors:
 7. Ammonia
 8. Particulate matter
 
-Modify the list 'sensors' to include tuples of (sensor number, delay between readings in secs) - i.e. to measure temperature and ammonia with a time delay between readings of 60 and 120 secs respectively, 'sensors' would be [(1,60),(7,120)]
+Modify the values inside the brackets below for each active sensor with the following format (sensor number, delay between readings (secs), duration of data recording (mins)) - i.e. to measure temperature and ammonia with a time delay between readings of 60 and 120 secs and a data recording duration of 4 hours and 7 hours respectively, you should write [(1,60,240), (7,120,420)]
 '''
-sensors = [(4,60),(8,70)]
+sensors = [(1,60,240), (7,120,420)]
 
 
 '''
