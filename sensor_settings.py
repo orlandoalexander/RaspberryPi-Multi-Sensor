@@ -22,10 +22,9 @@ sensors = [(1,60,240), (7,120,420)]
 '''
 ADJUST TEMPERATURE TUNING FACTOR
 
-The temperature reading must be adjusted slightly to compensate for the heating effect of the CPU. 
-To tweak how much the temperature value is compensated, adjust the variable 'factor' below as required. 
-Making the value of 'factor' smaller will shift your compensated temperature further down, and making it larger will shift it back up towards the uncompensated temperaure.
+The temperature reading must be adjusted slightly to compensate for the heating effect of the CPU (computer processing unit on the sensor). 
+To tweak how much the temperature value is compensated, adjust the factor below as required. 
+Making the value of factor smaller will shift your compensated temperature further down, and making it larger will shift it back up towards the uncompensated temperaure.
 '''
 factor = 2.5
 
-# TODO: Clear up and make more concise

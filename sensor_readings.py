@@ -223,7 +223,3 @@ class SensorReadings(): # class containing methods to take sensor readings
             sensor_method(sensor_freq, sensor_dur, time.time()) # call method to executed readings for desired sensor, passing frequency (secs) at which readings should be taken, duration (secs) for which the readings should be taken, current time (i.e. time at which sensor readings begin)
 
 
-
-
-
-# TODO: 10 min delay before gas readings to allow time to stabalise

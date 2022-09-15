@@ -100,28 +100,28 @@
 # t.start()
 # print('hey')
 
-import time
-import threading
-import random
+# import time
+# import threading
+# import random
 
-def func():
+# def func():
     
-    while True:
-        r = random.randint(0,2)
-        print('hey')
-        if r == 0:
-            print('break')
-            break
-        time.sleep(3)
+#     while True:
+#         r = random.randint(0,2)
+#         print('hey')
+#         if r == 0:
+#             print('break')
+#             break
+#         time.sleep(3)
          
 
 
-while True:
-    inp = input('Type: ')
-    print(threading.active_count())
-    if inp == 'i':
-        t = threading.Thread(target=func)
-        t.start()
+# while True:
+#     inp = input('Type: ')
+#     print(threading.active_count())
+#     if inp == 'i':
+#         t = threading.Thread(target=func)
+#         t.start()
         
 # import threading
 # import time
