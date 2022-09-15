@@ -79,10 +79,23 @@
 #         l.pop(0) # execute reading for front sensor in queue and remove sensor from queue
 
 
-from git import Repo
-repo = Repo('')
+# from git import Repo
+# repo = Repo('')
 
-repo.index.add('**')
-repo.index.commit('updates')
-origin = repo.remotes.origin
-origin.push()
+# repo.index.add('**')
+# repo.index.commit('updates')
+# origin = repo.remotes.origin
+# origin.push()
+
+from concurrent.futures import thread
+import time
+import threading
+
+def func():
+    while True:
+        print('Hello world')
+        time.sleep(5)
+
+t = threading.Thread(target = func)
+t.start()
+print('hey')

@@ -11,7 +11,7 @@ from lcd_display import display_text
 
 
 try:
-    # Transitional fix for breaking change in LTR559
+    # transitional fix for breaking change in LTR559
     from ltr559 import LTR559
     ltr559 = LTR559() # initialise LTR559 light/proximity sensor
 except ImportError:
@@ -27,10 +27,12 @@ pms5003 = PMS5003() # intitialise PMS5003 particulate sensor
 
 class SensorReadings(): # class containing methods to take sensor readings
     def __init__(self):
+        now = datetime.now() # get current date and time
+        self.date = now.strftime("%d/%m/%Y") # get date when sensor readings begin in correct format
+        self.time = now.strftime("%H:%M:%S") # get time when sensor readings begin in current format
         self.sensors = sensor_settings.sensors # access sensor settings defined by user in file 'sensor_settings.py' 
         self.factor = sensor_settings.factor # adjust factor by which temperature reading is compensated
         self.sensors_dict = {1:self.temp_queue(), 2:self.pressure_queue(), 3:self.humidity_queue(), 4:self.light_queue(), 5:self.co_queue(), 6:self.no2_queue(), 7:self.nh3_queue(), 8:self.pm_queue()} # dictionary to translate between sensor number and sensor queue method (which triggers sensor execution)
-
         self.queue = [] # queue stores sensors which are due to take readings - this avoids multiple sensors taking readings simultaneously and therefore prevents collisions
 
     def get_cpu_temperature(self): # get the temperature of the CPU for compensation
@@ -164,10 +166,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         return
 
     def save_data(self, sensor, freq, data, data_heading): # save sensor data to CSV file
-        now = datetime.now() # get current date and time
-        date = now.strftime("%d/%m/%Y") # get current date in correct format
-        time = now.strftime("%H:%M:%S") # get current time in current format
-        filename = sensor+'-'+date+'.csv' # filename stores sensor type and current date
+        filename = sensor+'-'+self.date+'-'+self.time+'.csv' # filename stores sensor type and current date
         file_exists = False
         if os.path.isfile(f'data/{filename}'): # if CSV file storing data for 'sensor' already exists
             file_exists = True
@@ -189,7 +188,8 @@ class SensorReadings(): # class containing methods to take sensor readings
                time.sleep(1) # 1 second delay between each sensor reading
 
     def main(self): # control operation of active sensors
-        self.dequeue()
+        queue_thread = threading.Thread(target=self.dequeue) # run queue in background thread
+        queue_thread.start()
         for sensor in self.sensors: # iterate through active sensors as defined by user in 'sensor_settings.py'
             sensor_num, sensor_freq = sensor[0], sensor[1] # first element in tuple stores sensor number, second element stores reading frequency for sensor 
             sensor_method = self.sensors_dict[sensor_num] # lookup sensor method that is associated with the sensor number ('sensor_num') using 'sensors_dict'
@@ -202,4 +202,4 @@ class SensorReadings(): # class containing methods to take sensor readings
 
 
 
-# 10 min delay before gas readings to allow time to stabalise
+# TODO: 10 min delay before gas readings to allow time to stabalise

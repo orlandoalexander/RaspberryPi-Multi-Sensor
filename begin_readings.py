@@ -1,8 +1,12 @@
 '''Configures proximity sensor as button to begin sensor readings after Raspberry Pi boot'''
 
 import time
+import threading
+from sensor_readings import SensorReadings
+
+
 try:
-    # Transitional fix for breaking change in LTR559
+    # transitional fix for breaking change in LTR559
     from ltr559 import LTR559
     ltr559 = LTR559() # initialise LTR559 light/proximity sensor
 except ImportError:
@@ -20,6 +24,7 @@ while True:
             else:
                 pass
         if button_pressed == True:
-            # TODO: start readings
+            sensor_thread = threading.Thread(target=SensorReadings().main)
+            sensor_thread.start()
 
 
