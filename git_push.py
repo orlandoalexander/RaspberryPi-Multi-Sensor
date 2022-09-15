@@ -1,17 +1,21 @@
 '''Automatically pushes latest data readings to git repo when Raspberry Pi is booted and connected to WiFi.'''
 
-import subprocess
 import time
+import requests
+from git import Repo
 from lcd_display import display_text
 
-boot_text = 'Sensor booting...'
-display_text(boot_text) # display boot message on sensor LCD
-
-time.sleep(10) # delay to allow Raspberry Pi to connect to WiFi
+time.sleep(20) # delay to allow Raspberry Pi to connect to WiFi and latest changes to be pulled from git repo
 
 try: 
-    url.urlopen('http://google.com') # checks if Raspberry Pi is connected to WiFi
-    subprocess.run(["git", "pull"], check=True, stdout=subprocess.PIPE).stdout # pull latest changes from git repo to update sensor settings
-    git_message = 'Duccessfully retrieved latest changes from GitHub Repo'
+    requests.get('https://www.google.com/') # check if Raspberry Pi is connected to internet (request will cause error if not connected to internet --> except statement triggered)
+    repo = Repo('') # access local git repo (current directory)
+    repo.index.add('**') # stage all files for commit
+    repo.index.commit('upload latest data files') # commit all staged files
+    origin = repo.remotes.origin # access remote git repo 
+    origin.push() # push all commits to remote git repo
+    git_message = 'Successfully uploaded data files to GitHub Repo'
 except:
-    git_message = 'No internet connection --> failed to retrieve latest changes from GitHub Repo'
+    git_message = 'Failed to upload data files to GitHub Repo\nNo internet connection' 
+
+display_text(git_message) # display git push status on LCD screen
