@@ -82,7 +82,7 @@
 from git import Repo
 repo = Repo('')
 
-repo.index.add('example.csv')
+repo.index.add('**')
 repo.index.commit('updates')
 origin = repo.remotes.origin
 origin.push()
