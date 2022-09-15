@@ -18,6 +18,5 @@ while True:
         git_message = 'Latest version of data files will be uploaded to GitHub Repo every 60s'
     except:
         git_message = 'Cannot upload latest version of data files to GitHub Repo\nNo internet connection' 
-
     display_text(git_message) # display git push status on LCD screen
     time.sleep(60)

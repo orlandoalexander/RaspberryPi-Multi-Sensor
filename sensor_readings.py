@@ -226,7 +226,4 @@ class SensorReadings(): # class containing methods to take sensor readings
 
 
 
-
-
-
 # TODO: 10 min delay before gas readings to allow time to stabalise
