@@ -157,7 +157,7 @@ f = open(f'data/example.csv', 'w') # create/open CSV file to store data for 'sen
 writer = csv.writer(f)
 heading = ['Date', 'Time'] + ['temp (C)'] # enables unlimited number of data headings as 'data_heading' stores an array of each data heading (applicable as pm sensor takes three readings (PM1.0, PM2.5 and PM10), whereas all other sensor only take one reading)
 writer.writerow(['Time between readings (sec)',60]) # record frequency of sensor readings
-#writer.writerow(['']) # empty row
+writer.writerow(['']) # empty row
 writer.writerow(heading) # write headings to file
 now = datetime.now() # get current date and time
 time = now.strftime("%H:%M:%S") # get current time in correct format
