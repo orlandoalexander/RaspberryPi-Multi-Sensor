@@ -16,7 +16,7 @@ time.sleep(10) # delay to allow Raspberry Pi to connect to WiFi
 try: 
     requests.get('https://www.google.com/') # check if Raspberry Pi is connected to internet (request will cause error if not connected to internet --> except statement triggered)
     repo = Repo('') # access local git repo (current directory)
-    origin = repo.remotes.origin # access remote git repo 
+    origin = repo.remotes.origin # access remote git repo
     origin.pull() # pull latest changes from git repo to update sensor settings
     git_message = 'Successfully retrieved latest changes from GitHub Repo'
 except:
