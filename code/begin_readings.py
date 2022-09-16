@@ -3,6 +3,7 @@
 import sys
 path = '/Users/orlandoalexander/Library/Mobile Documents/com~apple~CloudDocs/Documents/South America/EcoSwell/RaspberryPi-Sensor/RaspberryPi-Sensor' # path to folder storing 'sensor_settings' module
 sys.path.append(path) # enable importing module ('sensor_settings') from outside directory
+import os
 import time
 import threading
 from sensor_readings import SensorReadings
@@ -33,6 +34,18 @@ while True:
             sensor_thread = threading.Thread(target=SensorReadings().main) # create new thread to take sensor readings in background
             sensor_thread.start() # start background thread to take sensor readings
         elif button_pressed == True and threading.active_count() > 1: # if user has held finger on proximity sensor for at least 5 seconds (i.e. pressed button to start sensor readings) and another thread is currently active (i.e. sensor is currently taking readings)
-            display_text('Sensor currently active!\nPlease reboot Raspberry Pi to restart sensor readings')
+            display_text('Sensor currently active!\nContinue to hold for 10 seconds to reboot sensor')
+            while time.time() - stime < 15: # loop for 5 seconds, checking whether user's finger is still on proximity sensor
+                if proximity < 1000: # if user takes finger off proxmity sensor (i.e. stops pressing 'button')
+                    button_pressed = False
+                    break
+                else:
+                    pass
+            if button_pressed == True:
+                display_text('Sensor rebooting...')
+                time.sleep(5)
+                os.system("sudo reboot")
+            else:
+                display_text('Sensor will continue to take readings')
 
 
