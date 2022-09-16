@@ -8,7 +8,7 @@ import time
 import threading
 import os.path
 import csv
-from datetime import date, datetime
+from datetime import datetime
 from lcd_display import display_text
 
 
@@ -31,7 +31,7 @@ class SensorReadings(): # class containing methods to take sensor readings
     def __init__(self):
         now = datetime.now() # get current date and time
         self.date = now.strftime("%d/%m/%Y") # get date when sensor readings begin in correct format
-        self.time = now.strftime("%H:%M:%S") # get time when sensor readings begin in current format
+        self.time = now.strftime("%H:%M:%S") # get time when sensor readings begin in correct format
         self.sensors = sensor_settings.sensors # access sensor settings defined by user in file 'sensor_settings.py' 
         self.factor = sensor_settings.factor # adjust factor by which temperature reading is compensated
         self.sensors_dict = {1:self.temp_queue(), 2:self.pressure_queue(), 3:self.humidity_queue(), 4:self.light_queue(), 5:self.co_queue(), 6:self.no2_queue(), 7:self.nh3_queue(), 8:self.pm_queue()} # dictionary to translate between sensor number and sensor queue method (which triggers sensor execution)
@@ -192,10 +192,13 @@ class SensorReadings(): # class containing methods to take sensor readings
         writer = csv.writer(f)
         if not file_exists: # if CSV file storing data for 'sensor' has just been created
             heading = ['Date', 'Time'] + data_heading # enables unlimited number of data headings as 'data_heading' stores an array of each data heading (applicable as pm sensor takes three readings (PM1.0, PM2.5 and PM10), whereas all other sensor only take one reading)
-            writer.writerow(['Frequency(sec)',freq]) # record frequency of sensor readings
+            writer.writerow(['Time between readings(sec)',freq]) # record delay between sensor readings
             writer.writerow(['']) # empty row
             writer.writerow(heading) # write headings to file
-        row = [data, time] + data # enables unlimited number of data readings to be stored as 'data' stores an array of each data reading (applicable as pm sensor takes three readings (PM1.0, PM2.5 and PM10), whereas all other sensor only take one reading)
+        now = datetime.now() # get current date and time
+        date = now.strftime("%d/%m/%Y") # get current date in correct format
+        time = now.strftime("%H:%M:%S") # get current time in correct format
+        row = [date, time] + data # enables unlimited number of data readings to be stored as 'data' stores an array of each data reading (applicable as pm sensor takes three readings (PM1.0, PM2.5 and PM10), whereas all other sensor only take one reading)
         writer.writerow(row) # write current date, current time, data reading to file
         f.close() # close file
         return
