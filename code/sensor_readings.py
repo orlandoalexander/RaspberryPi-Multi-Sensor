@@ -52,7 +52,8 @@ class SensorReadings(): # class containing methods to take sensor readings
 
     def temp(self): # measure temperature
         sensor = 'temp'
-        freq = list(filter(lambda x: x[0] == 1, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors and sensor reading frequency in tuple format: (active sensor number, sensor reading frequency)) to access reading frequency for temperature sensor (sensor number 1)
+        freq = list(filter(lambda x: x[0] == 1, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for temp sensor (sensor number 1)
+        dur = list(filter(lambda x: x[0] == 1, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for temp sensor (sensor number 1)
         data_heading = ['Temperature (C)']
         cpu_temp = self.get_cpu_temperature() # get current CPU temperature
         cpu_temps = cpu_temps[1:] + [cpu_temp] # remove oldest reading of CPU temp and append latest reading of CPU temp to 'cpu_temps'
@@ -60,7 +61,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         raw_temp = bme280.get_temperature() # get raw reading of temp
         compensated_temp = raw_temp - ((avg_cpu_temp - raw_temp) / self.factor) # temp value ajdusted to compensate for CPU heating
         data = [compensated_temp]
-        self.save_data(sensor, freq, data, data_heading)
+        self.save_data(sensor, freq, dur, data, data_heading)
         return
 
     def pressure_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'pressure' method to 'queue' at set intervals to take sensor readings at desired frequency
@@ -71,11 +72,12 @@ class SensorReadings(): # class containing methods to take sensor readings
 
     def pressure(self): # measure pressue
         sensor = 'pressure'
-        freq = list(filter(lambda x: x[0] == 2, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors and sensor reading frequency in tuple format: (active sensor number, sensor reading frequency)) to access reading frequency for pressure sensor (sensor number 2)
+        freq = list(filter(lambda x: x[0] == 2, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for pressure sensor (sensor number 2)
+        dur = list(filter(lambda x: x[0] == 2, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for pressure sensor (sensor number 2)
         data_heading = ['Pressure (hPa)']
         pressure = bme280.get_pressure() # get reading of pressure
         data = [pressure]
-        self.save_data(sensor, freq, data, data_heading)
+        self.save_data(sensor, freq, dur, data, data_heading)
         return
 
     def humidity_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'humidity' method to 'queue' at set intervals to take sensor readings at desired frequency
@@ -86,11 +88,12 @@ class SensorReadings(): # class containing methods to take sensor readings
 
     def humidity(self): # measure humidiity
         sensor = 'humidity'
-        freq = list(filter(lambda x: x[0] == 3, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors and sensor reading frequency in tuple format: (active sensor number, sensor reading frequency)) to access reading frequency for humidity sensor (sensor number 3)
+        freq = list(filter(lambda x: x[0] == 3, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for humidity sensor (sensor number 3)
+        dur = list(filter(lambda x: x[0] == 3, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for humidity sensor (sensor number 3)
         data_heading = ['Humidity (%)']
         humidity = bme280.get_humidity() # get reading of humidity
         data = [humidity]
-        self.save_data(sensor, freq, data, data_heading)
+        self.save_data(sensor, freq, dur, data, data_heading)
         return
 
     def light_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'light' method to 'queue' at set intervals to take sensor readings at desired frequency
@@ -101,7 +104,8 @@ class SensorReadings(): # class containing methods to take sensor readings
 
     def light(self): # measure light intensity
         sensor = 'light'
-        freq = list(filter(lambda x: x[0] == 4, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors and sensor reading frequency in tuple format: (active sensor number, sensor reading frequency)) to access reading frequency for light sensor (sensor number 4)
+        freq = list(filter(lambda x: x[0] == 4, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for light sensor (sensor number 4)
+        dur = list(filter(lambda x: x[0] == 4, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for light sensor (sensor number 4)
         data_heading = ['Light (lux)']
         proximity = ltr559.get_proximity() # get reading of proximity
         if proximity < 10: # no object near the sensor (small values of proximity indicate greater proximity)
@@ -109,7 +113,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         else: # larger value of proximity --> closer proximity --> object near the sensor --> cannot take reading of light intensity
             light = 1 # dark
         data = [light]
-        self.save_data(sensor, freq, data, data_heading)
+        self.save_data(sensor, freq, dur, data, data_heading)
         return
 
     def co_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'co' method to 'queue' at set intervals to take sensor readings at desired frequency
@@ -120,12 +124,13 @@ class SensorReadings(): # class containing methods to take sensor readings
 
     def co(self): # measures concentration of carbon monoxide (reducing) gas
         sensor = 'co'
-        freq = list(filter(lambda x: x[0] == 5, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors and sensor reading frequency in tuple format: (active sensor number, sensor reading frequency)) to access reading frequency for carbon monoxide sensor (sensor number 5)
+        freq = list(filter(lambda x: x[0] == 5, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for co sensor (sensor number 5)
+        dur = list(filter(lambda x: x[0] == 5, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for co sensor (sensor number 5)
         data_heading = ['Carbon monoxide (k0)']
         gas_data = gas.read_all() # get readings of concentration of all gasses
         co = gas_data.reducing / 1000 # convert carbon monoxide gas concentration from resistance to ppm
         data = [co]
-        self.save_data(sensor, freq, data, data_heading)
+        self.save_data(sensor, freq, dur, data, data_heading)
         return
     
     def no2_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'no2' method to 'queue' at set intervals to take sensor readings at desired frequency
@@ -136,12 +141,13 @@ class SensorReadings(): # class containing methods to take sensor readings
 
     def no2(self): # measures concentration of nitrogen dioxide (oxidising) gas
         sensor = 'no2'
-        freq = list(filter(lambda x: x[0] == 6, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors and sensor reading frequency in tuple format: (active sensor number, sensor reading frequency)) to access reading frequency for nitrogen dioxide sensor (sensor number 6)
+        freq = list(filter(lambda x: x[0] == 6, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for no2 sensor (sensor number 6)
+        dur = list(filter(lambda x: x[0] == 6, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for no2 sensor (sensor number 6)
         data_heading = ['Nitrogen dioxide (k0)']
         gas_data = gas.read_all() # get readings of concentration of all gasses
         no2 = gas_data.oxidising / 1000 # convert nitrogen dioxide gas concentration from resistance to ppm
         data = [no2]
-        self.save_data(sensor, freq, data, data_heading)
+        self.save_data(sensor, freq, dur, data, data_heading)
         return
     
     def nh3_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'nh3' method to 'queue' at set intervals to take sensor readings at desired frequency
@@ -152,12 +158,13 @@ class SensorReadings(): # class containing methods to take sensor readings
         
     def nh3(self): # measures concentration of ammonia gas
         sensor = 'nh3'
-        freq = list(filter(lambda x: x[0] == 7, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors and sensor reading frequency in tuple format: (active sensor number, sensor reading frequency)) to access reading frequency for ammonia sensor (sensor number 7)
+        freq = list(filter(lambda x: x[0] == 7, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for nh3 sensor (sensor number 7)
+        dur = list(filter(lambda x: x[0] == 7, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for nh3 sensor (sensor number 7)
         data_heading = ['Ammonia (k0)']
         gas_data = gas.read_all() # get readings of concentration of all gasses
         nh3 = gas_data.nh3 / 1000 # convert ammonia gas concentration from resistance to ppm
         data = [nh3]
-        self.save_data(sensor, freq, data, data_heading)
+        self.save_data(sensor, freq, dur, data, data_heading)
         return
 
     def pm_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'pm' method to 'queue' at set intervals to take sensor readings at desired frequency
@@ -168,7 +175,8 @@ class SensorReadings(): # class containing methods to take sensor readings
 
     def pm(self): # measures concentration of PM1.0, PM2.5 and PM10 particulate matter
         sensor = 'pm'
-        freq = list(filter(lambda x: x[0] == 8, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors and sensor reading frequency in tuple format: (active sensor number, sensor reading frequency)) to access reading frequency for pm sensor (sensor number 8)
+        freq = list(filter(lambda x: x[0] == 8, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for pm sensor (sensor number 8)
+        dur = list(filter(lambda x: x[0] == 8, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for pm sensor (sensor number 8)
         data_heading = ['PM1.0 (ug/m3)','PM2.5 (ug/m3)', 'PM10 (ug/m3)']
         try:
             data = pms5003.read() # get readings of concentration of PM1.0, PM2.5 and PM10 particulate matter
@@ -180,10 +188,10 @@ class SensorReadings(): # class containing methods to take sensor readings
             pm25 = float(data.pm_ug_per_m3(2.5)) # get readings of concentration of PM2.5
             pm10 = float(data.pm_ug_per_m3(10)) # get readings of concentration of PM10
             data = [pm1,pm25,pm10]
-            self.save_data(sensor, freq, data, data_heading)
+            self.save_data(sensor, freq, dur, data, data_heading)
         return
 
-    def save_data(self, sensor, freq, data, data_heading): # save sensor data to CSV file
+    def save_data(self, sensor, freq, dur, data, data_heading): # save sensor data to CSV file
         filename = sensor+'-'+self.date+'-'+self.time+'.csv' # filename stores sensor type and current date
         file_exists = False
         if os.path.isfile(f'data/{filename}'): # if CSV file storing data for 'sensor' already exists
@@ -192,8 +200,8 @@ class SensorReadings(): # class containing methods to take sensor readings
         writer = csv.writer(f)
         if not file_exists: # if CSV file storing data for 'sensor' has just been created
             heading = ['Date', 'Time'] + data_heading # enables unlimited number of data headings as 'data_heading' stores an array of each data heading (applicable as pm sensor takes three readings (PM1.0, PM2.5 and PM10), whereas all other sensor only take one reading)
-            writer.writerow(['Time between readings(sec)',freq]) # record delay between sensor readings
-            writer.writerow(['']) # empty row
+            writer.writerow(['Time between readings(sec): ',freq]) # record delay between sensor readings
+            writer.writerow(['Duration of readings (mins): ', dur]) # record duration of sensor readings
             writer.writerow(heading) # write headings to file
         now = datetime.now() # get current date and time
         date = now.strftime("%d/%m/%Y") # get current date in correct format
