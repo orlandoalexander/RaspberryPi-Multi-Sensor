@@ -29,23 +29,23 @@ while True:
             else:
                 pass
         if button_pressed == True and threading.active_count() <= 1: # if user has held finger on proximity sensor for at least 5 seconds (i.e. pressed button to start sensor readings) and no other threads are currently active (i.e. sensor not currently taking readings)
-            display_text('Sensor readings starting in 2 minutes')
+            display_text('Sensor readings starting in 2 minutes') # display status message on LCD 
             time.sleep(120) # delay to allow user to place sensor in desired location to take readings
             sensor_thread = threading.Thread(target=SensorReadings().main) # create new thread to take sensor readings in background
             sensor_thread.start() # start background thread to take sensor readings
         elif button_pressed == True and threading.active_count() > 1: # if user has held finger on proximity sensor for at least 5 seconds (i.e. pressed button to start sensor readings) and another thread is currently active (i.e. sensor is currently taking readings)
             display_text('Sensor currently active!\nContinue to hold for 10 seconds to reboot sensor')
-            while time.time() - stime < 15: # loop for 5 seconds, checking whether user's finger is still on proximity sensor
+            while time.time() - stime < 15: # continue looping for 15 seconds after user first pressed proximity sensor, checking whether user's finger is still on proximity sensor
                 if proximity < 1000: # if user takes finger off proxmity sensor (i.e. stops pressing 'button')
                     button_pressed = False
                     break
                 else:
                     pass
-            if button_pressed == True:
-                display_text('Sensor rebooting...')
+            if button_pressed == True: # if user held proximity sensor for 15 seconds in total
+                display_text('Sensor rebooting...') # display status message on LCD 
                 time.sleep(5)
-                os.system("sudo reboot")
+                os.system("sudo reboot") # reboot Raspberry Pi
             else:
-                display_text('Sensor will continue to take readings')
+                display_text('Sensor will continue to take readings') # display status message on LCD 
 
 
