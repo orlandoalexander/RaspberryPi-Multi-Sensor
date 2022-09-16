@@ -162,7 +162,7 @@ writer.writerow(heading) # write headings to file
 
 now = datetime.now() # get current date and time
 time = now.strftime("%H:%M:%S") # get current time in correct format
-date = now.strftime("%d/%m/%Y") # get current date in correct format
+date = now.strftime("%d.%m.%Y") # get current date in correct format
 row = [date, time] + ['35'] # enables unlimited number of data readings to be stored as 'data' stores an array of each data reading (applicable as pm sensor takes three readings (PM1.0, PM2.5 and PM10), whereas all other sensor only take one reading)
 writer.writerow(row) # write current date, current time, data reading to file
 
