@@ -33,16 +33,33 @@ class SensorReadings(): # class containing methods to take sensor readings
         self.date = now.strftime("%d/%m/%Y") # get date when sensor readings begin in correct format
         self.time = now.strftime("%H:%M:%S") # get time when sensor readings begin in correct format
         self.sensors = sensor_settings.sensors # access sensor settings defined by user in file 'sensor_settings.py' 
-        self.factor = sensor_settings.factor # adjust factor by which temperature reading is compensated
+        self.factor = sensor_settings.factor # access factor by which temperature reading is compensated as defined by user in file 'sensor_settings.py' 
+        self.calculate_factor = sensor_settings.calculate_factor # boolean which stores whether user wishes to calculate the temperature compensation factor
         self.sensors_dict = {1:self.temp_queue(), 2:self.pressure_queue(), 3:self.humidity_queue(), 4:self.light_queue(), 5:self.co_queue(), 6:self.no2_queue(), 7:self.nh3_queue(), 8:self.pm_queue()} # dictionary to translate between sensor number and sensor queue method (which triggers sensor execution)
         self.queue = [] # queue stores sensors which are due to take readings - this avoids multiple sensors taking readings simultaneously and therefore prevents collisions
         self.sensor_status = [False for i in range(8)] # queue stores status of each sensor (True = active, False = inactive)
+        self.cpu_temps = [self.get_cpu_temperature()] * 5 # get five readings of CPU temperature
 
     def get_cpu_temperature(self): # get the temperature of the CPU for compensation
             with open("/sys/class/thermal/thermal_zone0/temp", "r") as f:
                 temp = f.read()
                 temp = int(temp) / 1000.0
             return temp
+
+    def temp_factor(self): # record required data to allow user to calculate temperature compensation factor
+        for i in range(10):
+            sensor = 'calculate_factor'
+            freq = 60
+            dur = 10
+            raw_temp = bme280.get_temperature() # get raw reading of temp
+            cpu_temp = self.get_cpu_temperature() # get current CPU temperature
+            self.cpu_temps = self.cpu_temps[1:] + [cpu_temp] # remove oldest reading of CPU temp and append latest reading of CPU temp to 'cpu_temps'
+            avg_cpu_temp = sum(self.cpu_temps) / float(len(self.cpu_temps)) # get average of CPU temp to decrease jitter
+            data_heading = ['Data 1','Data 2']
+            data = [(avg_cpu_temp-raw_temp), raw_temp] # the two data values required to calculate the temperature compensation factor
+            self.save_data(sensor, freq, dur, data, data_heading)
+            time.sleep(60)
+        return
 
     def temp_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
         self.queue_op(freq, dur, stime, self.temp()) # add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
@@ -54,10 +71,10 @@ class SensorReadings(): # class containing methods to take sensor readings
         sensor = 'temp'
         freq = list(filter(lambda x: x[0] == 1, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for temp sensor (sensor number 1)
         dur = list(filter(lambda x: x[0] == 1, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for temp sensor (sensor number 1)
-        data_heading = ['Temperature (C)']
+        data_heading = ['Temperature (*C)']
         cpu_temp = self.get_cpu_temperature() # get current CPU temperature
-        cpu_temps = cpu_temps[1:] + [cpu_temp] # remove oldest reading of CPU temp and append latest reading of CPU temp to 'cpu_temps'
-        avg_cpu_temp = sum(cpu_temps) / float(len(cpu_temps)) # get average of CPU temp to decrease jitter
+        self.cpu_temps = self.cpu_temps[1:] + [cpu_temp] # remove oldest reading of CPU temp and append latest reading of CPU temp to 'cpu_temps'
+        avg_cpu_temp = sum(self.cpu_temps) / float(len(self.cpu_temps)) # get average of CPU temp to decrease jitter
         raw_temp = bme280.get_temperature() # get raw reading of temp
         compensated_temp = raw_temp - ((avg_cpu_temp - raw_temp) / self.factor) # temp value ajdusted to compensate for CPU heating
         data = [compensated_temp]
@@ -126,7 +143,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         sensor = 'co'
         freq = list(filter(lambda x: x[0] == 5, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for co sensor (sensor number 5)
         dur = list(filter(lambda x: x[0] == 5, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for co sensor (sensor number 5)
-        data_heading = ['Carbon monoxide (k0)']
+        data_heading = ['Carbon monoxide (kO)']
         gas_data = gas.read_all() # get readings of concentration of all gasses
         co = gas_data.reducing / 1000 # convert carbon monoxide gas concentration from resistance to ppm
         data = [co]
@@ -143,7 +160,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         sensor = 'no2'
         freq = list(filter(lambda x: x[0] == 6, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for no2 sensor (sensor number 6)
         dur = list(filter(lambda x: x[0] == 6, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for no2 sensor (sensor number 6)
-        data_heading = ['Nitrogen dioxide (k0)']
+        data_heading = ['Nitrogen dioxide (kO)']
         gas_data = gas.read_all() # get readings of concentration of all gasses
         no2 = gas_data.oxidising / 1000 # convert nitrogen dioxide gas concentration from resistance to ppm
         data = [no2]
@@ -160,7 +177,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         sensor = 'nh3'
         freq = list(filter(lambda x: x[0] == 7, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for nh3 sensor (sensor number 7)
         dur = list(filter(lambda x: x[0] == 7, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for nh3 sensor (sensor number 7)
-        data_heading = ['Ammonia (k0)']
+        data_heading = ['Ammonia (kO)']
         gas_data = gas.read_all() # get readings of concentration of all gasses
         nh3 = gas_data.nh3 / 1000 # convert ammonia gas concentration from resistance to ppm
         data = [nh3]
@@ -228,12 +245,15 @@ class SensorReadings(): # class containing methods to take sensor readings
                 break # all readings are complete, so terminate
 
     def main(self): # control operation of active sensors
-        queue_thread = threading.Thread(target=self.dequeue) # run queue in background thread
-        queue_thread.start()
-        for sensor in self.sensors: # iterate through active sensors as defined by user in 'sensor_settings.py'
-            sensor_num, sensor_freq, sensor_dur = sensor[0], sensor[1], sensor[2]*60 # first element in tuple stores sensor number, second element stores reading frequency for sensor, third element stores duration of sensor recordings (in minutes)
-            self.sensor_status[sensor_num-1] = True # change sensor status to True (i.e. active) for each sensor which user has defined to be active in 'sensor_settings.py'
-            sensor_method = self.sensors_dict[sensor_num] # lookup sensor method that is associated with the sensor number ('sensor_num') using 'sensors_dict'
-            sensor_method(sensor_freq, sensor_dur, time.time()) # call method to executed readings for desired sensor, passing frequency (secs) at which readings should be taken, duration (secs) for which the readings should be taken, current time (i.e. time at which sensor readings begin)
+        if self.calculate_factor == True: # if user wishes to calculate the temperature compensation factor
+            self.temp_factor()
+        else:
+            queue_thread = threading.Thread(target=self.dequeue) # run queue in background thread
+            queue_thread.start()
+            for sensor in self.sensors: # iterate through active sensors as defined by user in 'sensor_settings.py'
+                sensor_num, sensor_freq, sensor_dur = sensor[0], sensor[1], sensor[2]*60 # first element in tuple stores sensor number, second element stores reading frequency for sensor, third element stores duration of sensor recordings (in minutes)
+                self.sensor_status[sensor_num-1] = True # change sensor status to True (i.e. active) for each sensor which user has defined to be active in 'sensor_settings.py'
+                sensor_method = self.sensors_dict[sensor_num] # lookup sensor method that is associated with the sensor number ('sensor_num') using 'sensors_dict'
+                sensor_method(sensor_freq, sensor_dur, time.time()) # call method to executed readings for desired sensor, passing frequency (secs) at which readings should be taken, duration (secs) for which the readings should be taken, current time (i.e. time at which sensor readings begin)
 
 
