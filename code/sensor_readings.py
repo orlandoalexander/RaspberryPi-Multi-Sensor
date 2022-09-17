@@ -143,7 +143,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         sensor = 'co'
         freq = list(filter(lambda x: x[0] == 5, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for co sensor (sensor number 5)
         dur = list(filter(lambda x: x[0] == 5, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for co sensor (sensor number 5)
-        data_heading = ['Carbon monoxide (kO)']
+        data_heading = ['Carbon monoxide (arbitrary units)']
         gas_data = gas.read_all() # get readings of concentration of all gasses
         co = gas_data.reducing / 1000 # convert carbon monoxide gas concentration from resistance to ppm
         data = [co]
@@ -160,7 +160,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         sensor = 'no2'
         freq = list(filter(lambda x: x[0] == 6, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for no2 sensor (sensor number 6)
         dur = list(filter(lambda x: x[0] == 6, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for no2 sensor (sensor number 6)
-        data_heading = ['Nitrogen dioxide (kO)']
+        data_heading = ['Nitrogen dioxide (arbitrary units)']
         gas_data = gas.read_all() # get readings of concentration of all gasses
         no2 = gas_data.oxidising / 1000 # convert nitrogen dioxide gas concentration from resistance to ppm
         data = [no2]
@@ -177,7 +177,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         sensor = 'nh3'
         freq = list(filter(lambda x: x[0] == 7, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for nh3 sensor (sensor number 7)
         dur = list(filter(lambda x: x[0] == 7, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for nh3 sensor (sensor number 7)
-        data_heading = ['Ammonia (kO)']
+        data_heading = ['Ammonia (arbitrary units)']
         gas_data = gas.read_all() # get readings of concentration of all gasses
         nh3 = gas_data.nh3 / 1000 # convert ammonia gas concentration from resistance to ppm
         data = [nh3]
