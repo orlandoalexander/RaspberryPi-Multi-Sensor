@@ -26,7 +26,8 @@ sensors = [(1,60,240), (7,120,420)]
 ADJUST TEMPERATURE TUNING FACTOR
 
 The temperature reading must be adjusted slightly to compensate for the heating effect of the CPU (computer processing unit on the sensor). 
-To determine the factor required to correctly compensate the tenmperature reading, set 'calibrate_factor' to 'True' and follow the instructions in the documentation.
+To determine the factor required to correctly compensate the tenmperature reading, 
+set 'calibrate_factor' to 'True' and follow the instructions in the documentation.
 
 '''
 factor = 2.5
