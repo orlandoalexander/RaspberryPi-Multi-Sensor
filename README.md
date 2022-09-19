@@ -28,8 +28,8 @@ The sensor also contains an LCD screen which will display status updates and fee
 
 
 ## **Raspberry Pi Diagram**
+<img width="832" alt="image-20220916124231553" src="https://user-images.githubusercontent.com/113472300/191034839-39f3fec2-b07c-4352-977d-f9d678b465e6.png">
 
-![image-20220916124231553](/Users/orlandoalexander/Library/Application Support/typora-user-images/image-20220916124231553.png)
 
 The Raspberry Pi has loads of different ports and components, but luckily you don't need to worry about most of them! The only four ports you need to be aware of are shown clearly in the diagram above, and are used during the initial setup process (see section **How To Use The Sensor** / **<u>Initial setup</u>**)
 
@@ -49,7 +49,8 @@ The operational code, sensor settings and data readings are stored on an online 
 
 The GitHub repo looks a little like this:
 
-![image-20220916104740264](/Users/orlandoalexander/Library/Application Support/typora-user-images/image-20220916104740264.png)
+<img width="1437" alt="image-20220916104740264" src="https://user-images.githubusercontent.com/113472300/191034982-df260484-509c-4bb4-99ca-995e4a26450c.png">
+
 
 You will see three things in the GitHub repo:
 
@@ -89,7 +90,7 @@ As the sensor must be connected to the internet to sync the latest settings chan
 
 The sensor settings are adjusted in an online file called *sensor_settings.py* which is stored in the GitHub repo, and looks a bit like this:
 
-![image-20220916215144428](/Users/orlandoalexander/Library/Application Support/typora-user-images/image-20220916215144428.png)
+<img width="1208" alt="image-20220916215144428" src="https://user-images.githubusercontent.com/113472300/191035159-8a300bc9-281d-4e07-b74f-966ee98b7855.png">
 
 1. To modify the sensor settings you must edit the file *sensor_settings.py* by clicking the *pen icon* circled above
 
@@ -99,7 +100,7 @@ The sensor settings are adjusted in an online file called *sensor_settings.py* w
 
 4. To save your changes to the sensor settings file *sensor_settings.py*, click the *commit changes* button circled below:
 
-   ![image-20220916215343225](/Users/orlandoalexander/Library/Application Support/typora-user-images/image-20220916215343225.png)
+   <img width="1072" alt="image-20220916215343225" src="https://user-images.githubusercontent.com/113472300/191035294-72ed0820-c9ee-4ec3-b1d3-3aa3aa18ed5c.png">
 
 4. Finally, to sync these changes with the sensor, you must reboot the sensor by unplugging the micro USB cable and plugging it back in again - if the sensor successfully downloads the latest version of the settings file, the following message will be displayed on the sensor's LCD screen upon reboot: 
 
@@ -142,23 +143,23 @@ The sensor settings are adjusted in an online file called *sensor_settings.py* w
 
    2. Navigate to the *data* folder inside the GitHub repo:
 
-      ![image-20220916153944740](/Users/orlandoalexander/Library/Application Support/typora-user-images/image-20220916153944740.png)
+      <img width="1309" alt="image-20220916153944740" src="https://user-images.githubusercontent.com/113472300/191035399-beb80780-391b-48ae-b5d6-acbf6af4a8ce.png">
 
    
 
    3. Open the required *csv* data file:
 
-      ![image-20220916160119981](/Users/orlandoalexander/Library/Application Support/typora-user-images/image-20220916160119981.png)
+      <img width="1274" alt="image-20220916160119981" src="https://user-images.githubusercontent.com/113472300/191035476-b5829e57-9369-4e1c-99f1-dcb4e12b772f.png">
 
    
 
-   4. Click `Raw`: ![image-20220916160224783](/Users/orlandoalexander/Library/Application Support/typora-user-images/image-20220916160224783.png)
+   4. Click `Raw`: <img width="1277" alt="image-20220916160224783" src="https://user-images.githubusercontent.com/113472300/191035532-2d40e57b-dab3-4a55-8a5a-8d1ed121c9fc.png">
 
       
 
    5. Right click on the screen and click `Save As...` to save the data as a *csv* file on your computer:
 
-      ![image-20220916155417329](/Users/orlandoalexander/Library/Application Support/typora-user-images/image-20220916155417329.png)
+      <img width="1284" alt="image-20220916155417329" src="https://user-images.githubusercontent.com/113472300/191035557-fe3c618c-879a-44b6-8f2a-685b90e3d890.png">
 
       
 
@@ -184,7 +185,7 @@ The temperature reading must be adjusted slightly to compensate for the heating 
 
 1. Set `calculate_factor` to `True` in the file *sensor_settings.py*, as shown below:
 
-   ![image-20220916220255521](/Users/orlandoalexander/Library/Application Support/typora-user-images/image-20220916220255521.png)
+   <img width="1230" alt="image-20220916220255521" src="https://user-images.githubusercontent.com/113472300/191035618-a98ebbc1-b2da-43a4-9f11-fe0b299f6f13.png">
 
    
 
@@ -192,7 +193,7 @@ The temperature reading must be adjusted slightly to compensate for the heating 
 
 3. Open the Excel file [*Calculate temp factor*](https://docs.google.com/spreadsheets/d/1BLTTYUCHuqEoowzhjQEQhzlOlSYHIbCMgoVQX1paT3U/edit?usp=sharing):
 
-   ![image-20220916222157041](/Users/orlandoalexander/Library/Application Support/typora-user-images/image-20220916222157041.png)
+   <img width="407" alt="image-20220916222157041" src="https://user-images.githubusercontent.com/113472300/191035628-3d6f7fe5-2cc4-4808-b847-8b46933d0628.png">
 
    
 
