@@ -27,6 +27,7 @@ The sensor also contains an LCD screen which will display status updates and fee
 
 
 
+
 ## **Raspberry Pi Diagram**
 <img width="832" alt="image-20220916124231553" src="https://user-images.githubusercontent.com/113472300/191034839-39f3fec2-b07c-4352-977d-f9d678b465e6.png">
 
@@ -57,6 +58,7 @@ You will see three things in the GitHub repo:
 1. *code* folder - you can <u>ignore</u> all files in this folder, unless you want/need to modify the sensor's core operational code
 2. *data* folder - this file is <u>important</u> as it stores all the data readings captured by the sensor
 3. *sensor_settings.py* folder - this file is <u>important</u> as it allows you to set which sensors are active, how often readings are taken and the duration of the data readings
+
 
 
 
@@ -153,7 +155,9 @@ The sensor settings are adjusted in an online file called *sensor_settings.py* w
 
    
 
-   4. Click `Raw`: <img width="1277" alt="image-20220916160224783" src="https://user-images.githubusercontent.com/113472300/191035532-2d40e57b-dab3-4a55-8a5a-8d1ed121c9fc.png">
+   4. Click `Raw`: 
+   
+      <img width="1277" alt="image-20220916160224783" src="https://user-images.githubusercontent.com/113472300/191035532-2d40e57b-dab3-4a55-8a5a-8d1ed121c9fc.png">
 
       
 
@@ -164,6 +168,7 @@ The sensor settings are adjusted in an online file called *sensor_settings.py* w
       
 
    6. You can now open the *csv* data file in Excel and perform required analysis
+
 
 
 
