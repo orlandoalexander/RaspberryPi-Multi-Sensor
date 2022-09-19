@@ -32,7 +32,7 @@ The sensor also contains an LCD screen which will display status updates and fee
 <img width="832" alt="image-20220916124231553" src="https://user-images.githubusercontent.com/113472300/191034839-39f3fec2-b07c-4352-977d-f9d678b465e6.png">
 
 
-The Raspberry Pi has loads of different ports and components, but luckily you don't need to worry about most of them! The only four ports you need to be aware of are shown clearly in the diagram above, and are used during the initial setup process (see section **How To Use The Sensor** / **<u>Initial setup</u>**)
+The Raspberry Pi has loads of different ports and components, but luckily you don't need to worry about most of them! The four ports you need to be aware of are shown clearly in the diagram above, and are used during the initial setup process (see section **How To Use The Sensor** / **<u>Initial setup</u>**)
 
 
 
