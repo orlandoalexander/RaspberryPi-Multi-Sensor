@@ -191,6 +191,7 @@
 
 # i = t().m()
 
+l = [True, False, False, False, False, False, False, False]
 
-sensor_num, sensor_freq, sensor_dur = 1, 2, 3*60
-print(sensor_dur)
+if True not in l:
+    print('f')
