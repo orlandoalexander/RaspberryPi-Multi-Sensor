@@ -1,4 +1,7 @@
-'''Configures proximity sensor as button to begin sensor readings after Raspberry Pi boot'''
+'''
+Configures proximity sensor as button to begin sensor readings after Raspberry Pi boot
+File run at startup in /etc/rc.local file
+'''
 
 import sys
 path = '/home/ecoswell/RaspberryPi-Sensor' # path to folder storing 'sensor_settings' module

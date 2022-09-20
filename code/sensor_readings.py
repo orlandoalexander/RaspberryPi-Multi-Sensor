@@ -1,4 +1,7 @@
-'''Take measurements of desired environmental factors and save data to CSV file'''
+'''
+Take measurements of desired environmental factors and save data to CSV file
+File run at startup in /etc/rc.local file
+'''
 
 import sys
 path = '/home/ecoswell/RaspberryPi-Sensor' # path to folder storing 'sensor_settings' module

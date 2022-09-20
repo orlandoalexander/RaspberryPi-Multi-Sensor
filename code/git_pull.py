@@ -1,6 +1,7 @@
 '''
-Automatically pulls latest changes from git repo when Raspberry Pi is booted and connected to WiFi. 
+Automatically pulls latest changes from git repo when Raspberry Pi is booted and connected to WiFi
 This allows the sensor settings to be modified via the git repo file 'sensor_settings.py'
+File run at startup in /etc/rc.local file
 '''
 
 from git import Repo
