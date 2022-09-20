@@ -30,6 +30,6 @@ To determine the factor required to correctly compensate the tenmperature readin
 set 'calibrate_factor' to 'True' and follow the instructions in the documentation.
 
 '''
-factor = 2.5
-calculate_factor = True
+factor = 1.31
+calculate_factor = False
 
