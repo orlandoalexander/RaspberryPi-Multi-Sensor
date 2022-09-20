@@ -43,3 +43,7 @@ def display_text(text, font_size): # display text passed to function on sensor L
 def backlight_off():
     display.set_backlight(0) # turn off backlight
     return
+
+def backlight_on():
+    display.set_backlight(1) # turn on backlight
+    return
