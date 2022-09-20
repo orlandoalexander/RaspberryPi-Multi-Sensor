@@ -38,7 +38,7 @@ def display_text(text): # display text passed to function on sensor LCD screen
     y = (HEIGHT / 2) - (size_y / 2)
 
     # draw background rectangle and write text:
-    draw.rectangle((0, 0, 160, 80), back_colour)
+    draw.rectangle((0, 0, 70, 80), back_colour)
     draw.text((x, y), text, font=font, fill=text_colour)
     display.display(img)
     return
