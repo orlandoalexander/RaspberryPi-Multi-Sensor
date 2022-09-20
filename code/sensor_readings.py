@@ -76,7 +76,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         self.queue_op(freq, dur, stime, self.temp()) # add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
         backlight_on() # turn on LCD backlight
         display_text('Temperature\n readings\n complete',20) # display sensor reading status on LCD once all readings are complete
-        #self.sensor_status[0] = False # change temp sensor status to False (i.e. inactive) as all readings are now complete
+        self.sensor_status[0] = False # change temp sensor status to False (i.e. inactive) as all readings are now complete
         time.sleep(30)
         display_text('',1)
         backlight_off() # turn off LCD backlight
@@ -292,18 +292,19 @@ class SensorReadings(): # class containing methods to take sensor readings
 
     def queue_op(self, freq, dur, stime, sensor_method): # general operation for sensor queue - adds sensor execution method to 'self.queue' every 'freq' seconds to take sensor readings at desired intervals to take sensor readings for 'dur' secs, whilst avoiding collisions which may occur if multiple sensors take readings simultaneously 
         if time.time() - stime >= dur: # if duration for which sensor readings should be taken (as defined by the user in 'sensor_settings.py') has been reached, terminate execution of sensor readings
-            print('queue return')
             return
         else:
+            print('added to queue')
             threading.Timer(freq, self.queue_op, [freq, dur, stime, sensor_method]).start() # recursively call 'queue_op' method at frequency specified by 'freq' to add sensor method to 'queue' (which executes sensor readings such that collisions are avoided) at desired frequency and pass required arguments in list
             self.queue.append(sensor_method) # add sensor method to 'self.queue' to schedule execution of sensor reading
 
     def dequeue(self): # remove each queued sensor reading from the queue and execute the sensor reading, avoiding multiple sensors taking readings simultaneously  
         while True:
             if len(self.queue) >= 1: # if there are sensors readings to be taken
-               self.queue.pop(0) # execute reading for front sensor in queue and remove sensor from queue
-               time.sleep(1) # 1 second delay between each sensor reading
-            if True not in self.sensor_status: # if all sensors are inactive
+                print('take reading')
+                self.queue.pop(0) # execute reading for front sensor in queue and remove sensor from queue
+                time.sleep(1) # 1 second delay between each sensor reading
+            elif True not in self.sensor_status: # if all sensors are inactive
                 display_text('All readings \nnow complete.\nYou can safely unplug \n the sensor now.',15) # display sensor reading status on LCD screen
                 break # all readings are complete, so terminate
 
