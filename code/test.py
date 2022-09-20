@@ -190,8 +190,19 @@
 #         self.d[1]('heu')
 
 # i = t().m()
+import time
+class Test():
+    def __init__(self):
+        self.queue = [self.func]
 
-l = [True, False, False, False, False, False, False, False]
+    def func(self):
+        print('hi')
+    
+    def dequeue(self):
+        #print(self.queue[0])
+        
+        self.queue.pop(0)()
 
-if True not in l:
-    print('f')
+t = Test()
+t.dequeue()
+    

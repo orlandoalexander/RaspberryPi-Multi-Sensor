@@ -121,7 +121,7 @@ class SensorReadings(): # class containing methods to take sensor readings
     def humidity_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'humidity' method to 'queue' at set intervals to take sensor readings at desired frequency
         humidity = bme280.get_humidity() # take initial reading to stabalise sensor
         time.sleep(2) 
-        self.queue_op(freq, dur, stime, self.humidity()) # add 'humidity' method to 'queue' at set intervals to take sensor readings at desired frequency
+        self.queue_op(freq, dur, stime, self.humidity) # add 'humidity' method to 'queue' at set intervals to take sensor readings at desired frequency
         backlight_on() # turn on LCD backlight
         display_text('Humidity\nreadings\ncomplete',20) # display sensor reading status on LCD once all readings are complete
         time.sleep(30)
@@ -143,7 +143,7 @@ class SensorReadings(): # class containing methods to take sensor readings
     def light_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'light' method to 'queue' at set intervals to take sensor readings at desired frequency
         light = ltr559.get_lux() # take initial reading to stabalise sensor
         time.sleep(2) 
-        self.queue_op(freq, dur, stime, self.light()) # add 'light' method to 'queue' at set intervals to take sensor readings at desired frequency
+        self.queue_op(freq, dur, stime, self.light) # add 'light' method to 'queue' at set intervals to take sensor readings at desired frequency
         backlight_on() # turn on LCD backlight
         display_text('Light \nreadings \ncomplete',20) # display sensor reading status on LCD once all readings are complete
         time.sleep(30)
@@ -169,7 +169,7 @@ class SensorReadings(): # class containing methods to take sensor readings
     def co_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'co' method to 'queue' at set intervals to take sensor readings at desired frequency
         gas_data = gas.read_all() # take initial reading to stabalise sensor
         time.sleep(2) 
-        self.queue_op(freq, dur, stime, self.co()) # add 'co' method to 'queue' at set intervals to take sensor readings at desired frequency
+        self.queue_op(freq, dur, stime, self.co) # add 'co' method to 'queue' at set intervals to take sensor readings at desired frequency
         backlight_on() # turn on LCD backlight
         display_text('Carbon monoxide\nreadings \ncomplete',18) # display sensor reading status on LCD once all readings are complete
         time.sleep(30)
@@ -192,7 +192,7 @@ class SensorReadings(): # class containing methods to take sensor readings
     def no2_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'no2' method to 'queue' at set intervals to take sensor readings at desired frequency
         gas_data = gas.read_all() # take initial reading to stabalise sensor
         time.sleep(2) 
-        self.queue_op(freq, dur, stime, self.no2()) # add 'no2' method to 'queue' at set intervals to take sensor readings at desired frequency
+        self.queue_op(freq, dur, stime, self.no2) # add 'no2' method to 'queue' at set intervals to take sensor readings at desired frequency
         backlight_on() # turn on LCD backlight
         display_text('Nitrogen dioxide \nreadings \ncomplete',18) # display sensor reading status on LCD once all readings are complete
         time.sleep(30)
@@ -215,7 +215,7 @@ class SensorReadings(): # class containing methods to take sensor readings
     def nh3_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'nh3' method to 'queue' at set intervals to take sensor readings at desired frequency
         gas_data = gas.read_all() # take initial reading to stabalise sensor
         time.sleep(2) 
-        self.queue_op(freq, dur, stime, self.nh3()) # add 'nh3' method to 'queue' at set intervals to take sensor readings at desired frequency
+        self.queue_op(freq, dur, stime, self.nh3) # add 'nh3' method to 'queue' at set intervals to take sensor readings at desired frequency
         backlight_on() # turn on LCD backlight
         display_text('Ammonia \nreadings \ncomplete',20) # display sensor reading status on LCD once all readings are complete
         time.sleep(30)
@@ -242,7 +242,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         except pmsReadTimeoutError:
             pass
         time.sleep(2) 
-        self.queue_op(freq, dur, stime, self.pm()) # add 'pm' method to 'queue' at set intervals to take sensor readings at desired frequency
+        self.queue_op(freq, dur, stime, self.pm) # add 'pm' method to 'queue' at set intervals to take sensor readings at desired frequency
         backlight_on() # turn on LCD backlight
         display_text('Particulate matter \nreadings \ncomplete',17) # display sensor reading status on LCD once all readings are complete
         time.sleep(30)
@@ -297,13 +297,13 @@ class SensorReadings(): # class containing methods to take sensor readings
             print('added to queue', sensor_method)
             threading.Timer(freq, self.queue_op, [freq, dur, stime, sensor_method]).start() # recursively call 'queue_op' method at frequency specified by 'freq' to add sensor method to 'queue' (which executes sensor readings such that collisions are avoided) at desired frequency and pass required arguments in list
             self.queue.append(sensor_method) # add sensor method to 'self.queue' to schedule execution of sensor reading
-            print(self.queue)
+            
     def dequeue(self): # remove each queued sensor reading from the queue and execute the sensor reading, avoiding multiple sensors taking readings simultaneously  
         while True:
             print(len(self.queue))
             if len(self.queue) >= 1: # if there are sensors readings to be taken
                 print('take reading')
-                self.queue.pop(0) # execute reading for front sensor in queue and remove sensor from queue
+                self.queue.pop(0)() # execute reading for front sensor in queue and remove sensor from queue
                 time.sleep(1) # 1 second delay between each sensor reading
             elif True not in self.sensor_status: # if all sensors are inactive
                 display_text('All readings \nnow complete.\nYou can safely unplug \n the sensor now.',15) # display sensor reading status on LCD screen
