@@ -34,7 +34,6 @@ class SensorReadings(): # class containing methods to take sensor readings
         now = datetime.now() # get current date and time
         self.date = now.strftime("%d.%m.%Y") # get date when sensor readings begin in correct format
         self.time = now.strftime("%H:%M:%S") # get time when sensor readings begin in correct format
-        print(sensor_settings.sensors)
         self.sensors = sensor_settings.sensors # access sensor settings defined by user in file 'sensor_settings.py' 
         self.factor = sensor_settings.factor # access factor by which temperature reading is compensated as defined by user in file 'sensor_settings.py' 
         self.calculate_factor = sensor_settings.calculate_factor # boolean which stores whether user wishes to calculate the temperature compensation factor
@@ -126,7 +125,9 @@ class SensorReadings(): # class containing methods to take sensor readings
         humidity = bme280.get_humidity() # take initial reading to stabalise sensor
         time.sleep(2) 
         self.queue_op(freq, dur, stime, self.humidity) # add 'humidity' method to 'queue' at set intervals to take sensor readings at desired frequency
+        print('humidity')
         time.sleep(dur)
+        print('humidity after')
         self.sensor_status[2] = False # change humidity sensor status to False (i.e. inactive) as all readings are now complete
         backlight_on() # turn on LCD backlight
         display_text('Humidity\nreadings\ncomplete',20) # display sensor reading status on LCD once all readings are complete
