@@ -7,7 +7,7 @@ import os
 import time
 import threading
 from sensor_readings import SensorReadings
-from lcd_display import display_text
+from lcd_display import display_text, backlight_off, backlight_on
 
 
 try:
@@ -26,6 +26,7 @@ while True:
     if proximity > 1500: # if proximity crosses threshold, indicates that user has put finger on proximity sensor (i.e. starts pressing 'button')
         stime = time.time() # initial time when user put finger on proximity sensor
         button_pressed = True
+        backlight_on() # turn on LCD backlight
         while time.time() - stime < 5: # loop for 5 seconds, checking whether user's finger is still on proximity sensor
             if proximity < 1000: # if user takes finger off proxmity sensor (i.e. stops pressing 'button')
                 button_pressed = False
@@ -38,6 +39,9 @@ while True:
             display_text('Sensor readings\n starting!',20)
             sensor_thread = threading.Thread(target=SensorReadings().main) # create new thread to take sensor readings in background
             sensor_thread.start() # start background thread to take sensor readings
+            time.sleep(10)
+            display_text('',1)
+            backlight_off() # turn off LCD backlight
             break
         elif button_pressed == True and threading.active_count() > 1: # if user has held finger on proximity sensor for at least 5 seconds (i.e. pressed button to start sensor readings) and another thread is currently active (i.e. sensor is currently taking readings)
             display_text('Sensor currently active!\nContinue to hold for 10s\n to reboot sensor.',13)
@@ -53,5 +57,8 @@ while True:
                 #os.system("sudo reboot") # reboot Raspberry Pi
             else:
                 display_text('Reboot cancelled.\nSensor will continue\n to take readings.',16) # display status message on LCD 
+                time.sleep(10)
+                display_text('',1)
+                backlight_off() # turn off LCD backlight
 
 

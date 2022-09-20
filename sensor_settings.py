@@ -31,5 +31,5 @@ set 'calibrate_factor' to 'True' and follow the instructions in the documentatio
 
 '''
 factor = 1.31
-calculate_factor = False
+calculate_factor = True
 
