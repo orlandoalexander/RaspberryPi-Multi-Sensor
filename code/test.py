@@ -178,3 +178,15 @@
 # time.sleep(5)
 # print('j')
 # main.data = False
+
+class t():
+    def __init__(self):
+        self.d = {1:self.f}
+    
+    def f(self, p):
+        print(p)
+
+    def m(self):
+        self.d[1]('heu')
+
+i = t().m()

@@ -35,7 +35,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         self.sensors = sensor_settings.sensors # access sensor settings defined by user in file 'sensor_settings.py' 
         self.factor = sensor_settings.factor # access factor by which temperature reading is compensated as defined by user in file 'sensor_settings.py' 
         self.calculate_factor = sensor_settings.calculate_factor # boolean which stores whether user wishes to calculate the temperature compensation factor
-        self.sensors_dict = {1:self.temp_queue(), 2:self.pressure_queue(), 3:self.humidity_queue(), 4:self.light_queue(), 5:self.co_queue(), 6:self.no2_queue(), 7:self.nh3_queue(), 8:self.pm_queue()} # dictionary to translate between sensor number and sensor queue method (which triggers sensor execution)
+        self.sensors_dict = {1:self.temp_queue, 2:self.pressure_queue, 3:self.humidity_queue, 4:self.light_queue, 5:self.co_queue, 6:self.no2_queue, 7:self.nh3_queue, 8:self.pm_queue} # dictionary to translate between sensor number and sensor queue method (which triggers sensor execution)
         self.queue = [] # queue stores sensors which are due to take readings - this avoids multiple sensors taking readings simultaneously and therefore prevents collisions
         self.sensor_status = [False for i in range(8)] # queue stores status of each sensor (True = active, False = inactive)
         self.cpu_temps = [self.get_cpu_temperature()] * 5 # get five readings of CPU temperature
