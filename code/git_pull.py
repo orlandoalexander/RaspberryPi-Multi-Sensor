@@ -17,8 +17,10 @@ try:
     origin = repo.remotes.origin # access remote git repo
     origin.pull() # pull latest changes from git repo to update sensor settings
     git_message = 'Successfully retrieved changes to settings from GitHub Repo'
+    print('Success')
 except:
     git_message = 'Failed to retrieve changes to settings from GitHub Repo\nNo internet connection'
+    print('Fail')
 
 display_text(git_message) # display git pull status on LCD screen
 
