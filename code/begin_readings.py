@@ -21,7 +21,7 @@ try:
 except ImportError:
     import ltr559
 
-subprocess.Popen("git_pull.py")
+subprocess.Popen("/home/ecoswell/RaspberryPi-Sensor/code/git_pull.py")
 
 display_text('Sensor booting...', 19) # display boot message on sensor LCD 
 time.sleep(10)
