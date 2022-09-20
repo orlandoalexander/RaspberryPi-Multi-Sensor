@@ -70,6 +70,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         return
 
     def temp_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
+        print('temp')
         raw_temp = bme280.get_temperature() # take initial reading to stabalise sensor
         time.sleep(2)        
         self.queue_op(freq, dur, stime, self.temp) # add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
@@ -243,6 +244,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         return
 
     def pm_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'pm' method to 'queue' at set intervals to take sensor readings at desired frequency
+        print('pm')
         try:
             data = pms5003.read() # take initial reading to stabalise sensor
         except pmsReadTimeoutError:
@@ -327,5 +329,5 @@ class SensorReadings(): # class containing methods to take sensor readings
                 self.sensor_status[sensor_num-1] = True # change sensor status to True (i.e. active) for each sensor which user has defined to be active in 'sensor_settings.py'
                 sensor_method = self.sensors_dict[sensor_num] # lookup sensor method that is associated with the sensor number ('sensor_num') using 'sensors_dict'
                 sensor_method(sensor_freq, sensor_dur, time.time()) # call method to executed readings for desired sensor, passing frequency (secs) at which readings should be taken, duration (secs) for which the readings should be taken, current time (i.e. time at which sensor readings begin)
-
+                print(sensor_num)
 
