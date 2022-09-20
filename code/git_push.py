@@ -1,6 +1,6 @@
 '''
 Automatically pushes latest data readings to git repo when Raspberry Pi is booted and connected to WiFi
-File run at startup in /etc/rc.local file
+File run at startup as a cron job 
 '''
 
 import time
