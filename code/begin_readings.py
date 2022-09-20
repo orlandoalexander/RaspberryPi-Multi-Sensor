@@ -16,6 +16,9 @@ try:
     ltr559 = LTR559() # initialise LTR559 light/proximity sensor
 except ImportError:
     import ltr559
+    
+boot_text = 'Sensor booting...'
+display_text(boot_text) # display boot message on sensor LCD 
 
 while True: 
     proximity = ltr559.get_proximity() # get proximity above proximity sensor
