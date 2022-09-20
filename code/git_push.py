@@ -23,6 +23,7 @@ while True:
         time.sleep(30)
         display_text('',1)
         backlight_off() # turn off LCD backlight
+        sleep_time = 60 # following successful push sleep for 60 secs
     except:
         backlight_on() # turn on LCD backlight
         display_text('Cannot upload latest\n version of data files \nto GitHub Repo.\nNo internet connection.',13) # display git push status on LCD screen
@@ -30,4 +31,5 @@ while True:
         time.sleep(30)
         display_text('',1)
         backlight_off() # turn off LCD backlight
-    time.sleep(60)
+        sleep_time = 0 # following unsuccessful push sleep for 0 secs
+    time.sleep(sleep_time)
