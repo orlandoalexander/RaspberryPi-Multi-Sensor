@@ -211,7 +211,7 @@ class SensorReadings(): # class containing methods to take sensor readings
     def save_data(self, sensor, freq, dur, data, data_heading): # save sensor data to CSV file
         filename = sensor+'-'+self.date+'-'+self.time+'.csv' # filename stores sensor type and current date
         if os.path.isfile(f'/home/ecoswell/RaspberryPi-Sensor/data/{filename}'): # if CSV file storing data for 'sensor' already exists
-            f = open(f'data/{filename}', 'a') # create/open CSV file to store data for 'sensor'
+            f = open(f'/home/ecoswell/RaspberryPi-Sensor/data/{filename}', 'a') # create/open CSV file to store data for 'sensor'
             writer = csv.writer(f)
         else: # if CSV file storing data for 'sensor' has just been created
             f = open(f'/home/ecoswell/RaspberryPi-Sensor/data/{filename}', 'w') # create/open CSV file to store data for 'sensor'
