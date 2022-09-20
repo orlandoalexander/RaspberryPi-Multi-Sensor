@@ -310,7 +310,6 @@ class SensorReadings(): # class containing methods to take sensor readings
             
     def dequeue(self): # remove each queued sensor reading from the queue and execute the sensor reading, avoiding multiple sensors taking readings simultaneously  
         while True:
-            print(self.sensor_status)
             if len(self.queue) >= 1: # if there are sensors readings to be taken
                 self.queue.pop(0)() # execute reading for front sensor in queue and remove sensor from queue
                 time.sleep(1) # 1 second delay between each sensor reading
@@ -324,8 +323,6 @@ class SensorReadings(): # class containing methods to take sensor readings
         if self.calculate_factor == True: # if user wishes to calculate the temperature compensation factor
             self.temp_factor()
         else:
-            queue_thread = threading.Thread(target=self.dequeue) # run queue in background thread
-            queue_thread.start()
             for sensor in self.sensors: # iterate through active sensors as defined by user in 'sensor_settings.py'
                 sensor_num, sensor_freq, sensor_dur = sensor[0], sensor[1], sensor[2]*60 # first element in tuple stores sensor number, second element stores reading frequency for sensor, third element stores duration of sensor recordings (in minutes)
                 self.sensor_status[sensor_num-1] = True # change sensor status to True (i.e. active) for each sensor which user has defined to be active in 'sensor_settings.py'
@@ -333,4 +330,6 @@ class SensorReadings(): # class containing methods to take sensor readings
                 sensor_method = self.sensors_dict[sensor_num] # lookup sensor method that is associated with the sensor number ('sensor_num') using 'sensors_dict'
                 sensor_thread = threading.Thread(target=sensor_method, args = (sensor_freq, sensor_dur, time.time())) # run sensor queue methods (e.g. 'temp_queue') in background thread
                 sensor_thread.start()
+            queue_thread = threading.Thread(target=self.dequeue) # run queue in background thread
+            queue_thread.start()
 
