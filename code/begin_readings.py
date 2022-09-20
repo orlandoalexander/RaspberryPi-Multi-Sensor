@@ -11,6 +11,7 @@ import time
 import threading
 from sensor_readings import SensorReadings
 from lcd_display import display_text, backlight_off, backlight_on
+from git_pull import test
 
 
 try:
@@ -20,6 +21,7 @@ try:
 except ImportError:
     import ltr559
 
+test()
 
 display_text('Sensor booting...', 19) # display boot message on sensor LCD 
 time.sleep(5)
