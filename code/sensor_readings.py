@@ -76,7 +76,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         self.queue_op(freq, dur, stime, self.temp) # add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
         backlight_on() # turn on LCD backlight
         display_text('Temperature\n readings\n complete',20) # display sensor reading status on LCD once all readings are complete
-        #self.sensor_status[0] = False # change temp sensor status to False (i.e. inactive) as all readings are now complete
+        self.sensor_status[0] = False # change temp sensor status to False (i.e. inactive) as all readings are now complete
         time.sleep(30)
         display_text('',1)
         backlight_off() # turn off LCD backlight
@@ -99,7 +99,7 @@ class SensorReadings(): # class containing methods to take sensor readings
     def pressure_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'pressure' method to 'queue' at set intervals to take sensor readings at desired frequency
         pressure = bme280.get_pressure() # take initial reading to stabalise sensor
         time.sleep(2) 
-        self.queue_op(freq, dur, stime, self.pressure()) # add 'pressure' method to 'queue' at set intervals to take sensor readings at desired frequency
+        self.queue_op(freq, dur, stime, self.pressure) # add 'pressure' method to 'queue' at set intervals to take sensor readings at desired frequency
         backlight_on() # turn on LCD backlight
         display_text('Pressure\nreadings\ncomplete',20) # display sensor reading status on LCD once all readings are complete
         self.sensor_status[1] = False # change pressure sensor status to False (i.e. inactive) as all readings are now complete
@@ -300,6 +300,7 @@ class SensorReadings(): # class containing methods to take sensor readings
             
     def dequeue(self): # remove each queued sensor reading from the queue and execute the sensor reading, avoiding multiple sensors taking readings simultaneously  
         while True:
+            print(self.sensor_status)
             if len(self.queue) >= 1: # if there are sensors readings to be taken
                 print('take reading')
                 self.queue.pop(0)() # execute reading for front sensor in queue and remove sensor from queue
@@ -307,6 +308,7 @@ class SensorReadings(): # class containing methods to take sensor readings
             elif True not in self.sensor_status: # if all sensors are inactive
                 display_text('All readings \nnow complete.\nYou can safely unplug \n the sensor now.',15) # display sensor reading status on LCD screen
                 break # all readings are complete, so terminate
+            time.sleep(1)
 
     def main(self): # control operation of active sensors
         if self.calculate_factor == True: # if user wishes to calculate the temperature compensation factor

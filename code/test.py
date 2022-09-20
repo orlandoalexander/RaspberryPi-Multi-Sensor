@@ -193,14 +193,15 @@
 import time
 class Test():
     def __init__(self):
-        self.queue = [self.func]
+        self.queue = []
 
     def func(self):
         print('hi')
     
     def dequeue(self):
         #print(self.queue[0])
-        
+        self.queue.append(self.func)
+        time.sleep(5)
         self.queue.pop(0)()
 
 t = Test()
