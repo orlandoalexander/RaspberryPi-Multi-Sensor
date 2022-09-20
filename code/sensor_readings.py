@@ -328,8 +328,6 @@ class SensorReadings(): # class containing methods to take sensor readings
                 sensor_num, sensor_freq, sensor_dur = sensor[0], sensor[1], sensor[2]*60 # first element in tuple stores sensor number, second element stores reading frequency for sensor, third element stores duration of sensor recordings (in minutes)
                 self.sensor_status[sensor_num-1] = True # change sensor status to True (i.e. active) for each sensor which user has defined to be active in 'sensor_settings.py'
                 sensor_method = self.sensors_dict[sensor_num] # lookup sensor method that is associated with the sensor number ('sensor_num') using 'sensors_dict'
-                queue_thread = threading.Thread(target=sensor_method, args = (sensor_freq, sensor_dur, time.time())) # run queue in background thread
-                queue_thread.start()
-                #sensor_method(sensor_freq, sensor_dur, time.time()) # call method to executed readings for desired sensor, passing frequency (secs) at which readings should be taken, duration (secs) for which the readings should be taken, current time (i.e. time at which sensor readings begin)
-                print(sensor_num)
+                sensor_thread = threading.Thread(target=sensor_method, args = (sensor_freq, sensor_dur, time.time())) # run sensor queue methods (e.g. 'temp_queue') in background thread
+                sensor_thread.start()
 
