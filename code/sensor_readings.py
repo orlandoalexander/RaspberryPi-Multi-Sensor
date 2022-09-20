@@ -1,6 +1,5 @@
 '''
 Take measurements of desired environmental factors and save data to CSV file
-File run at startup in /etc/rc.local file
 '''
 
 import sys
