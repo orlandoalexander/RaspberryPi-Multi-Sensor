@@ -72,10 +72,11 @@ class SensorReadings(): # class containing methods to take sensor readings
     def temp_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
         raw_temp = bme280.get_temperature() # take initial reading to stabalise sensor
         time.sleep(2)        
+        print(self.sensor_status)
         self.queue_op(freq, dur, stime, self.temp()) # add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
         backlight_on() # turn on LCD backlight
         display_text('Temperature\n readings\n complete',20) # display sensor reading status on LCD once all readings are complete
-        #self.sensor_status[0] = False # change temp sensor status to False (i.e. inactive) as all readings are now complete
+        self.sensor_status[0] = False # change temp sensor status to False (i.e. inactive) as all readings are now complete
         time.sleep(30)
         display_text('',1)
         backlight_off() # turn off LCD backlight
@@ -291,6 +292,7 @@ class SensorReadings(): # class containing methods to take sensor readings
 
     def queue_op(self, freq, dur, stime, sensor_method): # general operation for sensor queue - adds sensor execution method to 'self.queue' every 'freq' seconds to take sensor readings at desired intervals to take sensor readings for 'dur' secs, whilst avoiding collisions which may occur if multiple sensors take readings simultaneously 
         if time.time() - stime >= dur: # if duration for which sensor readings should be taken (as defined by the user in 'sensor_settings.py') has been reached, terminate execution of sensor readings
+            print('queue return')
             return
         else:
             threading.Timer(freq, self.queue_op, [freq, dur, stime, sensor_method]).start() # recursively call 'queue_op' method at frequency specified by 'freq' to add sensor method to 'queue' (which executes sensor readings such that collisions are avoided) at desired frequency and pass required arguments in list
