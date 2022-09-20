@@ -1,7 +1,7 @@
 '''Take measurements of desired environmental factors and save data to CSV file'''
 
 import sys
-path = '/Users/orlandoalexander/Library/Mobile Documents/com~apple~CloudDocs/Documents/South America/EcoSwell/RaspberryPi-Sensor/RaspberryPi-Sensor' # path to folder storing 'sensor_settings' module
+path = '/home/ecoswell/RaspberryPi-Sensor' # path to folder storing 'sensor_settings' module
 sys.path.append(path) # enable importing module ('sensor_settings') from outside directory
 import sensor_settings
 import time
