@@ -17,15 +17,15 @@ while True:
         origin.push() # push all commits to remote git repo
         backlight_on() # turn on LCD backlight
         display_text('Latest version of data\n files will be uploaded\n to GitHub repo\n every 60s',13) # display git push status on LCD screen
+        print('Git push - success')
         time.sleep(30)
         display_text('',1)
         backlight_off() # turn off LCD backlight
-        print('Git push - success')
     except:
         backlight_on() # turn on LCD backlight
         display_text('Cannot upload latest\n version of data files \nto GitHub Repo.\nNo internet connection.',13) # display git push status on LCD screen
+        print('Git push - fail')
         time.sleep(30)
         display_text('',1)
         backlight_off() # turn off LCD backlight
-        print('Git push - fail')
     time.sleep(60)
