@@ -24,7 +24,7 @@ except ImportError:
 sensor_thread = threading.Thread(target=test()) # create new thread to take sensor readings in background
 sensor_thread.start() # start background thread to take sensor readings
 
-
+print('hey')
 display_text('Sensor booting...', 19) # display boot message on sensor LCD 
 time.sleep(5)
 display_text('Welcome!', 30) 

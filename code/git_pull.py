@@ -43,5 +43,4 @@ def test():
         display_text('Cannot upload latest\n version of data files \nto GitHub Repo.\nNo internet connection.',13) # display git push status on LCD screen
         time.sleep(5)
         print('Git pull - fail')
-    return 'hey'
 
