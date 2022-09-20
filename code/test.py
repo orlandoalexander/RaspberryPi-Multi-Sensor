@@ -191,4 +191,6 @@
 
 # i = t().m()
 
-f = open('test.cvs','w')
+
+sensor_num, sensor_freq, sensor_dur = 1, 2, 3*60
+print(sensor_dur)
