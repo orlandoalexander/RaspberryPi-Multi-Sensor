@@ -16,12 +16,13 @@ try:
     ltr559 = LTR559() # initialise LTR559 light/proximity sensor
 except ImportError:
     import ltr559
-    
+
 boot_text = 'Sensor booting...'
 display_text(boot_text) # display boot message on sensor LCD 
 
 while True: 
     proximity = ltr559.get_proximity() # get proximity above proximity sensor
+    print(proximity)
     if proximity > 1500: # if proximity crosses threshold, indicates that user has put finger on proximity sensor (i.e. starts pressing 'button')
         stime = time.time() # initial time when user put finger on proximity sensor
         button_pressed = True

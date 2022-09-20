@@ -34,7 +34,7 @@ def display_text(text): # display text passed to function on sensor LCD screen
     size_x, size_y = draw.textsize(text, font) # size of text to be displayed on LCD screen
 
     # calculate text position:
-    x = (WIDTH - size_x) / 3
+    x = (WIDTH - size_x) / 2
     y = (HEIGHT / 2) - (size_y / 2)
 
     # draw background rectangle and write text:
