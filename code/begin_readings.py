@@ -21,13 +21,13 @@ except ImportError:
     import ltr559
 
 
-p = subprocess.Popen([sys.executable, '/home/ecoswell/RaspberryPi-Sensor/code/git_pull.py'], 
-                                    stdout=subprocess.PIPE, 
-                                    stderr=subprocess.STDOUT)
 
-#display_text('Sensor booting...', 19) # display boot message on sensor LCD 
-#time.sleep(5)
-#display_text('Welcome!', 30) 
+subprocess.run("python3 git_pull.py & python3 git_push.py", shell=True)
+
+
+display_text('Sensor booting...', 19) # display boot message on sensor LCD 
+time.sleep(5)
+display_text('Welcome!', 30) 
 
 while True: 
     proximity = ltr559.get_proximity() # get proximity above proximity sensor
