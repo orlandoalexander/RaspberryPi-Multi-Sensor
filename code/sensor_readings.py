@@ -48,9 +48,9 @@ class SensorReadings(): # class containing methods to take sensor readings
             return temp
 
     def temp_factor(self): # record required data to allow user to calculate temperature compensation factor
-        raw_temp = bme280.get_temperature() # get raw reading of temp
+        raw_temp = bme280.get_temperature() # take initial reading to stabalise sensor
         time.sleep(2)
-        for i in range(2): #TODO
+        for i in range(10): 
             sensor = 'calculate_factor'
             freq = 60
             dur = 10
@@ -66,6 +66,7 @@ class SensorReadings(): # class containing methods to take sensor readings
 
     def temp_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
         raw_temp = bme280.get_temperature() # take initial reading to stabalise sensor
+        time.sleep(2)        
         self.queue_op(freq, dur, stime, self.temp()) # add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
         display_text('Temperature readings complete') # display sensor reading status on LCD once all readings are complete
         self.sensor_status[0] = False # change temp sensor status to False (i.e. inactive) as all readings are now complete
