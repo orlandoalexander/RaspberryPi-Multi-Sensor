@@ -9,6 +9,7 @@ sys.path.append(path) # enable importing module ('sensor_settings') from outside
 import os
 import time
 import threading
+import subprocess
 from sensor_readings import SensorReadings
 from lcd_display import display_text, backlight_off, backlight_on
 
@@ -19,6 +20,8 @@ try:
     ltr559 = LTR559() # initialise LTR559 light/proximity sensor
 except ImportError:
     import ltr559
+
+subprocess.Popen("git_pull.py")
 
 display_text('Sensor booting...', 19) # display boot message on sensor LCD 
 time.sleep(10)
