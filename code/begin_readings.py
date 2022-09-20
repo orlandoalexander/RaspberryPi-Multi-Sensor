@@ -21,7 +21,7 @@ except ImportError:
     import ltr559
 
 
-subprocess.Popen([sys.executable, 'git_pull.py'], 
+subprocess.Popen([sys.executable, '/home/ecoswell/RaspberryPi-Sensor/code/git_pull.py'], 
                                     stdout=subprocess.PIPE, 
                                     stderr=subprocess.STDOUT)
 
