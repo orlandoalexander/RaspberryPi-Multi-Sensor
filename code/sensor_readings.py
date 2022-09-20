@@ -68,7 +68,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         raw_temp = bme280.get_temperature() # take initial reading to stabalise sensor
         time.sleep(2)        
         self.queue_op(freq, dur, stime, self.temp()) # add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
-        display_text('Temperature readings complete') # display sensor reading status on LCD once all readings are complete
+        display_text('Temperature\n readings\n complete',20) # display sensor reading status on LCD once all readings are complete
         self.sensor_status[0] = False # change temp sensor status to False (i.e. inactive) as all readings are now complete
         return
 
@@ -90,7 +90,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         pressure = bme280.get_pressure() # take initial reading to stabalise sensor
         time.sleep(2) 
         self.queue_op(freq, dur, stime, self.pressure()) # add 'pressure' method to 'queue' at set intervals to take sensor readings at desired frequency
-        display_text('Pressure readings complete') # display sensor reading status on LCD once all readings are complete
+        display_text('Pressure\nreadings\ncomplete',20) # display sensor reading status on LCD once all readings are complete
         self.sensor_status[1] = False # change pressure sensor status to False (i.e. inactive) as all readings are now complete
         return
 
@@ -108,7 +108,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         humidity = bme280.get_humidity() # take initial reading to stabalise sensor
         time.sleep(2) 
         self.queue_op(freq, dur, stime, self.humidity()) # add 'humidity' method to 'queue' at set intervals to take sensor readings at desired frequency
-        display_text('Humidity readings complete') # display sensor reading status on LCD once all readings are complete
+        display_text('Humidity\nreadings\ncomplete',20) # display sensor reading status on LCD once all readings are complete
         self.sensor_status[2] = False # change humidity sensor status to False (i.e. inactive) as all readings are now complete
         return
 
@@ -126,7 +126,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         light = ltr559.get_lux() # take initial reading to stabalise sensor
         time.sleep(2) 
         self.queue_op(freq, dur, stime, self.light()) # add 'light' method to 'queue' at set intervals to take sensor readings at desired frequency
-        display_text('Light readings complete') # display sensor reading status on LCD once all readings are complete
+        display_text('Light \nreadings \ncomplete',20) # display sensor reading status on LCD once all readings are complete
         self.sensor_status[3] = False # change light sensor status to False (i.e. inactive) as all readings are now complete
         return 
 
@@ -148,7 +148,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         gas_data = gas.read_all() # take initial reading to stabalise sensor
         time.sleep(2) 
         self.queue_op(freq, dur, stime, self.co()) # add 'co' method to 'queue' at set intervals to take sensor readings at desired frequency
-        display_text('Carbon monoxide readings complete') # display sensor reading status on LCD once all readings are complete
+        display_text('Carbon monoxide\nreadings \ncomplete',18) # display sensor reading status on LCD once all readings are complete
         self.sensor_status[4] = False # change co sensor status to False (i.e. inactive) as all readings are now complete
         return 
 
@@ -167,7 +167,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         gas_data = gas.read_all() # take initial reading to stabalise sensor
         time.sleep(2) 
         self.queue_op(freq, dur, stime, self.no2()) # add 'no2' method to 'queue' at set intervals to take sensor readings at desired frequency
-        display_text('Nitrogen dioxide readings complete') # display sensor reading status on LCD once all readings are complete
+        display_text('Nitrogen dioxide \nreadings \ncomplete',18) # display sensor reading status on LCD once all readings are complete
         self.sensor_status[5] = False # change no2 sensor status to False (i.e. inactive) as all readings are now complete
         return 
 
@@ -186,7 +186,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         gas_data = gas.read_all() # take initial reading to stabalise sensor
         time.sleep(2) 
         self.queue_op(freq, dur, stime, self.nh3()) # add 'nh3' method to 'queue' at set intervals to take sensor readings at desired frequency
-        display_text('Ammonia readings complete') # display sensor reading status on LCD once all readings are complete
+        display_text('Ammonia \nreadings \ncomplete',20) # display sensor reading status on LCD once all readings are complete
         self.sensor_status[6] = False # change nh3 sensor status to False (i.e. inactive) as all readings are now complete
         return 
         
@@ -209,7 +209,7 @@ class SensorReadings(): # class containing methods to take sensor readings
             pass
         time.sleep(2) 
         self.queue_op(freq, dur, stime, self.pm()) # add 'pm' method to 'queue' at set intervals to take sensor readings at desired frequency
-        display_text('Particulate matter readings complete') # display sensor reading status on LCD once all readings are complete
+        display_text('Particulate matter \nreadings \ncomplete',17) # display sensor reading status on LCD once all readings are complete
         self.sensor_status[7] = False # change pm sensor status to False (i.e. inactive) as all readings are now complete
         return 
 
@@ -221,7 +221,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         try:
             data = pms5003.read() # get readings of concentration of PM1.0, PM2.5 and PM10 particulate matter
         except pmsReadTimeoutError:
-            display_text('Failed to read PMS5003') # display error message on LCD screen
+            display_text('Failed to read \nPMS5003',22) # display error message on LCD screen
             pass
         else:
             pm1 = float(data.pm_ug_per_m3(1.0)) # get readings of concentration of PM1.0
@@ -265,7 +265,7 @@ class SensorReadings(): # class containing methods to take sensor readings
                self.queue.pop(0) # execute reading for front sensor in queue and remove sensor from queue
                time.sleep(1) # 1 second delay between each sensor reading
             if True not in self.sensor_status: # if all sensors are inactive
-                display_text('All readings are now complete\nYou can safely power off the Raspberry Pi now') # display sensor reading status on LCD screen
+                display_text('All readings \nnow complete.\nYou can safely unplug \n the sensor now.',15) # display sensor reading status on LCD screen
                 break # all readings are complete, so terminate
 
     def main(self): # control operation of active sensors

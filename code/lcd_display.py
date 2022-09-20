@@ -24,21 +24,18 @@ HEIGHT = display.height # height of LCD display to calculate text position
 img = Image.new('RGB', (WIDTH, HEIGHT), color=(0, 0, 0)) # create black image of same size as LCD 
 draw = ImageDraw.Draw(img) # create empty black canvas
 
-# text settings:
-font_size = 17
-font = ImageFont.truetype(UserFont, font_size)
-text_colour = (255, 255, 255)
-back_colour = (0, 170, 170)
 
-def display_text(text): # display text passed to function on sensor LCD screen
+def display_text(text, font_size): # display text passed to function on sensor LCD screen
+    # text settings:
+    font = ImageFont.truetype(UserFont, font_size)
+    text_colour = (255, 255, 255)
+    back_colour = (0, 170, 170)
     size_x, size_y = draw.textsize(text, font) # size of text to be displayed on LCD screen
-
     # calculate text position:
     x = (WIDTH - size_x) / 2
     y = (HEIGHT / 2) - (size_y / 2)
-
     # draw background rectangle and write text:
     draw.rectangle((0, 0, 160, 80), back_colour)
-    draw.text((x, y), text, font=font, fill=text_colour)
+    draw.text((x, y), text, font=font, fill=text_colour, align='center')
     display.display(img)
     return

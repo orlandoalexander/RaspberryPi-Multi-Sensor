@@ -17,9 +17,9 @@ try:
 except ImportError:
     import ltr559
 
-display_text('Sensor booting...') # display boot message on sensor LCD 
+display_text('Sensor booting...', 19) # display boot message on sensor LCD 
 #time.sleep(5)
-display_text('Welcome!') 
+display_text('Welcome!', 30) 
 
 while True: 
     proximity = ltr559.get_proximity() # get proximity above proximity sensor
@@ -33,14 +33,13 @@ while True:
             else:
                 pass
         if button_pressed == True and threading.active_count() <= 1: # if user has held finger on proximity sensor for at least 5 seconds (i.e. pressed button to start sensor readings) and no other threads are currently active (i.e. sensor not currently taking readings)
-            display_text('Sensor readings starting in 2 minutes') # display status message on LCD 
+            display_text('Sensor readings\n starting in 2 mins',18) # display status message on LCD 
             #time.sleep(120) # delay to allow user to place sensor in desired location to take readings
             sensor_thread = threading.Thread(target=SensorReadings().main) # create new thread to take sensor readings in background
             sensor_thread.start() # start background thread to take sensor readings
             break
         elif button_pressed == True and threading.active_count() > 1: # if user has held finger on proximity sensor for at least 5 seconds (i.e. pressed button to start sensor readings) and another thread is currently active (i.e. sensor is currently taking readings)
-            print('Rebooting')
-            display_text('Sensor currently active!\nContinue to hold for 10 seconds to reboot sensor')
+            display_text('Sensor currently active!\nContinue to hold for 10s\n to reboot sensor.',13)
             while time.time() - stime < 15: # continue looping for 15 seconds after user first pressed proximity sensor, checking whether user's finger is still on proximity sensor
                 if proximity < 1000: # if user takes finger off proxmity sensor (i.e. stops pressing 'button')
                     button_pressed = False
@@ -48,10 +47,10 @@ while True:
                 else:
                     pass
             if button_pressed == True: # if user held proximity sensor for 15 seconds in total
-                display_text('Sensor rebooting...') # display status message on LCD 
+                display_text('Sensor rebooting...',17) # display status message on LCD 
                 time.sleep(5)
                 #os.system("sudo reboot") # reboot Raspberry Pi
             else:
-                display_text('Sensor will continue to take readings') # display status message on LCD 
+                display_text('Reboot cancelled.\nSensor will continue\n to take readings.',16) # display status message on LCD 
 
 

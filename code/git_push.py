@@ -15,10 +15,9 @@ while True:
         repo.index.commit('upload latest data files') # commit all staged files
         origin = repo.remotes.origin # access remote git repo 
         origin.push() # push all commits to remote git repo
-        git_message = 'Latest version of data files will be uploaded to GitHub Repo every 60s'
+        display_text('Latest version of data\n files will be uploaded\n to GitHub repo\n every 60s',13) # display git push status on LCD screen
         print('Git push - success')
     except:
-        git_message = 'Cannot upload latest version of data files to GitHub Repo\nNo internet connection' 
+        display_text('Cannot upload latest\n version of data files \nto GitHub Repo.\nNo internet connection.',13) # display git push status on LCD screen
         print('Git push - fail')
-    display_text(git_message) # display git push status on LCD screen
     time.sleep(60)

@@ -16,10 +16,9 @@ try:
     repo = Repo('/home/ecoswell/RaspberryPi-Sensor/') # access local git repo
     origin = repo.remotes.origin # access remote git repo
     origin.pull() # pull latest changes from git repo to update sensor settings
-    git_message = 'Successfully retrieved changes to settings from GitHub Repo'
+    display_text('Successfully retrieved\n sensor changes \nfrom Github repo',15) # display status message on LCD 
     print('Git pull - success')
 except:
-    git_message = 'Failed to retrieve changes to settings from GitHub Repo\nNo internet connection'
+    display_text('Failed to retrieve\nsensor changes from \nGitHub repo.\nNo internet connection.',13) # display status message on LCD 
     print('Git pull - fail')
-display_text(git_message) # display git pull status on LCD screen
 
