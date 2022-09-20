@@ -58,7 +58,7 @@ class SensorReadings(): # class containing methods to take sensor readings
             data_heading = ['Data 1','Data 2']
             data = [(avg_cpu_temp-raw_temp), raw_temp] # the two data values required to calculate the temperature compensation factor
             self.save_data(sensor, freq, dur, data, data_heading)
-            time.sleep(60)
+            time.sleep(2) #TODO
         return
 
     def temp_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
