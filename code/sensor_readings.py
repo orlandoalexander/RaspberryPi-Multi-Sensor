@@ -282,7 +282,6 @@ class SensorReadings(): # class containing methods to take sensor readings
         data = [round(i, 2) for i in data] # round data values to 2 dp - must iterate over each element in list as data values stored in list
         filename = sensor+'-'+self.date+'-'+self.time+'.csv' # filename stores sensor type and current date
         backlight_on()
-        display_text(filename,7)
         if os.path.isfile(f'/home/ecoswell/RaspberryPi-Sensor/data/{filename}'): # if CSV file storing data for 'sensor' already exists
             f = open(f'/home/ecoswell/RaspberryPi-Sensor/data/{filename}', 'a') # create/open CSV file to store data for 'sensor'
             writer = csv.writer(f)
