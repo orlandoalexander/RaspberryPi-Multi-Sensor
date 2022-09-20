@@ -76,7 +76,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         self.queue_op(freq, dur, stime, self.temp) # add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
         backlight_on() # turn on LCD backlight
         display_text('Temperature\n readings\n complete',20) # display sensor reading status on LCD once all readings are complete
-        self.sensor_status[0] = False # change temp sensor status to False (i.e. inactive) as all readings are now complete
+        #self.sensor_status[0] = False # change temp sensor status to False (i.e. inactive) as all readings are now complete
         time.sleep(30)
         display_text('',1)
         backlight_off() # turn off LCD backlight
