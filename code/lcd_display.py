@@ -17,7 +17,7 @@ display = ST7735.ST7735(
 
 display.begin() # initialize display
 
-WIDTH = int(display.width/10) # width of LCD display to calculate text position
+WIDTH = display.width # width of LCD display to calculate text position
 HEIGHT = display.height # height of LCD display to calculate text position
 
 # create empty black canvas to draw on LCD:
@@ -25,7 +25,7 @@ img = Image.new('RGB', (WIDTH, HEIGHT), color=(0, 0, 0)) # create black image of
 draw = ImageDraw.Draw(img) # create empty black canvas
 
 # text settings:
-font_size = 25
+font_size = 12
 font = ImageFont.truetype(UserFont, font_size)
 text_colour = (255, 255, 255)
 back_colour = (0, 170, 170)
