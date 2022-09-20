@@ -1,6 +1,6 @@
 '''
 Configures proximity sensor as button to begin sensor readings after Raspberry Pi boot
-File run at startup in /etc/rc.local file
+File run at startup as a cron job 
 '''
 
 import sys
