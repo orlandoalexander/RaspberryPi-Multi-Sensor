@@ -39,3 +39,7 @@ def display_text(text, font_size): # display text passed to function on sensor L
     draw.text((x, y), text, font=font, fill=text_colour, align='center')
     display.display(img)
     return
+
+def backlight_off():
+    display.set_backlight(0) # turn off backlight
+    return
