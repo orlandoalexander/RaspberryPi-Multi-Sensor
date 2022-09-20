@@ -9,9 +9,11 @@ import requests
 import time
 from lcd_display import display_text, backlight_off, backlight_on
 
+import os
+os.system('git remote set-url origin git@github.com:EcoSwell/RaspberryPi-Sensor.git')
+os.system('git pull')
 
-
-time.sleep(10)
+#time.sleep(10)
 try: 
     requests.get('https://www.google.com/') # check if Raspberry Pi is connected to internet (request will cause error if not connected to internet --> except statement triggered)
     repo = Repo('/home/ecoswell/RaspberryPi-Sensor/') # access local git repo
