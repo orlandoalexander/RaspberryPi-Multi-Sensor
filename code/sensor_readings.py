@@ -212,10 +212,11 @@ class SensorReadings(): # class containing methods to take sensor readings
         filename = sensor+'-'+self.date+'-'+self.time+'.csv' # filename stores sensor type and current date
         file_exists = False
         if os.path.isfile(f'data/{filename}'): # if CSV file storing data for 'sensor' already exists
-            file_exists = True
-        f = open(f'data/{filename}', 'a') # create/open CSV file to store data for 'sensor'
-        writer = csv.writer(f)
-        if not file_exists: # if CSV file storing data for 'sensor' has just been created
+            f = open(f'data/{filename}', 'a') # create/open CSV file to store data for 'sensor'
+            writer = csv.writer(f)
+        else: # if CSV file storing data for 'sensor' has just been created
+            f = open(f'data/{filename}', 'w') # create/open CSV file to store data for 'sensor'
+            writer = csv.writer(f)
             heading = ['Date', 'Time'] + data_heading # enables unlimited number of data headings as 'data_heading' stores an array of each data heading (applicable as pm sensor takes three readings (PM1.0, PM2.5 and PM10), whereas all other sensor only take one reading)
             writer.writerow(['Time between readings(sec): ',freq]) # record delay between sensor readings
             writer.writerow(['Duration of readings (mins): ', dur]) # record duration of sensor readings
