@@ -39,6 +39,7 @@ while True:
             sensor_thread = threading.Thread(target=SensorReadings().main) # create new thread to take sensor readings in background
             sensor_thread.start() # start background thread to take sensor readings
         elif button_pressed == True and threading.active_count() > 1: # if user has held finger on proximity sensor for at least 5 seconds (i.e. pressed button to start sensor readings) and another thread is currently active (i.e. sensor is currently taking readings)
+            print('Rebooting')
             display_text('Sensor currently active!\nContinue to hold for 10 seconds to reboot sensor')
             while time.time() - stime < 15: # continue looping for 15 seconds after user first pressed proximity sensor, checking whether user's finger is still on proximity sensor
                 if proximity < 1000: # if user takes finger off proxmity sensor (i.e. stops pressing 'button')
