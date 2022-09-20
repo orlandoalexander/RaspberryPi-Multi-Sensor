@@ -38,6 +38,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         self.sensors_dict = {1:self.temp_queue, 2:self.pressure_queue, 3:self.humidity_queue, 4:self.light_queue, 5:self.co_queue, 6:self.no2_queue, 7:self.nh3_queue, 8:self.pm_queue} # dictionary to translate between sensor number and sensor queue method (which triggers sensor execution)
         self.queue = [] # queue stores sensors which are due to take readings - this avoids multiple sensors taking readings simultaneously and therefore prevents collisions
         self.sensor_status = [False for i in range(8)] # queue stores status of each sensor (True = active, False = inactive)
+        cpu_temp = self.get_cpu_temperature() # take initial reading to stabalise sensor
         self.cpu_temps = [self.get_cpu_temperature()] * 5 # get five readings of CPU temperature
 
     def get_cpu_temperature(self): # get the temperature of the CPU for compensation
@@ -48,7 +49,6 @@ class SensorReadings(): # class containing methods to take sensor readings
 
     def temp_factor(self): # record required data to allow user to calculate temperature compensation factor
         raw_temp = bme280.get_temperature() # take initial reading to stabalise sensor
-        cpu_temp = self.get_cpu_temperature() # take initial reading to stabalise sensor
         for i in range(10):
             sensor = 'calculate_factor'
             freq = 60
@@ -64,7 +64,6 @@ class SensorReadings(): # class containing methods to take sensor readings
         return
 
     def temp_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
-        cpu_temp = self.get_cpu_temperature() # take initial reading to stabalise sensor
         raw_temp = bme280.get_temperature() # take initial reading to stabalise sensor
         self.queue_op(freq, dur, stime, self.temp()) # add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
         display_text('Temperature readings complete') # display sensor reading status on LCD once all readings are complete
