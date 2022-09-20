@@ -21,10 +21,6 @@ except ImportError:
     import ltr559
 
 
-
-subprocess.run("python3 git_pull.py & python3 git_push.py", shell=True)
-
-
 display_text('Sensor booting...', 19) # display boot message on sensor LCD 
 time.sleep(5)
 display_text('Welcome!', 30) 
