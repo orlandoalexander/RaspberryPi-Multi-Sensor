@@ -5,7 +5,7 @@ import requests
 from git import Repo
 from lcd_display import display_text
 
-time.sleep(20) # delay to allow Raspberry Pi to connect to WiFi and latest changes to be pulled from git repo
+#time.sleep(20) # delay to allow Raspberry Pi to connect to WiFi and latest changes to be pulled from git repo
 
 while True:
     try: 
