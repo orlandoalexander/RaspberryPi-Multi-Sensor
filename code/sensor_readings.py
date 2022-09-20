@@ -313,9 +313,6 @@ class SensorReadings(): # class containing methods to take sensor readings
             elif True not in self.sensor_status: # if all sensors are inactive
                 time.sleep(5)
                 display_text('All readings \nnow complete.\nYou can safely unplug \n the sensor now.',15) # display sensor reading status on LCD screen
-                time.sleep(30)
-                display_text('',1)
-                backlight_off() # turn off LCD backlight
                 break # all readings are complete, so terminate
             time.sleep(1)
 
