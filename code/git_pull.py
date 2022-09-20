@@ -12,6 +12,7 @@ from lcd_display import display_text, backlight_off, backlight_on
 import os
 os.system('git remote set-url origin git@github.com:EcoSwell/RaspberryPi-Sensor.git')
 os.system('git pull')
+print('hey')
 
 #time.sleep(10)
 try: 
