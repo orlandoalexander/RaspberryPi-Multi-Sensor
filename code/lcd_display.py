@@ -17,7 +17,7 @@ display = ST7735.ST7735(
 
 display.begin() # initialize display
 
-WIDTH = display.width/5 # width of LCD display to calculate text position
+WIDTH = int(display.width/5) # width of LCD display to calculate text position
 HEIGHT = display.height # height of LCD display to calculate text position
 
 # create empty black canvas to draw on LCD:
