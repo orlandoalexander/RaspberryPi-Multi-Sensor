@@ -1,0 +1,103 @@
+[False, False, False, False, False, False, False, False]
+Traceback (most recent call last):
+  File "/home/ecoswell/RaspberryPi-Sensor/code/begin_readings.py", line 28, in <module>
+    proximity = ltr559.get_proximity() # get proximity above proximity sensor
+  File "/usr/local/lib/python3.9/dist-packages/ltr559/__init__.py", line 553, in get_proximity
+    self.update_sensor()
+  File "/usr/local/lib/python3.9/dist-packages/ltr559/__init__.py", line 462, in update_sensor
+    status = self._ltr559.get('ALS_PS_STATUS')
+  File "/usr/local/lib/python3.9/dist-packages/i2cdevice/__init__.py", line 230, in get
+    self.read_register(register)
+  File "/usr/local/lib/python3.9/dist-packages/i2cdevice/__init__.py", line 183, in read_register
+    self.values[register.name] = self._i2c_read(register.address, register.bit_width)
+  File "/usr/local/lib/python3.9/dist-packages/i2cdevice/__init__.py", line 288, in _i2c_read
+    for x in self._i2c.read_i2c_block_data(self._i2c_address, register, bit_width // self._bit_width):
+KeyboardInterrupt
+Exception ignored in: <module 'threading' from '/usr/lib/python3.9/threading.py'>
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/threading.py", line 1428, in _shutdown
+    lock.acquire()
+KeyboardInterrupt: 
+[False, False, False, False, False, False, False, False]
+Traceback (most recent call last):
+  File "/home/ecoswell/RaspberryPi-Sensor/code/begin_readings.py", line 28, in <module>
+    proximity = ltr559.get_proximity() # get proximity above proximity sensor
+  File "/usr/local/lib/python3.9/dist-packages/ltr559/__init__.py", line 553, in get_proximity
+    self.update_sensor()
+  File "/usr/local/lib/python3.9/dist-packages/ltr559/__init__.py", line 462, in update_sensor
+    status = self._ltr559.get('ALS_PS_STATUS')
+  File "/usr/local/lib/python3.9/dist-packages/i2cdevice/__init__.py", line 230, in get
+    self.read_register(register)
+  File "/usr/local/lib/python3.9/dist-packages/i2cdevice/__init__.py", line 183, in read_register
+    self.values[register.name] = self._i2c_read(register.address, register.bit_width)
+  File "/usr/local/lib/python3.9/dist-packages/i2cdevice/__init__.py", line 288, in _i2c_read
+    for x in self._i2c.read_i2c_block_data(self._i2c_address, register, bit_width // self._bit_width):
+KeyboardInterrupt
+Exception ignored in: <module 'threading' from '/usr/lib/python3.9/threading.py'>
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/threading.py", line 1428, in _shutdown
+    lock.acquire()
+KeyboardInterrupt: 
+[(3, 5, 0.2)]
+[False, False, False, False, False, False, False, False]
+Traceback (most recent call last):
+  File "/home/ecoswell/RaspberryPi-Sensor/code/begin_readings.py", line 28, in <module>
+    proximity = ltr559.get_proximity() # get proximity above proximity sensor
+  File "/usr/local/lib/python3.9/dist-packages/ltr559/__init__.py", line 553, in get_proximity
+    self.update_sensor()
+  File "/usr/local/lib/python3.9/dist-packages/ltr559/__init__.py", line 462, in update_sensor
+    status = self._ltr559.get('ALS_PS_STATUS')
+  File "/usr/local/lib/python3.9/dist-packages/i2cdevice/__init__.py", line 230, in get
+    self.read_register(register)
+  File "/usr/local/lib/python3.9/dist-packages/i2cdevice/__init__.py", line 183, in read_register
+    self.values[register.name] = self._i2c_read(register.address, register.bit_width)
+  File "/usr/local/lib/python3.9/dist-packages/i2cdevice/__init__.py", line 288, in _i2c_read
+    for x in self._i2c.read_i2c_block_data(self._i2c_address, register, bit_width // self._bit_width):
+KeyboardInterrupt
+Exception ignored in: <module 'threading' from '/usr/lib/python3.9/threading.py'>
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/threading.py", line 1428, in _shutdown
+    lock.acquire()
+KeyboardInterrupt: 
+[False, False, False, False, False, False, False, False]
+humidity
+Traceback (most recent call last):
+  File "/home/ecoswell/RaspberryPi-Sensor/code/begin_readings.py", line 46, in <module>
+    time.sleep(10) 
+KeyboardInterrupt
+Exception ignored in: <module 'threading' from '/usr/lib/python3.9/threading.py'>
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/threading.py", line 1428, in _shutdown
+    lock.acquire()
+KeyboardInterrupt: 
+[False, False, False, False, False, False, False, False]
+[False, False, True, False, False, False, False, False]
+Traceback (most recent call last):
+  File "/home/ecoswell/RaspberryPi-Sensor/code/begin_readings.py", line 46, in <module>
+    time.sleep(10) 
+KeyboardInterrupt
+Exception ignored in: <module 'threading' from '/usr/lib/python3.9/threading.py'>
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/threading.py", line 1428, in _shutdown
+    lock.acquire()
+KeyboardInterrupt: 
+[False, False, True, False, False, False, False, False]
+Traceback (most recent call last):
+  File "/home/ecoswell/RaspberryPi-Sensor/code/begin_readings.py", line 28, in <module>
+    proximity = ltr559.get_proximity() # get proximity above proximity sensor
+  File "/usr/local/lib/python3.9/dist-packages/ltr559/__init__.py", line 553, in get_proximity
+    self.update_sensor()
+  File "/usr/local/lib/python3.9/dist-packages/ltr559/__init__.py", line 462, in update_sensor
+    status = self._ltr559.get('ALS_PS_STATUS')
+  File "/usr/local/lib/python3.9/dist-packages/i2cdevice/__init__.py", line 230, in get
+    self.read_register(register)
+  File "/usr/local/lib/python3.9/dist-packages/i2cdevice/__init__.py", line 183, in read_register
+    self.values[register.name] = self._i2c_read(register.address, register.bit_width)
+  File "/usr/local/lib/python3.9/dist-packages/i2cdevice/__init__.py", line 288, in _i2c_read
+    for x in self._i2c.read_i2c_block_data(self._i2c_address, register, bit_width // self._bit_width):
+KeyboardInterrupt
+Exception ignored in: <module 'threading' from '/usr/lib/python3.9/threading.py'>
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/threading.py", line 1428, in _shutdown
+    lock.acquire()
+KeyboardInterrupt: 
