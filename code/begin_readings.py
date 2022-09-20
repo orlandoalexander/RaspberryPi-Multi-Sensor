@@ -9,7 +9,6 @@ sys.path.append(path) # enable importing module ('sensor_settings') from outside
 import os
 import time
 import threading
-import subprocess
 from sensor_readings import SensorReadings
 from lcd_display import display_text, backlight_off, backlight_on
 
@@ -21,7 +20,7 @@ try:
 except ImportError:
     import ltr559
 
-subprocess.Popen("/home/ecoswell/RaspberryPi-Sensor/code/git_pull.py")
+os.system("sudo python3 home/ecoswell/RaspberryPi-Sensor/code/git_pull.py")
 
 display_text('Sensor booting...', 19) # display boot message on sensor LCD 
 time.sleep(10)
