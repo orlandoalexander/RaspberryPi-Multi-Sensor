@@ -48,8 +48,9 @@ class SensorReadings(): # class containing methods to take sensor readings
             return temp
 
     def temp_factor(self): # record required data to allow user to calculate temperature compensation factor
+        raw_temp = bme280.get_temperature() # get raw reading of temp
         time.sleep(2)
-        for i in range(10):
+        for i in range(2): #TODO
             sensor = 'calculate_factor'
             freq = 60
             dur = 10
