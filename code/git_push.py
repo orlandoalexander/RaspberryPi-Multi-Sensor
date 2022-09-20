@@ -3,7 +3,7 @@
 import time
 import requests
 from git import Repo
-from lcd_display import display_text
+from lcd_display import display_text, backlight_off, backlight_on
 
 #time.sleep(20) # delay to allow Raspberry Pi to connect to WiFi and latest changes to be pulled from git repo
 
@@ -15,9 +15,17 @@ while True:
         repo.index.commit('upload latest data files') # commit all staged files
         origin = repo.remotes.origin # access remote git repo 
         origin.push() # push all commits to remote git repo
+        backlight_on() # turn on LCD backlight
         display_text('Latest version of data\n files will be uploaded\n to GitHub repo\n every 60s',13) # display git push status on LCD screen
+        time.sleep(30)
+        display_text('',1)
+        backlight_off() # turn off LCD backlight
         print('Git push - success')
     except:
+        backlight_on() # turn on LCD backlight
         display_text('Cannot upload latest\n version of data files \nto GitHub Repo.\nNo internet connection.',13) # display git push status on LCD screen
+        time.sleep(30)
+        display_text('',1)
+        backlight_off() # turn off LCD backlight
         print('Git push - fail')
     time.sleep(60)

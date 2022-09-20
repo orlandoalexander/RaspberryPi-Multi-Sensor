@@ -27,6 +27,7 @@ while True:
         stime = time.time() # initial time when user put finger on proximity sensor
         button_pressed = True
         backlight_on() # turn on LCD backlight
+        display_text('Welcome!', 30) 
         while time.time() - stime < 5: # loop for 5 seconds, checking whether user's finger is still on proximity sensor
             proximity = ltr559.get_proximity() # get proximity above proximity sensor
             print(proximity)
@@ -39,8 +40,8 @@ while True:
             display_text('Sensor readings\n starting in 2 mins',18) # display status message on LCD 
             time.sleep(5) # TODO delay to allow user to place sensor in desired location to take readings
             display_text('Sensor readings\n have started',20)
-            #sensor_thread = threading.Thread(target=SensorReadings().main) # create new thread to take sensor readings in background
-            #sensor_thread.start() # start background thread to take sensor readings
+            sensor_thread = threading.Thread(target=SensorReadings().main) # create new thread to take sensor readings in background
+            sensor_thread.start() # start background thread to take sensor readings
             time.sleep(5)
             display_text('',1)
             backlight_off() # turn off LCD backlight
