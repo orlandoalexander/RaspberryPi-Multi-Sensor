@@ -36,13 +36,12 @@ while True:
         if button_pressed == True and threading.active_count() <= 1: # if user has held finger on proximity sensor for at least 5 seconds (i.e. pressed button to start sensor readings) and no other threads are currently active (i.e. sensor not currently taking readings)
             display_text('Sensor readings\n starting in 2 mins',18) # display status message on LCD 
             time.sleep(5) # TODO delay to allow user to place sensor in desired location to take readings
-            display_text('Sensor readings\n starting!',20)
+            display_text('Sensor readings\n have started',20)
             sensor_thread = threading.Thread(target=SensorReadings().main) # create new thread to take sensor readings in background
             sensor_thread.start() # start background thread to take sensor readings
-            time.sleep(10)
+            time.sleep(30)
             display_text('',1)
             backlight_off() # turn off LCD backlight
-            break
         elif button_pressed == True and threading.active_count() > 1: # if user has held finger on proximity sensor for at least 5 seconds (i.e. pressed button to start sensor readings) and another thread is currently active (i.e. sensor is currently taking readings)
             display_text('Sensor currently active!\nContinue to hold for 10s\n to reboot sensor.',13)
             while time.time() - stime < 15: # continue looping for 15 seconds after user first pressed proximity sensor, checking whether user's finger is still on proximity sensor
