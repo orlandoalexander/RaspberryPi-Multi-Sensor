@@ -6,7 +6,7 @@ File run at startup as a cron job
 import sys
 path = '/home/ecoswell/RaspberryPi-Sensor' # path to folder storing 'sensor_settings' module
 sys.path.append(path) # enable importing module ('sensor_settings') from outside directory
-import os
+import subprocess
 import time
 import threading
 from sensor_readings import SensorReadings
@@ -20,7 +20,11 @@ try:
 except ImportError:
     import ltr559
 
-os.system("sudo python3 git_pull.py")
+#os.system("sudo python3 git_pull.py")
+
+subprocess.Popen([sys.executable, 'git_pull.py'], 
+                                    stdout=subprocess.PIPE, 
+                                    stderr=subprocess.STDOUT)
 
 display_text('Sensor booting...', 19) # display boot message on sensor LCD 
 time.sleep(10)
