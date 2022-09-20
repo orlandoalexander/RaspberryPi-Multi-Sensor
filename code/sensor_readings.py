@@ -308,6 +308,7 @@ class SensorReadings(): # class containing methods to take sensor readings
             
     def dequeue(self): # remove each queued sensor reading from the queue and execute the sensor reading, avoiding multiple sensors taking readings simultaneously  
         while True:
+            print(self.sensor_status)
             if len(self.queue) >= 1: # if there are sensors readings to be taken
                 print('take reading')
                 self.queue.pop(0)() # execute reading for front sensor in queue and remove sensor from queue
