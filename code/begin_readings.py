@@ -59,7 +59,7 @@ while True:
                 #os.system("sudo reboot") # reboot Raspberry Pi
             else:
                 display_text('Reboot cancelled.\nSensor will continue\n to take readings.',16) # display status message on LCD 
-                time.sleep(10)
+                time.sleep(5)
                 display_text('',1)
                 backlight_off() # turn off LCD backlight
 
