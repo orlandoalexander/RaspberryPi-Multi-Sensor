@@ -27,7 +27,6 @@ while True:
         stime = time.time() # initial time when user put finger on proximity sensor
         button_pressed = True
         backlight_on() # turn on LCD backlight
-        display_text('Welcome!', 30) 
         while time.time() - stime < 5: # loop for 5 seconds, checking whether user's finger is still on proximity sensor
             proximity = ltr559.get_proximity() # get proximity above proximity sensor
             print(proximity)

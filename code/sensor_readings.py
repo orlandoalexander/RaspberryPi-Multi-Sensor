@@ -63,7 +63,7 @@ class SensorReadings(): # class containing methods to take sensor readings
             self.save_data(sensor, freq, dur, data, data_heading)
             time.sleep(2) #TODO
         backlight_on() # turn on LCD backlight
-        display_text('Temperature factor\n readings\n complete',20)
+        display_text('Temperature factor\n readings\n complete',18)
         time.sleep(30)
         display_text('',1)
         backlight_off() # turn off LCD backlight
