@@ -297,9 +297,10 @@ class SensorReadings(): # class containing methods to take sensor readings
             print('added to queue')
             threading.Timer(freq, self.queue_op, [freq, dur, stime, sensor_method]).start() # recursively call 'queue_op' method at frequency specified by 'freq' to add sensor method to 'queue' (which executes sensor readings such that collisions are avoided) at desired frequency and pass required arguments in list
             self.queue.append(sensor_method) # add sensor method to 'self.queue' to schedule execution of sensor reading
-
+            print(self.queue)
     def dequeue(self): # remove each queued sensor reading from the queue and execute the sensor reading, avoiding multiple sensors taking readings simultaneously  
         while True:
+            print(len(self.queue))
             if len(self.queue) >= 1: # if there are sensors readings to be taken
                 print('take reading')
                 self.queue.pop(0) # execute reading for front sensor in queue and remove sensor from queue
