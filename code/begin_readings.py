@@ -25,9 +25,9 @@ subprocess.Popen([sys.executable, 'git_pull.py'],
                                     stdout=subprocess.PIPE, 
                                     stderr=subprocess.STDOUT)
 
-display_text('Sensor booting...', 19) # display boot message on sensor LCD 
-time.sleep(5)
-display_text('Welcome!', 30) 
+#display_text('Sensor booting...', 19) # display boot message on sensor LCD 
+#time.sleep(5)
+#display_text('Welcome!', 30) 
 
 while True: 
     proximity = ltr559.get_proximity() # get proximity above proximity sensor
