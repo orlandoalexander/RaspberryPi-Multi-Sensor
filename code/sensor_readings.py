@@ -73,7 +73,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         raw_temp = bme280.get_temperature() # take initial reading to stabalise sensor
         time.sleep(2)        
         print(self.sensor_status)
-        self.queue_op(freq, dur, stime, self.temp()) # add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
+        self.queue_op(freq, dur, stime, self.temp) # add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
         backlight_on() # turn on LCD backlight
         display_text('Temperature\n readings\n complete',20) # display sensor reading status on LCD once all readings are complete
         self.sensor_status[0] = False # change temp sensor status to False (i.e. inactive) as all readings are now complete
@@ -294,7 +294,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         if time.time() - stime >= dur: # if duration for which sensor readings should be taken (as defined by the user in 'sensor_settings.py') has been reached, terminate execution of sensor readings
             return
         else:
-            print('added to queue')
+            print('added to queue', sensor_method)
             threading.Timer(freq, self.queue_op, [freq, dur, stime, sensor_method]).start() # recursively call 'queue_op' method at frequency specified by 'freq' to add sensor method to 'queue' (which executes sensor readings such that collisions are avoided) at desired frequency and pass required arguments in list
             self.queue.append(sensor_method) # add sensor method to 'self.queue' to schedule execution of sensor reading
             print(self.queue)
