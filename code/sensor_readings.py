@@ -30,7 +30,7 @@ pms5003 = PMS5003() # intitialise PMS5003 particulate sensor
 class SensorReadings(): # class containing methods to take sensor readings
     def __init__(self):
         now = datetime.now() # get current date and time
-        self.date = now.strftime("%d/%m/%Y") # get date when sensor readings begin in correct format
+        self.date = now.strftime("%d.%m.%Y") # get date when sensor readings begin in correct format
         self.time = now.strftime("%H:%M:%S") # get time when sensor readings begin in correct format
         self.sensors = sensor_settings.sensors # access sensor settings defined by user in file 'sensor_settings.py' 
         self.factor = sensor_settings.factor # access factor by which temperature reading is compensated as defined by user in file 'sensor_settings.py' 
@@ -210,7 +210,6 @@ class SensorReadings(): # class containing methods to take sensor readings
 
     def save_data(self, sensor, freq, dur, data, data_heading): # save sensor data to CSV file
         filename = sensor+'-'+self.date+'-'+self.time+'.csv' # filename stores sensor type and current date
-        file_exists = False
         if os.path.isfile(f'data/{filename}'): # if CSV file storing data for 'sensor' already exists
             f = open(f'data/{filename}', 'a') # create/open CSV file to store data for 'sensor'
             writer = csv.writer(f)

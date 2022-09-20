@@ -179,14 +179,16 @@
 # print('j')
 # main.data = False
 
-class t():
-    def __init__(self):
-        self.d = {1:self.f}
+# class t():
+#     def __init__(self):
+#         self.d = {1:self.f}
     
-    def f(self, p):
-        print(p)
+#     def f(self, p):
+#         print(p)
 
-    def m(self):
-        self.d[1]('heu')
+#     def m(self):
+#         self.d[1]('heu')
 
-i = t().m()
+# i = t().m()
+
+f = open('test.cvs','w')
