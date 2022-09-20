@@ -18,7 +18,7 @@ except ImportError:
     import ltr559
 
 display_text('Sensor booting...') # display boot message on sensor LCD 
-time.sleep(5)
+#time.sleep(5)
 display_text('Welcome!') 
 
 while True: 
