@@ -17,8 +17,8 @@ try:
 except ImportError:
     import ltr559
 
-boot_text = 'Sensor booting...'
-display_text(boot_text) # display boot message on sensor LCD 
+display_text('Sensor booting...') # display boot message on sensor LCD 
+display_text('Welcome!') 
 
 while True: 
     proximity = ltr559.get_proximity() # get proximity above proximity sensor
@@ -33,7 +33,7 @@ while True:
                 pass
         if button_pressed == True and threading.active_count() <= 1: # if user has held finger on proximity sensor for at least 5 seconds (i.e. pressed button to start sensor readings) and no other threads are currently active (i.e. sensor not currently taking readings)
             display_text('Sensor readings starting in 2 minutes') # display status message on LCD 
-            time.sleep(120) # delay to allow user to place sensor in desired location to take readings
+            #time.sleep(120) # delay to allow user to place sensor in desired location to take readings
             sensor_thread = threading.Thread(target=SensorReadings().main) # create new thread to take sensor readings in background
             sensor_thread.start() # start background thread to take sensor readings
         elif button_pressed == True and threading.active_count() > 1: # if user has held finger on proximity sensor for at least 5 seconds (i.e. pressed button to start sensor readings) and another thread is currently active (i.e. sensor is currently taking readings)
