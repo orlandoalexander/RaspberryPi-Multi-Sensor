@@ -17,7 +17,7 @@ display = ST7735.ST7735(
 
 display.begin() # initialize display
 
-WIDTH = display.width # width of LCD display to calculate text position
+WIDTH = display.width/5 # width of LCD display to calculate text position
 HEIGHT = display.height # height of LCD display to calculate text position
 
 # create empty black canvas to draw on LCD:
@@ -34,7 +34,7 @@ def display_text(text): # display text passed to function on sensor LCD screen
     size_x, size_y = draw.textsize(text, font) # size of text to be displayed on LCD screen
 
     # calculate text position:
-    x = (WIDTH - size_x) / 6
+    x = (WIDTH - size_x) / 2
     y = (HEIGHT / 2) - (size_y / 2)
 
     # draw background rectangle and write text:
