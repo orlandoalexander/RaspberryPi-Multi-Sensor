@@ -8,8 +8,6 @@ import requests
 import time
 from lcd_display import display_text
 
-boot_text = 'Sensor booting...'
-display_text(boot_text) # display boot message on sensor LCD 
 
 time.sleep(10) # delay to allow Raspberry Pi to connect to WiFi
 
