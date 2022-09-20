@@ -20,14 +20,13 @@ try:
 except ImportError:
     import ltr559
 
-#os.system("sudo python3 git_pull.py")
 
 subprocess.Popen([sys.executable, 'git_pull.py'], 
                                     stdout=subprocess.PIPE, 
                                     stderr=subprocess.STDOUT)
 
 display_text('Sensor booting...', 19) # display boot message on sensor LCD 
-time.sleep(10)
+time.sleep(5)
 display_text('Welcome!', 30) 
 
 while True: 
