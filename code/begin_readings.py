@@ -29,7 +29,6 @@ while True:
         backlight_on() # turn on LCD backlight
         while time.time() - stime < 5: # loop for 5 seconds, checking whether user's finger is still on proximity sensor
             proximity = ltr559.get_proximity() # get proximity above proximity sensor
-            print(proximity)
             if proximity < 1000: # if user takes finger off proxmity sensor (i.e. stops pressing 'button')
                 button_pressed = False
                 break
@@ -41,7 +40,7 @@ while True:
             display_text('Sensor readings\n have started',20)
             sensor_thread = threading.Thread(target=SensorReadings().main) # create new thread to take sensor readings in background
             sensor_thread.start() # start background thread to take sensor readings
-            time.sleep(5)
+            time.sleep(5) #TODO
             display_text('',1)
             backlight_off() # turn off LCD backlight
         elif button_pressed == True and threading.active_count() > 1: # if user has held finger on proximity sensor for at least 5 seconds (i.e. pressed button to start sensor readings) and another thread is currently active (i.e. sensor is currently taking readings)
