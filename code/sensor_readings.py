@@ -308,12 +308,13 @@ class SensorReadings(): # class containing methods to take sensor readings
             
     def dequeue(self): # remove each queued sensor reading from the queue and execute the sensor reading, avoiding multiple sensors taking readings simultaneously  
         while True:
-            print(self.sensor_status)
+            #print(self.sensor_status)
             if len(self.queue) >= 1: # if there are sensors readings to be taken
                 print('take reading')
                 self.queue.pop(0)() # execute reading for front sensor in queue and remove sensor from queue
                 time.sleep(1) # 1 second delay between each sensor reading
             elif True not in self.sensor_status: # if all sensors are inactive
+                time.sleep(10)
                 display_text('All readings \nnow complete.\nYou can safely unplug \n the sensor now.',15) # display sensor reading status on LCD screen
                 break # all readings are complete, so terminate
             time.sleep(1)
