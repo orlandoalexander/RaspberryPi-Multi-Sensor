@@ -34,6 +34,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         now = datetime.now() # get current date and time
         self.date = now.strftime("%d.%m.%Y") # get date when sensor readings begin in correct format
         self.time = now.strftime("%H:%M:%S") # get time when sensor readings begin in correct format
+        print(sensor_settings.sensors)
         self.sensors = sensor_settings.sensors # access sensor settings defined by user in file 'sensor_settings.py' 
         self.factor = sensor_settings.factor # access factor by which temperature reading is compensated as defined by user in file 'sensor_settings.py' 
         self.calculate_factor = sensor_settings.calculate_factor # boolean which stores whether user wishes to calculate the temperature compensation factor
@@ -72,7 +73,6 @@ class SensorReadings(): # class containing methods to take sensor readings
         return
 
     def temp_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
-        print('temp')
         raw_temp = bme280.get_temperature() # take initial reading to stabalise sensor
         time.sleep(2)        
         self.queue_op(freq, dur, stime, self.temp) # add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
@@ -246,7 +246,6 @@ class SensorReadings(): # class containing methods to take sensor readings
         return
 
     def pm_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'pm' method to 'queue' at set intervals to take sensor readings at desired frequency
-        print('pm')
         try:
             data = pms5003.read() # take initial reading to stabalise sensor
         except pmsReadTimeoutError:
@@ -284,7 +283,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         data = [round(i, 2) for i in data] # round data values to 2 dp - must iterate over each element in list as data values stored in list
         filename = sensor+'-'+self.date+'-'+self.time+'.csv' # filename stores sensor type and current date
         backlight_on()
-        display_text('filename',7)
+        display_text(filename,7)
         if os.path.isfile(f'/home/ecoswell/RaspberryPi-Sensor/data/{filename}'): # if CSV file storing data for 'sensor' already exists
             f = open(f'/home/ecoswell/RaspberryPi-Sensor/data/{filename}', 'a') # create/open CSV file to store data for 'sensor'
             writer = csv.writer(f)
