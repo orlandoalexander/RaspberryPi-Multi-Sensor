@@ -217,6 +217,7 @@ The temperature reading must be adjusted slightly to compensate for the heating 
 The data values for the carbon monoxide readings are given in arbitrary units (technically, they are given as resistance values - but don't worry about this!). Therefore, it is not possible to measure exact concentrations of carbon monoxide in parts per million. Instead, you should use the results to measure the change in the concentration of carbon monoxide particles in the air relative to the baseline value of (TODO) - this value was calculated in an open space away from any buildings or sources of pollution.
 
 **Important**: the carbon monoxide gas readings will *drop* with increasing concentration of carbon monoxide gas detected.
+**Important**: the sensor takes around 10 minutes to stabalise, so ignore all readings taken within the first 10 minutes.
 
 
 
@@ -225,6 +226,7 @@ The data values for the carbon monoxide readings are given in arbitrary units (t
 The data values for the nitrogen dioxide readings are given in arbitrary units (technically, they are given as resistance values - but don't worry about this!). Therefore, it is not possible to measure exact concentrations of nitrogen dioxide in parts per million. Instead, you should use the results to measure the change in the concentration of nitrogen dioxide particles in the air relative to the baseline value of (TODO) - this value was calculated in an open space away from any buildings or sources of pollution.
 
 **Important**: the nitrogen dioxide gas readings will *increase* with increasing concentration of the nitrogen dioxide gas detected. 
+**Important**: the sensor takes around 10 minutes to stabalise, so ignore all readings taken within the first 10 minutes.
 
 
 
@@ -233,6 +235,7 @@ The data values for the nitrogen dioxide readings are given in arbitrary units (
 The data values for the ammonia readings are given in arbitrary units (technically, they are given as resistance values - but don't worry about this!). Therefore, it is not possible to measure exact concentrations of ammonia in parts per million. Instead, you should use the results to measure the change in the concentration of ammonia particles in the air relative to the baseline value of (TODO) - this value was calculated in an open space away from any buildings or sources of pollution.
 
 **Important**: the ammonia gas readings will *drop* with increasing concentration of the ammonia gas detected. 
+**Important**: the sensor takes around 10 minutes to stabalise, so ignore all readings taken within the first 10 minutes.
 
 
 
