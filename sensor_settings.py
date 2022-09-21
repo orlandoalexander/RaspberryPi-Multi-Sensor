@@ -3,7 +3,7 @@
 '''
 EMAIL ADDRESS
 
-Enter the email address to which the files storing the data readings should be sent below:
+Enter the email address to which the files storing the data readings should be sent:
 '''
 email_address = 'itsorlando@outlook.com'
 

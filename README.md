@@ -29,7 +29,7 @@ The sensor also contains an LCD screen which will display status updates and fee
 
 
 ## **Raspberry Pi Diagram**
-<img width="832" alt="image-20220916124231553" src="https://user-images.githubusercontent.com/113472300/191034839-39f3fec2-b07c-4352-977d-f9d678b465e6.png">
+<img width="1021" alt="image" src="https://user-images.githubusercontent.com/113472300/191468012-ebd7da99-7199-4d05-ac7e-9d3865e4abdd.png">
 
 
 The Raspberry Pi has loads of different ports and components, but luckily you don't need to worry about most of them! The four ports you need to be aware of are shown clearly in the diagram above, and are used during the initial setup process (see section **How To Use The Sensor** / **<u>Initial setup</u>**)
@@ -49,9 +49,7 @@ The operational code, sensor settings and data readings are stored on an online 
 ​	*password*: *5u5t@1n@b1l1ty*
 
 The GitHub repo looks a little like this:
-
-<img width="1437" alt="image-20220916104740264" src="https://user-images.githubusercontent.com/113472300/191034982-df260484-509c-4bb4-99ca-995e4a26450c.png">
-
+<img width="1433" alt="image" src="https://user-images.githubusercontent.com/113472300/191466724-6a40da26-675c-426c-ac4e-c7958f48f257.png">
 
 You will see three things in the GitHub repo:
 
@@ -92,7 +90,7 @@ As the sensor must be connected to the internet to sync the latest settings chan
 
 The sensor settings are adjusted in an online file called *sensor_settings.py* which is stored in the GitHub repo, and looks a bit like this:
 
-<img width="1208" alt="image-20220916215144428" src="https://user-images.githubusercontent.com/113472300/191035159-8a300bc9-281d-4e07-b74f-966ee98b7855.png">
+<img width="1157" alt="image" src="https://user-images.githubusercontent.com/113472300/191468692-455e1f0d-778c-47c3-b62a-5ee75d2492dd.png">
 
 1. To modify the sensor settings you must edit the file *sensor_settings.py* by clicking the *pen icon* circled above
 
