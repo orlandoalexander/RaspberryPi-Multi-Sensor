@@ -41,13 +41,18 @@ while True: # continually try to send email
         msg = MIMEMultipart() # create message data
         msg['Subject'] = SUBJECT # assign message subject 
 
+        count = 0
         directory = '/home/ecoswell/RaspberryPi-Sensor/data'
         for file in os.listdir(directory):
+            count+=1
             filename = os.path.join(directory, file)
             with open(filename, "rb") as f:
                 part = MIMEApplication(f.read(),Name=basename(filename))
             part['Content-Disposition'] = 'attachment; filename="%s"' % basename(filename)
             msg.attach(part)
+        
+        if count == 0: # if zero files in data folder:
+            break
 
         # send email:
         session.sendmail(GMAIL_USERNAME, RECIPIENT, msg.as_string())
