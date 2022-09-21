@@ -21,6 +21,8 @@ and a data recording duration of 4 hours and 7 hours respectively, you should wr
 '''
 sensors = [(3,5,0.2)]
 
+email_address = 'itsorlando@outlook.com'
+
 
 '''
 ADJUST TEMPERATURE TUNING FACTOR

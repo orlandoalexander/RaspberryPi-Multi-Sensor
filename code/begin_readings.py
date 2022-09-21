@@ -6,12 +6,10 @@ File run at startup as a cron job
 import sys
 path = '/home/ecoswell/RaspberryPi-Sensor' # path to folder storing 'sensor_settings' module
 sys.path.append(path) # enable importing module ('sensor_settings') from outside directory
-import subprocess
 import time
 import threading
 from sensor_readings import SensorReadings
 from lcd_display import display_text, backlight_off, backlight_on
-print('hi')
 
 try:
     # transitional fix for breaking change in LTR559

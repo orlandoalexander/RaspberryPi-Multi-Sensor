@@ -27,183 +27,185 @@
 # #             l
 
 # # t = test()
-# # t.loop()
+# # # t.loop()
 
-#  #import os.path
+# #  #import os.path
 
-# # import csv
+# # # import csv
 
-# # # open the file in the write mode
-# # f = open('test.csv', 'w')
+# # # # open the file in the write mode
+# # # f = open('test.csv', 'w')
 
-# # # create the csv writer
-# # writer = csv.writer(f)
-# # from datetime import datetime
+# # # # create the csv writer
+# # # writer = csv.writer(f)
+# # # from datetime import datetime
 
-# # now = datetime.now()
-# # date = now.strftime("%d/%m/%Y")
-# # time = now.strftime("%H:%M:%S")
-# # writer.writerow(['frequency',60])
-# # writer.writerow([''])
-# # l = ['date','time']+['reading1']
-# # data = [69]
-# # d = [date, time] + data
-# # writer.writerow(l)
+# # # now = datetime.now()
+# # # date = now.strftime("%d/%m/%Y")
+# # # time = now.strftime("%H:%M:%S")
+# # # writer.writerow(['frequency',60])
+# # # writer.writerow([''])
+# # # l = ['date','time']+['reading1']
+# # # data = [69]
+# # # d = [date, time] + data
+# # # writer.writerow(l)
 
-# # writer.writerow(d)
-
-
-# # # write a row to the csv file
-
-# # # close the file
-# # f.close()
-
-# # import time
-# # def func():
-# #     print('start 1')
-# #     time.sleep(3)
-# #     print('stop 1')
-# #     return
-
-# # def func2():
-# #     print('start 2')
-# #     time.sleep(3)
-# #     print('stop 2')
-# #     return
-
-# # l = [func(), func2()]
+# # # writer.writerow(d)
 
 
-# # while True:
-# #     if len(l) >= 1: # if there are sensors readings to be taken
-# #         l.pop(0) # execute reading for front sensor in queue and remove sensor from queue
+# # # # write a row to the csv file
+
+# # # # close the file
+# # # f.close()
+
+# # # import time
+# # # def func():
+# # #     print('start 1')
+# # #     time.sleep(3)
+# # #     print('stop 1')
+# # #     return
+
+# # # def func2():
+# # #     print('start 2')
+# # #     time.sleep(3)
+# # #     print('stop 2')
+# # #     return
+
+# # # l = [func(), func2()]
 
 
-# # from git import Repo
-# # repo = Repo('')
+# # # while True:
+# # #     if len(l) >= 1: # if there are sensors readings to be taken
+# # #         l.pop(0) # execute reading for front sensor in queue and remove sensor from queue
 
-# # repo.index.add('**')
-# # repo.index.commit('updates')
-# # origin = repo.remotes.origin
-# # origin.push()
 
-# # from concurrent.futures import thread
-# # import time
-# # import threading
+# # # from git import Repo
+# # # repo = Repo('')
 
-# # def func():
-# #     while True:
-# #         print('Hello world')
-# #         time.sleep(5)
+# # # repo.index.add('**')
+# # # repo.index.commit('updates')
+# # # origin = repo.remotes.origin
+# # # origin.push()
 
-# # t = threading.Thread(target = func)
-# # t.start()
-# # print('hey')
+# # # from concurrent.futures import thread
+# # # import time
+# # # import threading
 
-# # import time
-# # import threading
-# # import random
+# # # def func():
+# # #     while True:
+# # #         print('Hello world')
+# # #         time.sleep(5)
 
-# # def func():
+# # # t = threading.Thread(target = func)
+# # # t.start()
+# # # print('hey')
+
+# # # import time
+# # # import threading
+# # # import random
+
+# # # def func():
     
-# #     while True:
-# #         r = random.randint(0,2)
-# #         print('hey')
-# #         if r == 0:
-# #             print('break')
-# #             break
-# #         time.sleep(3)
+# # #     while True:
+# # #         r = random.randint(0,2)
+# # #         print('hey')
+# # #         if r == 0:
+# # #             print('break')
+# # #             break
+# # #         time.sleep(3)
          
 
+# import smtplib
+# from email.mime.multipart import MIMEMultipart
+# from email.mime.text import MIMEText
+# from email.mime.base import MIMEBase
+# from email import encoders
 
-# # while True:
-# #     inp = input('Type: ')
-# #     print(threading.active_count())
-# #     if inp == 'i':
-# #         t = threading.Thread(target=func)
-# #         t.start()
+# fromaddr = "aorlando04@gmail.com"
+# toaddr = "itsorlando@outlook.com"
+
+# msg = MIMEMultipart()
+
+# msg['From'] = fromaddr
+# msg['To'] = toaddr
+# msg['Subject'] = "SUBJECT OF THE EMAIL"
+
+# body = "TEXT YOU WANT TO SEND"
+
+# msg.attach(MIMEText(body, 'plain'))
+
+# filename = "log"
+# attachment = open("log.txt", "rb")
+
+# part = MIMEBase('application', 'octet-stream')
+# part.set_payload((attachment).read())
+# encoders.encode_base64(part)
+# part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+
+# msg.attach(part)
+
+# server = smtplib.SMTP('smtp.gmail.com', 993)
+# server.starttls()
+# server.login(fromaddr, "vihpyn-pyfqik-guTvu7")
+# text = msg.as_string()
+# server.sendmail(fromaddr, toaddr, text)
+# server.quit()
+
+
+
+import smtplib
+from os.path import basename
+from email.mime.application import MIMEApplication
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.utils import COMMASPACE, formatdate
+#Email Variables
+SMTP_SERVER = 'smtp.gmail.com' #Email Server (don't change!)
+SMTP_PORT = 587 #Server Port (don't change!)
+GMAIL_USERNAME = 'aorlando04@gmail.com' #change this to match your gmail account
+GMAIL_PASSWORD = 'dygqdxaybbyrcxma' #change this to match your gmail app-passwor
+class Emailer:
+    def sendmail(self, recipient, subject, content):
+
+        #Create Headers
+        headers = ["From: " + GMAIL_USERNAME, "Subject: " + subject, "To: " + recipient,
+            "MIME-Version: 1.0", "Content-Type: text/html"]
+        headers = "\r\n".join(headers)
+
+        #Connect to Gmail Server
+        session = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
+        session.ehlo()
+        session.starttls()
+        session.ehlo()
+
+        #Login to Gmail
+        session.login(GMAIL_USERNAME, GMAIL_PASSWORD)
+
+
+        msg = MIMEMultipart()
         
-# # import threading
-# # import time
-# # def hey():
-# #     print('Hey')
-# #     return
-
-    
-# # def func(freq, start, dur): # appends 'pm' method to queue every 'freq' secs to take readings at desired intervals, whilst avoiding collisions which may occur if multiple sensors take readings simultaneously 
-# #     print(time.time()-start)
-# #     if time.time() - start >= dur:
-# #         print('done')
-# #         return
-# #     threading.Timer(freq, func, [freq, start, dur]).start() # recursively call 'pm' method at frequency specified by 'freq' to take readings at desired frequency
-# #     print('hey')
-    
-
-# # func(3, time.time(), 9)
-
-# # import sys
-
-# # path = '/Users/orlandoalexander/Library/Mobile Documents/com~apple~CloudDocs/Documents/South America/EcoSwell/RaspberryPi-Sensor/RaspberryPi-Sensor'
-# # sys.path.append(path)
-
-# # import sensor_settings
-
-# # print (sensor_settings.factor)
-
-# # import csv
-# # from datetime import datetime
-
-# # f = open(f'data/example.csv', 'w') # create/open CSV file to store data for 'sensor'
-# # writer = csv.writer(f)
-# # heading = ['Date', 'Time'] + ['temp (C)'] # enables unlimited number of data headings as 'data_heading' stores an array of each data heading (applicable as pm sensor takes three readings (PM1.0, PM2.5 and PM10), whereas all other sensor only take one reading)
-# # writer.writerow(['Time between readings(sec): ',60]) # record delay between sensor readings
-# # writer.writerow(['Duration of readings (mins): ', 240]) # record duration of sensor readings
-# # writer.writerow(heading) # write headings to file
-
-# # now = datetime.now() # get current date and time
-# # time = now.strftime("%H:%M:%S") # get current time in correct format
-# # date = now.strftime("%d.%m.%Y") # get current date in correct format
-# # row = [date, time] + ['35'] # enables unlimited number of data readings to be stored as 'data' stores an array of each data reading (applicable as pm sensor takes three readings (PM1.0, PM2.5 and PM10), whereas all other sensor only take one reading)
-# # writer.writerow(row) # write current date, current time, data reading to file
 
 
-# # f.close() # close file
+        for f in ['log.txt']:
+            with open(f, "rb") as fil:
+                part = MIMEApplication(
+                    fil.read(),
+                    Name=basename(f)
+                )
+            # After the file is closed
+            part['Content-Disposition'] = 'attachment; filename="%s"' % basename(f)
+            msg.attach(part)
 
 
-# import threading 
-# import time
-# from test2 import main
-# sensor_thread = threading.Thread(target=main) # create new thread to take sensor readings in background
-# sensor_thread.start()
-# time.sleep(5)
-# print('j')
-# main.data = False
+        #Send Email & Exit
+        session.sendmail(GMAIL_USERNAME, recipient, msg.as_string())
+        session.quit
 
-# class t():
-#     def __init__(self):
-#         self.d = {1:self.f}
-    
-#     def f(self, p):
-#         print(p)
+sender = Emailer()
+sendTo = 'itsorlando@outlook.com'
+emailSubject = "Hello World"
+emailContent = "This is a test of my Emailer Class"
 
-#     def m(self):
-#         self.d[1]('heu')
+#Sends an email to the "sendTo" address with the specified "emailSubject" as the subject and "emailContent" as the email content.
+sender.sendmail(sendTo, emailSubject, emailContent)
 
-# i = t().m()
-import time
-class Test():
-    def __init__(self):
-        self.queue = []
-
-    def func(self):
-        print('hi')
-    
-    def dequeue(self):
-        #print(self.queue[0])
-        self.queue.append(self.func)
-        time.sleep(5)
-        self.queue.pop(0)()
-
-t = Test()
-t.dequeue()
-    
