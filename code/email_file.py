@@ -21,7 +21,7 @@ RECIPIENT = sensor_settings.email_address
 SUBJECT = 'Multi-sensor data '+DATE+'-'+TIME
 
 
-time.sleep(10)
+time.sleep(10) # delay to allow Raspberry Pi to connect to internet
 
 # connect to gmail server:
 session = smtplib.SMTP(SMTP_SERVER, SMTP_PORT) 

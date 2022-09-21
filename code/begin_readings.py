@@ -19,9 +19,11 @@ try:
 except ImportError:
     import ltr559
 
+time.sleep(1)
+display_text('', 19)
 display_text('Sensor booting...', 19) 
 
-time.sleep(7)
+time.sleep(10)
 
 try:
     requests.get('https://www.google.com/') # check if Raspberry Pi is connected to internet (request will cause error if not connected to internet --> except statement triggered)
