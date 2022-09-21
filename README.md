@@ -90,7 +90,7 @@ As the sensor must be connected to the internet to sync the latest settings chan
 
 The sensor settings are adjusted in an online file called *sensor_settings.py* which is stored in the GitHub repo, and looks a bit like this:
 
-<img width="1208" alt="image-20220916215144428" src="https://user-images.githubusercontent.com/113472300/191035159-8a300bc9-281d-4e07-b74f-966ee98b7855.png">
+<img width="1157" alt="image" src="https://user-images.githubusercontent.com/113472300/191468692-455e1f0d-778c-47c3-b62a-5ee75d2492dd.png">
 
 1. To modify the sensor settings you must edit the file *sensor_settings.py* by clicking the *pen icon* circled above
 
