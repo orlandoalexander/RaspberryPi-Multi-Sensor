@@ -12,7 +12,7 @@ import threading
 from sensor_readings import SensorReadings
 from lcd_display import display_text, backlight_off, backlight_on
 from git_pull import test
-print("hello world how's it going buddy heheh")
+print("heyyy")
 
 try:
     # transitional fix for breaking change in LTR559
