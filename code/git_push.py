@@ -11,10 +11,10 @@ from lcd_display import display_text, backlight_off, backlight_on
 time.sleep(2) # delay to allow Raspberry Pi to connect to WiFi and latest changes to be pulled from git repo
 repo = Repo('/home/ecoswell/RaspberryPi-Sensor') # access local git repo
 
-if len(repo.untracked_files):    
-    repo.git.add(A=True)
-    repo.git.commit('-m', 'initial commit')
-    repo.git.push('origin', 'HEAD:refs/for/master')
+#if len(repo.untracked_files):    
+repo.git.add(A=True)
+repo.git.commit('-m', 'initial commit')
+repo.git.push('origin', 'HEAD:refs/for/master')
 # while True:
 #     try: 
 #         time.sleep(2)
