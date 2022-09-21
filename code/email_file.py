@@ -9,17 +9,17 @@ from email.mime.multipart import MIMEMultipart
 import requests
 from datetime import datetime
 import os
+import time
 
-now = datetime.now() # get current date and time
-date = now.strftime("%d.%m.%Y") # get date when sensor readings begin in correct format
-time = now.strftime("%H:%M:%S") # get time when sensor readings begin in correct format
-
+NOW = datetime.now() # get current date and time
+DATE = NOW.strftime("%d.%m.%Y") # get date when sensor readings begin in correct format
+TIME = NOW.strftime("%H:%M:%S") # get time when sensor readings begin in correct format
 SMTP_SERVER = 'smtp.gmail.com' # email server 
 SMTP_PORT = 587 # server port 
 GMAIL_USERNAME = 'aorlando04@gmail.com' # change this to match your gmail account
 GMAIL_PASSWORD = 'dygqdxaybbyrcxma' # change this to match your gmail app-password (see https://bc-robotics.com/tutorials/sending-email-using-python-raspberry-pi/)
 RECIPIENT = sensor_settings.email_address
-SUBJECT = 'Multi-sensor data '+date+'-'+time
+SUBJECT = 'Multi-sensor data '+DATE+'-'+TIME
 
 # WIFI connection message
 time.sleep(5)
