@@ -20,7 +20,7 @@ except ImportError:
     import ltr559
 
 time.sleep(1)
-display_text('', 19)
+display_text('', 1)
 display_text('Sensor booting...', 19) 
 
 time.sleep(10)
