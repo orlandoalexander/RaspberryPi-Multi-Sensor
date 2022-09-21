@@ -42,3 +42,18 @@ calculate_factor = False
 
 factor = 1.31
 
+
+"""
+TECHNICAL INFORMATION
+
+All files on Raspberry Pi can be accessed over SSH from a laptop by entering 'ecoswell@ecoswell.local' on the laptop's command line. 
+When prompted to enter the password, enter 'EcoSwell'
+
+Raspberry Pi details:
+hostname: ecoswell.local
+username: ecoswell
+password: EcoSwell
+
+The sensor settings file 'sensor_settings.py' is downloaded from the Github repository onto the Raspberry Pi every minute 
+(where Raspberry Pi is connected to internet) using cron job on Raspberry Pi (access with 'sudo crontab -e')
+"""
