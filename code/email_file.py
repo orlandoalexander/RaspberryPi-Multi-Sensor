@@ -1,3 +1,8 @@
+'''
+Sends an email to user's email address with the latest data reading file(s)
+File run at startup as a cron job ('sudo crontab -e')
+'''
+
 import sys
 path = '/home/ecoswell/RaspberryPi-Sensor' # path to folder storing 'sensor_settings' module
 sys.path.append(path) # enable importing module ('sensor_settings') from outside directory

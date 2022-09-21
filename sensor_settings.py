@@ -1,6 +1,14 @@
 '''Edit this file to modify the settings of the sensor'''
 
 '''
+EMAIL ADDRESS
+
+Enter the email address to which the files storing the data readings should be sent below:
+'''
+email_address = 'itsorlando@outlook.com'
+
+
+'''
 ACTIVE SENSORS, FREQUENCY OF DATA RECORDING & DURATION OF DATA RECORDING 
 
 The sensor has the following sensors: 
@@ -19,9 +27,7 @@ Modify the values inside the brackets below for each active sensor with the foll
 i.e. to measure temperature and ammonia with a time delay between readings of 60 and 120 secs 
 and a data recording duration of 4 hours and 7 hours respectively, you should write [(1,60,240), (7,120,420)]
 '''
-sensors = [(3,5,0.2)]
-
-email_address = 'itsorlando@outlook.com'
+sensors = [(8,5,0.5)]
 
 
 '''
@@ -32,6 +38,7 @@ To determine the factor required to correctly compensate the tenmperature readin
 set 'calibrate_factor' to 'True' and follow the instructions in the documentation.
 
 '''
-factor = 1.31
 calculate_factor = False
+
+factor = 1.31
 
