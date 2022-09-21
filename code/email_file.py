@@ -39,7 +39,7 @@ msg['Subject'] = SUBJECT # assign message subject
 
 directory = '/home/ecoswell/RaspberryPi-Sensor/data'
 for file in os.listdir(directory):
-    filename = os.path.join(directory, filename)
+    filename = os.path.join(directory, file)
     with open(filename, "rb") as f:
         part = MIMEApplication(f.read(),Name=basename(filename))
     part['Content-Disposition'] = 'attachment; filename="%s"' % basename(filename)
@@ -51,7 +51,7 @@ session.quit
 
 new_directory = '/home/ecoswell/RaspberryPi-Sensor/data'
 for file in os.listdir(directory):
-    filename = os.path.join(directory, filename)
+    filename = os.path.join(directory, file)
     new_filename = os.path.join(new_directory, filename)
     os.rename(filename, new_filename)
 
