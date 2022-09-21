@@ -11,6 +11,7 @@ import time
 import threading
 from sensor_readings import SensorReadings
 from lcd_display import display_text, backlight_off, backlight_on
+print('hi')
 
 try:
     # transitional fix for breaking change in LTR559
