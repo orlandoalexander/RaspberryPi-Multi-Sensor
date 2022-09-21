@@ -29,7 +29,7 @@ The sensor also contains an LCD screen which will display status updates and fee
 
 
 ## **Raspberry Pi Diagram**
-<img width="832" alt="image-20220916124231553" src="https://user-images.githubusercontent.com/113472300/191034839-39f3fec2-b07c-4352-977d-f9d678b465e6.png">
+<img width="1021" alt="image" src="https://user-images.githubusercontent.com/113472300/191468012-ebd7da99-7199-4d05-ac7e-9d3865e4abdd.png">
 
 
 The Raspberry Pi has loads of different ports and components, but luckily you don't need to worry about most of them! The four ports you need to be aware of are shown clearly in the diagram above, and are used during the initial setup process (see section **How To Use The Sensor** / **<u>Initial setup</u>**)
@@ -49,8 +49,7 @@ The operational code, sensor settings and data readings are stored on an online 
 ​	*password*: *5u5t@1n@b1l1ty*
 
 The GitHub repo looks a little like this:
-<img width="1418" alt="image" src="https://user-images.githubusercontent.com/113472300/191466462-068fec5d-0a26-407e-845e-cbfd6e271239.png">
-
+<img width="1433" alt="image" src="https://user-images.githubusercontent.com/113472300/191466724-6a40da26-675c-426c-ac4e-c7958f48f257.png">
 
 You will see three things in the GitHub repo:
 
