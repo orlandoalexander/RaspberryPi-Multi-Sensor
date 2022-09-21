@@ -8,6 +8,7 @@ path = '/home/ecoswell/RaspberryPi-Sensor' # path to folder storing 'sensor_sett
 sys.path.append(path) # enable importing module ('sensor_settings') from outside directory
 import time
 import threading
+import requests
 from sensor_readings import SensorReadings
 from lcd_display import display_text, backlight_off, backlight_on
 
@@ -18,7 +19,16 @@ try:
 except ImportError:
     import ltr559
 
-display_text('Welcome!', 30) 
+display_text('Sensor booting...', 18) 
+
+time.sleep(7)
+
+try:
+    requests.get('https://www.google.com/') # check if Raspberry Pi is connected to internet (request will cause error if not connected to internet --> except statement triggered)
+    display_text('Welcome!\Internet connection', 24) 
+except:
+    display_text('Welcome!\No internet connection', 24) 
+
 
 while True: 
     proximity = ltr559.get_proximity() # get proximity above proximity sensor

@@ -6,7 +6,6 @@ import smtplib
 from os.path import basename
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
-import requests
 from datetime import datetime
 import os
 import time
@@ -21,10 +20,8 @@ GMAIL_PASSWORD = 'dygqdxaybbyrcxma' # change this to match your gmail app-passwo
 RECIPIENT = sensor_settings.email_address
 SUBJECT = 'Multi-sensor data '+DATE+'-'+TIME
 
-# WIFI connection message
+
 time.sleep(10)
-#try: 
-requests.get('https://www.google.com/') # check if Raspberry Pi is connected to internet (request will cause error if not connected to internet --> except statement triggered)
 
 # connect to gmail server:
 session = smtplib.SMTP(SMTP_SERVER, SMTP_PORT) 
@@ -55,7 +52,3 @@ for file in os.listdir(directory):
     filename = os.path.join(directory, file)
     new_filename = os.path.join(new_directory, file)
     os.rename(filename, new_filename)
-
-#except:
-   # pass        
-    
