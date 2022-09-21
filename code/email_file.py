@@ -49,7 +49,7 @@ for file in os.listdir(directory):
 session.sendmail(GMAIL_USERNAME, RECIPIENT, msg.as_string())
 session.quit
 
-new_directory = '/home/ecoswell/RaspberryPi-Sensor/data'
+new_directory = '/home/ecoswell/RaspberryPi-Sensor/data_emailed'
 for file in os.listdir(directory):
     filename = os.path.join(directory, file)
     new_filename = os.path.join(new_directory, filename)
