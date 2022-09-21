@@ -19,7 +19,7 @@ SMTP_PORT = 587 # server port
 GMAIL_USERNAME = 'aorlando04@gmail.com' # change this to match your gmail account
 GMAIL_PASSWORD = 'dygqdxaybbyrcxma' # change this to match your gmail app-password (see https://bc-robotics.com/tutorials/sending-email-using-python-raspberry-pi/)
 RECIPIENT = sensor_settings.email_address
-SUBJECT = 'Multi-Sensor data '+date+'-'+time
+SUBJECT = 'Multi-sensor data '+date+'-'+time
 
 
 #try: 
@@ -52,7 +52,7 @@ session.quit
 new_directory = '/home/ecoswell/RaspberryPi-Sensor/data_emailed'
 for file in os.listdir(directory):
     filename = os.path.join(directory, file)
-    new_filename = os.path.join(new_directory, filename)
+    new_filename = os.path.join(new_directory, file)
     os.rename(filename, new_filename)
 
 #except:
