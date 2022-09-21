@@ -49,8 +49,7 @@ The operational code, sensor settings and data readings are stored on an online 
 ​	*password*: *5u5t@1n@b1l1ty*
 
 The GitHub repo looks a little like this:
-
-<img width="1437" alt="image-20220916104740264" src="https://user-images.githubusercontent.com/113472300/191034982-df260484-509c-4bb4-99ca-995e4a26450c.png">
+<img width="1418" alt="image" src="https://user-images.githubusercontent.com/113472300/191466462-068fec5d-0a26-407e-845e-cbfd6e271239.png">
 
 
 You will see three things in the GitHub repo:
