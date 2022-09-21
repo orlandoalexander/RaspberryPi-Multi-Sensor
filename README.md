@@ -29,8 +29,7 @@ The sensor also contains an LCD screen which will display status updates and fee
 
 
 ## **Raspberry Pi Diagram**
-<img width="1021" alt="image" src="https://user-images.githubusercontent.com/113472300/191468012-ebd7da99-7199-4d05-ac7e-9d3865e4abdd.png">
-
+<img width="936" alt="image" src="https://user-images.githubusercontent.com/113472300/191472812-1e212b2a-c9ab-40b9-968f-39e7d197fc72.png">
 
 The Raspberry Pi has loads of different ports and components, but luckily you don't need to worry about most of them! The four ports you need to be aware of are shown clearly in the diagram above, and are used during the initial setup process (see section **How To Use The Sensor** / **<u>Initial setup</u>**)
 
@@ -90,8 +89,7 @@ As the sensor must be connected to the internet to sync the latest settings chan
 
 The sensor settings are adjusted in an online file called *sensor_settings.py* which is stored in the GitHub repo, and looks a bit like this:
 
-<img width="1157" alt="image" src="https://user-images.githubusercontent.com/113472300/191468692-455e1f0d-778c-47c3-b62a-5ee75d2492dd.png">
-
+<img width="1298" alt="image" src="https://user-images.githubusercontent.com/113472300/191469729-b298eecd-b5f0-46cc-9e5c-07b6f5ce7fc7.png">
 1. To modify the sensor settings you must edit the file *sensor_settings.py* by clicking the *pen icon* circled above
 
 2. To change which sensors are active, the reading frequency for each sensor and the duration of data recording for each sensor, follow the instructions in *sensor_settings.py* under the heading `ACTIVE SENSORS, FREQUENCY OF DATA RECORDING & DURATION OF DATA RECORDING`
