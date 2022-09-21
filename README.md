@@ -29,7 +29,7 @@ The sensor also contains an LCD screen which will display status updates and fee
 
 ## **Raspberry Pi Diagram**
 
-![image-20220921044556922](/Users/orlandoalexander/Library/Application Support/typora-user-images/image-20220921044556922.png)
+<img width="1185" alt="image" src="https://user-images.githubusercontent.com/113472300/191482319-f8906cb5-15f9-4cae-9df4-d2081a99f952.png">
 
 The Raspberry Pi has loads of different ports and components, but luckily you don't need to worry about most of them! The two ports you need to be aware of are shown clearly in the diagram above, and are used during the initial setup process (see section **How To Use The Sensor** / **<u>Initial setup</u>**)
 
@@ -49,7 +49,8 @@ The operational code and sensor settings are stored on an online platform called
 
 The GitHub repo looks a little like this:
 
-![image-20220921041952717](/Users/orlandoalexander/Library/Application Support/typora-user-images/image-20220921041952717.png)
+<img width="1321" alt="image" src="https://user-images.githubusercontent.com/113472300/191482386-95a5ce68-2faf-47cd-aa3f-60135aaf7b7a.png">
+
 
 You will see three important things in the GitHub repo:
 
@@ -67,7 +68,8 @@ You will see three important things in the GitHub repo:
 
 The sensor settings are adjusted in an online file called *sensor_settings.py* which is stored in the GitHub repo, and looks a bit like this:
 
-![image-20220921043149321](/Users/orlandoalexander/Library/Application Support/typora-user-images/image-20220921043149321.png)
+<img width="1243" alt="image" src="https://user-images.githubusercontent.com/113472300/191482443-0ad89e6f-170c-4db2-8136-0776392eb864.png">
+
 
 1. To modify the sensor settings you must edit the file *sensor_settings.py* by clicking the *pen icon* circled above
 
@@ -79,7 +81,8 @@ The sensor settings are adjusted in an online file called *sensor_settings.py* w
 
 5. To save your changes to the sensor settings file *sensor_settings.py*, click the *commit changes* button circled below:
 
-   ![image-20220916215343225](/Users/orlandoalexander/Library/Application Support/typora-user-images/image-20220916215343225.png)
+<img width="1200" alt="image" src="https://user-images.githubusercontent.com/113472300/191482517-6af56b31-556f-4876-9872-2b1277ed3eb0.png">
+
 
 4. Finally, to sync these changes with the sensor, plug an ethernet cable into the Raspberry Pi *ethernet port*  (see **Raspberry Pi Diagram**) to connect the sensor to the internet and wait around 1 minute
 
@@ -89,21 +92,21 @@ The sensor settings are adjusted in an online file called *sensor_settings.py* w
 
 1. Power up sensor by plugging micro USB power cable into Raspberry Pi *micro USB port* (see **Raspberry Pi Diagram**) - the LCD should display this message as the sensor turns on:
 
-   ![image-20220921052528923](/Users/orlandoalexander/Library/Application Support/typora-user-images/image-20220921052528923.png)
+<img width="1039" alt="image" src="https://user-images.githubusercontent.com/113472300/191482584-039154ca-5f2f-4e6a-bccf-6178654f1597.png">
+
+
 
 2. Wait until the LCD screen displays a welcome message, which also states whether the sensor is connected to the internet at boot:
-
-   ![image-20220921052544030](/Users/orlandoalexander/Library/Application Support/typora-user-images/image-20220921052544030.png) 
+<img width="1030" alt="image" src="https://user-images.githubusercontent.com/113472300/191482642-7a5d2f3c-bc9c-43ba-b220-7a00f2ff6f34.png">
 
 3. To start the readings, place finger on proximity sensor (labelled `LIGHT` on sensor) for 5 seconds, or until the sensor's LCD screen displays the following message:
-
-   ![image-20220921052605409](/Users/orlandoalexander/Library/Application Support/typora-user-images/image-20220921052605409.png)
+<img width="958" alt="image" src="https://user-images.githubusercontent.com/113472300/191482688-7de9cb1a-c813-4f87-8f66-4e6408e1ca22.png">
 
 4. You now have 2 minutes to position the sensor in the desired location - after these 2 minutes, the readings will begin
 
 5. Leave the sensor in place until all the readings are complete, which will be indicated on the LCD screen by the following message:
 
-   ![image-20220921052741736](/Users/orlandoalexander/Library/Application Support/typora-user-images/image-20220921052741736.png)
+<img width="1038" alt="image" src="https://user-images.githubusercontent.com/113472300/191482802-450dc9c1-9d06-436f-beda-b4395cd111f2.png">
 
 
 
@@ -125,11 +128,11 @@ The sensor settings are adjusted in an online file called *sensor_settings.py* w
 
 2. The LCD display will show the following message:
 
-   ![image-20220921052832820](/Users/orlandoalexander/Library/Application Support/typora-user-images/image-20220921052832820.png)
+<img width="1031" alt="image" src="https://user-images.githubusercontent.com/113472300/191482855-0a3bec87-2350-460b-9091-c3358c05bfc7.png">
+
 
 3. To cancel the restart, simply remove your finger from the proximity sensor (labelled `Start`) - the LED display will show the following response:
-
-   ![image-20220921052941762](/Users/orlandoalexander/Library/Application Support/typora-user-images/image-20220921052941762.png)
+<img width="1039" alt="image" src="https://user-images.githubusercontent.com/113472300/191482888-7d2fb44c-f42d-45d1-b67d-788fc3791bf0.png">
 
 
 
@@ -140,8 +143,7 @@ The sensor settings are adjusted in an online file called *sensor_settings.py* w
 The temperature reading must be adjusted slightly to compensate for the heating effect of the CPU (computer processing unit on the sensor). To tweak how much the temperature value is compensated, follow these steps:
 
 1. Set `calculate_factor` to `True` in the file *sensor_settings.py*, as shown below:
-
-   ![image-20220916220255521](/Users/orlandoalexander/Library/Application Support/typora-user-images/image-20220916220255521.png)
+<img width="1326" alt="image" src="https://user-images.githubusercontent.com/113472300/191482999-0b5d130a-1169-4b97-a460-90493e79d70e.png">
 
    
 
