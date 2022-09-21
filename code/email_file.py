@@ -26,35 +26,38 @@ RECIPIENT = sensor_settings.email_address
 SUBJECT = 'Multi-sensor data '+DATE+'-'+TIME
 
 while True: # continually try to send email
-
     time.sleep(10) # delay to allow Raspberry Pi to connect to internet
+    
+    try:
+        # connect to gmail server:
+        session = smtplib.SMTP(SMTP_SERVER, SMTP_PORT) 
+        session.ehlo()
+        session.starttls()
+        session.ehlo()
 
-    # connect to gmail server:
-    session = smtplib.SMTP(SMTP_SERVER, SMTP_PORT) 
-    session.ehlo()
-    session.starttls()
-    session.ehlo()
+        # login to gmail
+        session.login(GMAIL_USERNAME, GMAIL_PASSWORD)
 
-    # login to gmail
-    session.login(GMAIL_USERNAME, GMAIL_PASSWORD)
+        msg = MIMEMultipart() # create message data
+        msg['Subject'] = SUBJECT # assign message subject 
 
-    msg = MIMEMultipart() # create message data
-    msg['Subject'] = SUBJECT # assign message subject 
+        directory = '/home/ecoswell/RaspberryPi-Sensor/data'
+        for file in os.listdir(directory):
+            filename = os.path.join(directory, file)
+            with open(filename, "rb") as f:
+                part = MIMEApplication(f.read(),Name=basename(filename))
+            part['Content-Disposition'] = 'attachment; filename="%s"' % basename(filename)
+            msg.attach(part)
 
-    directory = '/home/ecoswell/RaspberryPi-Sensor/data'
-    for file in os.listdir(directory):
-        filename = os.path.join(directory, file)
-        with open(filename, "rb") as f:
-            part = MIMEApplication(f.read(),Name=basename(filename))
-        part['Content-Disposition'] = 'attachment; filename="%s"' % basename(filename)
-        msg.attach(part)
+        # send email:
+        session.sendmail(GMAIL_USERNAME, RECIPIENT, msg.as_string())
+        session.quit
 
-    # send email:
-    session.sendmail(GMAIL_USERNAME, RECIPIENT, msg.as_string())
-    session.quit
-
-    new_directory = '/home/ecoswell/RaspberryPi-Sensor/data_emailed'
-    for file in os.listdir(directory):
-        filename = os.path.join(directory, file)
-        new_filename = os.path.join(new_directory, file)
-        os.rename(filename, new_filename)
+        new_directory = '/home/ecoswell/RaspberryPi-Sensor/data_emailed'
+        for file in os.listdir(directory):
+            filename = os.path.join(directory, file)
+            new_filename = os.path.join(new_directory, file)
+            os.rename(filename, new_filename)
+        break
+    except:
+        pass
