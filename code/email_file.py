@@ -22,7 +22,7 @@ RECIPIENT = sensor_settings.email_address
 SUBJECT = 'Multi-sensor data '+DATE+'-'+TIME
 
 # WIFI connection message
-time.sleep(5)
+time.sleep(10)
 #try: 
 requests.get('https://www.google.com/') # check if Raspberry Pi is connected to internet (request will cause error if not connected to internet --> except statement triggered)
 
