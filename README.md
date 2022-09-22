@@ -86,7 +86,7 @@ The sensor settings are adjusted in an online file called *sensor_settings.py* w
 
 <u>**Start sensor readings**</u>
 
-1. Power up sensor by plugging USB-C power cable into Raspberry Pi *USB-C port* (see **Raspberry Pi Diagram** - note labelled as micro-USB) - the LCD should display this message as the sensor turns on:
+1. Power up sensor by plugging USB-C power cable into Raspberry Pi *USB-C port* (see **Raspberry Pi Diagram** - labelled as micro-USB) - the LCD should display this message as the sensor turns on:
 
 <img width="1039" alt="image" src="https://user-images.githubusercontent.com/113472300/191482584-039154ca-5f2f-4e6a-bccf-6178654f1597.png">
 
@@ -120,14 +120,14 @@ The sensor settings are adjusted in an online file called *sensor_settings.py* w
 
 <u>**Restart sensor readings**</u>
 
-1. If you want to restart the sensor readings mid data recording, you must place finger on proximity sensor (labelled `Start`) for at least 25 seconds - don't worry, the current data will be saved! 
+1. If you want to restart the sensor readings mid data recording, you must place finger on proximity sensor (labelled `Light`) for at least 25 seconds - don't worry, the current data will be saved! 
 
 2. The LCD display will show the following message:
 
 <img width="1031" alt="image" src="https://user-images.githubusercontent.com/113472300/191482855-0a3bec87-2350-460b-9091-c3358c05bfc7.png">
 
 
-3. To cancel the restart, simply remove your finger from the proximity sensor (labelled `Start`) - the LED display will show the following response:
+3. To cancel the restart, simply remove your finger from the proximity sensor (labelled `Light`) - the LED display will show the following response:
 <img width="1039" alt="image" src="https://user-images.githubusercontent.com/113472300/191482888-7d2fb44c-f42d-45d1-b67d-788fc3791bf0.png">
 
 
