@@ -63,7 +63,8 @@ class SensorReadings(): # class containing methods to take sensor readings
             data_heading = ['Data 1','Data 2']
             data = [(avg_cpu_temp-raw_temp), raw_temp] # the two data values required to calculate the temperature compensation factor
             self.save_data(sensor, freq, dur, data, data_heading)
-            time.sleep(60) 
+            time.sleep(60)
+        self.save_data_final() # move data file to folder storing complete data files
         backlight_on() # turn on LCD backlight
         display_text('Temperature factor\n readings\n complete',17)
         time.sleep(30)
@@ -299,7 +300,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         f.close() # close file
         return
 
-    def save_data_final(self):
+    def save_data_final(self): # move data file to folder storing complete data files
         directory = '/home/ecoswell/RaspberryPi-Sensor/data'
         new_directory = '/home/ecoswell/RaspberryPi-Sensor/data_final'
         for file in os.listdir(directory):
@@ -322,7 +323,7 @@ class SensorReadings(): # class containing methods to take sensor readings
             elif True not in self.sensor_status: # if all sensors are inactive
                 time.sleep(5)
                 display_text('All readings \nnow complete.\nYou can safely unplug \n the sensor now.',15) # display sensor reading status on LCD screen
-                self.save_data_final()
+                self.save_data_final() # move data file to folder storing complete data files
                 break # all readings are complete, so terminate
             time.sleep(1)
 

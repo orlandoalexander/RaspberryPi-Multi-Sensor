@@ -42,20 +42,21 @@ while True: # continually try to send email
         msg['Subject'] = SUBJECT # assign message subject 
 
         count = 0
-        directory = '/home/ecoswell/RaspberryPi-Sensor/data_final'
-        for file in os.listdir(directory):
+        directory = '/home/ecoswell/RaspberryPi-Sensor/data_final' # directory storing data files ready to be emailed
+        for file in os.listdir(directory): # iterate over each file ready to be emailed
             count+=1
-            filename = os.path.join(directory, file)
-            with open(filename, "rb") as f:
+            filename = os.path.join(directory, file) 
+            with open(filename, "rb") as f: # open file to be emailed
                 part = MIMEApplication(f.read(),Name=basename(filename))
             part['Content-Disposition'] = 'attachment; filename="%s"' % basename(filename)
-            msg.attach(part)
+            msg.attach(part) # add file as email attachement 
         
         if count != 0: # if zero files in data folder:
             # send email:
-            session.sendmail(GMAIL_USERNAME, RECIPIENT, msg.as_string())
+            session.sendmail(GMAIL_USERNAME, RECIPIENT, msg.as_string()) # send email to desired email address
             session.quit
 
+            # move each emailed file to directory storing emails which have already been emailed 
             new_directory = '/home/ecoswell/RaspberryPi-Sensor/data_emailed'
             for file in os.listdir(directory):
                 filename = os.path.join(directory, file)
