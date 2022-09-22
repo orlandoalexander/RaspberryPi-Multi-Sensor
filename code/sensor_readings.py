@@ -63,7 +63,7 @@ class SensorReadings(): # class containing methods to take sensor readings
             data_heading = ['Data 1','Data 2']
             data = [(avg_cpu_temp-raw_temp), raw_temp] # the two data values required to calculate the temperature compensation factor
             self.save_data(sensor, freq, dur, data, data_heading)
-            time.sleep(5) #TODO
+            time.sleep(60) 
         backlight_on() # turn on LCD backlight
         display_text('Temperature factor\n readings\n complete',17)
         time.sleep(30)
