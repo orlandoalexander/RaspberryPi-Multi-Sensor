@@ -5,7 +5,7 @@ EMAIL ADDRESS
 
 Enter the email address to which the files storing the data readings should be sent:
 '''
-email_address = 'andres.bustamante@ecoswell.org'
+email_address = 'neha.krishna44@gmail.com'
 
 
 '''
@@ -35,9 +35,9 @@ ADJUST TEMPERATURE TUNING FACTOR
 
 The temperature reading must be adjusted slightly to compensate for the heating effect of the CPU (computer processing unit on the sensor). 
 To determine the factor required to correctly compensate the tenmperature reading, 
-set 'calibrate_factor' to 'True' and follow the instructions in the documentation (README.md).
+set 'calculate_factor' to 'True' and follow the instructions in the documentation (README.md).
 '''
-calculate_factor = False
+calculate_factor = True
 
 factor = 1.31
 
