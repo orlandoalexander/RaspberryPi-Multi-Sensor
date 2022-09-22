@@ -149,7 +149,7 @@ The temperature reading must be adjusted slightly to compensate for the heating 
 
 3. Open the Excel file [*Calculate temp factor*](https://docs.google.com/spreadsheets/d/1BLTTYUCHuqEoowzhjQEQhzlOlSYHIbCMgoVQX1paT3U/edit?usp=sharing):
 
-   ![image-20220916222157041](/Users/orlandoalexander/Library/Application Support/typora-user-images/image-20220916222157041.png)
+ <img width="854" alt="image" src="https://user-images.githubusercontent.com/113472300/191829640-ca0add3e-b732-4bd6-9100-6787fab487e1.png">
 
    
 
@@ -224,7 +224,7 @@ Please ignore this section, unless you need to make changes to sensor's core cod
 
      
 
-- SSH into Raspberry Pi remotely using SocketXP
+- SSH into Raspberry Pi remotely using [SocketXP](https://portal.socketxp.com/#/devices)
 
 
 
