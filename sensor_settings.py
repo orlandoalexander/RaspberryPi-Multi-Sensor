@@ -19,7 +19,7 @@ The sensor has the following sensors:
 4. Light
 5. Carbon monoxide
 6. Nitrogen dioxide
-7. Ammonia
+7. Ammonia 
 8. Particulate matter
 
 Modify the values inside the brackets below for each active sensor with the following format 
