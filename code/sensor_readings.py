@@ -2,6 +2,7 @@
 Take measurements of desired environmental factors and save data to CSV file
 '''
 
+from msilib import Directory
 import sys
 path = '/home/ecoswell/RaspberryPi-Sensor' # path to folder storing 'sensor_settings' module
 sys.path.append(path) # enable importing module ('sensor_settings') from outside directory
@@ -299,6 +300,14 @@ class SensorReadings(): # class containing methods to take sensor readings
         f.close() # close file
         return
 
+    def save_data_final(self):
+        directory = '/home/ecoswell/RaspberryPi-Sensor/data'
+        new_directory = '/home/ecoswell/RaspberryPi-Sensor/data_final'
+        for file in os.listdir(directory):
+            filename = os.path.join(directory, file)
+            new_filename = os.path.join(new_directory, file)
+            os.rename(filename, new_filename)
+        
     def queue_op(self, freq, dur, stime, sensor_method): # general operation for sensor queue - adds sensor execution method to 'self.queue' every 'freq' seconds to take sensor readings at desired intervals to take sensor readings for 'dur' secs, whilst avoiding collisions which may occur if multiple sensors take readings simultaneously 
         if time.time() - stime >= dur: # if duration for which sensor readings should be taken (as defined by the user in 'sensor_settings.py') has been reached, terminate execution of sensor readings
             return
@@ -314,6 +323,7 @@ class SensorReadings(): # class containing methods to take sensor readings
             elif True not in self.sensor_status: # if all sensors are inactive
                 time.sleep(5)
                 display_text('All readings \nnow complete.\nYou can safely unplug \n the sensor now.',15) # display sensor reading status on LCD screen
+                self.save_data_final()
                 break # all readings are complete, so terminate
             time.sleep(1)
 
