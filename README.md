@@ -99,6 +99,8 @@ The sensor settings are adjusted in an online file called *sensor_settings.py* w
 <img width="958" alt="image" src="https://user-images.githubusercontent.com/113472300/191482688-7de9cb1a-c813-4f87-8f66-4e6408e1ca22.png">
 
 4. You now have 2 minutes to position the sensor in the desired location - after these 2 minutes, the readings will begin
+ <img width="960" alt="image" src="https://user-images.githubusercontent.com/113472300/191821833-d4838901-a1af-425a-b67c-9c5c705e7513.png">
+
 
 5. Leave the sensor in place until all the readings are complete, which will be indicated on the LCD screen by the following message:
 
