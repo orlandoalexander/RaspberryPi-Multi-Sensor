@@ -51,18 +51,16 @@ while True: # continually try to send email
             part['Content-Disposition'] = 'attachment; filename="%s"' % basename(filename)
             msg.attach(part)
         
-        if count == 0: # if zero files in data folder:
+        if count != 0: # if zero files in data folder:
+            # send email:
+            session.sendmail(GMAIL_USERNAME, RECIPIENT, msg.as_string())
+            session.quit
+
+            new_directory = '/home/ecoswell/RaspberryPi-Sensor/data_emailed'
+            for file in os.listdir(directory):
+                filename = os.path.join(directory, file)
+                new_filename = os.path.join(new_directory, file)
+                os.rename(filename, new_filename)
             break
-
-        # send email:
-        session.sendmail(GMAIL_USERNAME, RECIPIENT, msg.as_string())
-        session.quit
-
-        new_directory = '/home/ecoswell/RaspberryPi-Sensor/data_emailed'
-        for file in os.listdir(directory):
-            filename = os.path.join(directory, file)
-            new_filename = os.path.join(new_directory, file)
-            os.rename(filename, new_filename)
-        break
     except:
         pass
