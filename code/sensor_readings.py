@@ -2,7 +2,6 @@
 Take measurements of desired environmental factors and save data to CSV file
 '''
 
-from msilib import Directory
 import sys
 path = '/home/ecoswell/RaspberryPi-Sensor' # path to folder storing 'sensor_settings' module
 sys.path.append(path) # enable importing module ('sensor_settings') from outside directory
