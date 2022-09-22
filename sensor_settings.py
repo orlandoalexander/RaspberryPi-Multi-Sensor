@@ -5,7 +5,7 @@ EMAIL ADDRESS
 
 Enter the email address to which the files storing the data readings should be sent:
 '''
-email_address = 'itsorlando@outlook.com'
+email_address = 'andres.bustamante@ecoswell.org'
 
 
 '''
@@ -19,7 +19,7 @@ The sensor has the following sensors:
 4. Light
 5. Carbon monoxide
 6. Nitrogen dioxide
-7. Ammonia
+7. Ammonia 
 8. Particulate matter
 
 Modify the values inside the brackets below for each active sensor with the following format 
@@ -27,7 +27,7 @@ Modify the values inside the brackets below for each active sensor with the foll
 i.e. to measure temperature and ammonia with a time delay between readings of 60 and 120 secs 
 and a data recording duration of 4 hours and 7 hours respectively, you should write [(1,60,240), (7,120,420)]
 '''
-sensors = [(8,5,0.5), (1,7,0.5)]
+sensors = [(2,5,1), (5,7,0.5)]
 
 
 '''
@@ -35,8 +35,7 @@ ADJUST TEMPERATURE TUNING FACTOR
 
 The temperature reading must be adjusted slightly to compensate for the heating effect of the CPU (computer processing unit on the sensor). 
 To determine the factor required to correctly compensate the tenmperature reading, 
-set 'calibrate_factor' to 'True' and follow the instructions in the documentation.
-
+set 'calibrate_factor' to 'True' and follow the instructions in the documentation (README.md).
 '''
 calculate_factor = False
 
