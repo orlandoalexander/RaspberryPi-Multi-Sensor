@@ -50,9 +50,11 @@ The GitHub repo looks a little like this:
 
 You will see three important things in the GitHub repo:
 
-1. *code* folder - you can <u>ignore</u> all files in this folder, unless you want/need to modify the sensor's core operational code
-2. *README.md* file - this documentation you're readin right now!
+1. *code* folder - you should <u>ignore</u> all files in this folder (unless you need to modify the sensor's core operational code - this can cause issues if done incorrectly so contact Orlando Alexander if you need to modify the code) 
+2. *README.md* file - this documentation you're reading right now!
 3. *sensor_settings.py* file - this file is <u>important</u> as it allows you to set which sensors are active, how often readings are taken and the duration of the data readings
+
+
 
 
 
@@ -67,32 +69,30 @@ The sensor settings are adjusted in an online file called *sensor_settings.py* w
 <img width="1243" alt="image" src="https://user-images.githubusercontent.com/113472300/191482443-0ad89e6f-170c-4db2-8136-0776392eb864.png">
 
 
-1. To modify the sensor settings you must edit the file *sensor_settings.py* by clicking the *pen icon* circled above
-
-2. To change which email address the files storing the data reading's are sent to, follow the instructions in *sensor_settings.py* under the heading `EMAIL ADDRESS`  
-
-3. To change which sensors are active, the reading frequency for each sensor and the duration of data recording for each sensor, follow the instructions in *sensor_settings.py* under the heading `ACTIVE SENSORS, FREQUENCY OF DATA RECORDING & DURATION OF DATA RECORDING`
-
-4. Note: If you wish to activate the temperature sensor (sensor no. 1), then you must first adjust the value of *factor* in the file *sensor_settings.py* under the heading `ADJUST TEMPERATURE TUNING FACTOR` to calibrate the sensor - see section **Data Type Details** / **<u>Temperature</u>** for instructions
-
-5. To save your changes to the sensor settings file *sensor_settings.py*, click the *commit changes* button circled below:
+1. Plug an ethernet cable into the Raspberry Pi *ethernet port* (see **Raspberry Pi Diagram**) to connect the sensor to the internet - this *must* be done before powering up the Raspberry Pi
+2. Power up sensor by plugging USB-C power cable into Raspberry Pi *USB-C port* (see **Raspberry Pi Diagram**) 
+3. To modify the sensor settings you must edit the file *sensor_settings.py* by clicking the *pen icon* circled above
+4. To change which email address the files storing the data reading's are sent to, follow the instructions in *sensor_settings.py* under the heading `EMAIL ADDRESS`  
+5. To change which sensors are active, the reading frequency for each sensor and the duration of data recording for each sensor, follow the instructions in *sensor_settings.py* under the heading `ACTIVE SENSORS, FREQUENCY OF DATA RECORDING & DURATION OF DATA RECORDING`
+6. Note: If you wish to activate the temperature sensor (sensor no. 1), then you must first adjust the value of *factor* in the file *sensor_settings.py* under the heading `ADJUST TEMPERATURE TUNING FACTOR` to calibrate the sensor - see section **Data Type Details** / **<u>Temperature</u>** for instructions
+7. To save your changes to the sensor settings file *sensor_settings.py*, click the *commit changes* button circled below:
 
 <img width="1200" alt="image" src="https://user-images.githubusercontent.com/113472300/191482517-6af56b31-556f-4876-9872-2b1277ed3eb0.png">
 
 
-4. Finally, to sync these changes with the sensor, plug an ethernet cable into the Raspberry Pi *ethernet port*  (see **Raspberry Pi Diagram**) to connect the sensor to the internet and wait around 1 minute
+8. Finally, to sync these changes with the sensor, wait 2 minutes and then unplug USB-C power cable.
 
  
 
 <u>**Start sensor readings**</u>
 
-1. Power up sensor by plugging USB-C power cable into Raspberry Pi *USB-C port* (see **Raspberry Pi Diagram** - labelled as micro-USB) - the LCD should display this message as the sensor turns on:
+1. Power up sensor by plugging USB-C power cable into Raspberry Pi *USB-C port* (see **Raspberry Pi Diagram**) - the LCD should display this message as the sensor turns on:
 
 <img width="1039" alt="image" src="https://user-images.githubusercontent.com/113472300/191482584-039154ca-5f2f-4e6a-bccf-6178654f1597.png">
 
 
 
-2. Wait until the LCD screen displays a welcome message, which also states whether the sensor is connected to the internet at boot:
+2. Wait until the LCD screen displays a welcome message - this also states whether the sensor is connected to the internet (remember, the sensor does not need to be connected to the internet to take data readings):
 <img width="1030" alt="image" src="https://user-images.githubusercontent.com/113472300/191482642-7a5d2f3c-bc9c-43ba-b220-7a00f2ff6f34.png">
 
 3. To start the readings, place finger on proximity sensor (labelled `LIGHT` on sensor) for 5 seconds, or until the sensor's LCD screen displays the following message:
@@ -109,14 +109,14 @@ The sensor settings are adjusted in an online file called *sensor_settings.py* w
 
 
 
-
 **<u>Download sensor data</u>**
 
 1. Data files are sent with the *csv* format and named with the following format: `sensor type - start date - start time`
    - For example, a file named `co-16.09.2022-12:58` would store carbon monoxide data readings which started to be measured at 12:58 on 16/09/2022 
-2. Plug ethernet cable into Raspberry Pi *ethernet port* (see **Raspberry Pi Diagram**) 
-3. All data recorded by the sensor will be emailed to the email address entered in the *sensor_settings.py* file 
-4. Once you have saved the *csv* data file from the email, you can open it in Excel and perform required analysis
+2. Plug an ethernet cable into the Raspberry Pi *ethernet port* (see **Raspberry Pi Diagram**) to connect the sensor to the internet - this *must* be done before powering up the Raspberry Pi
+3. Power up sensor by plugging USB-C power cable into Raspberry Pi *USB-C port* (see **Raspberry Pi Diagram**) 
+4. All data recorded by the sensor will be emailed to the email address entered in the *sensor_settings.py* file - please check your spam!
+5. Once you have saved the *csv* data file from the email, you can open it in Excel and perform required analysis
 
 
 
@@ -199,6 +199,38 @@ Unlike the other data types, the particulate matter sensor records three data va
 
 
 
+
+## **Technical Info**
+
+Please ignore this section, unless you need to make changes to sensor's core code.
+
+- All files on Raspberry Pi can be accessed over SSH from a laptop:
+
+  1. Connect to *EcoHouse* wifi
+  2. Enter `ssh ecoswell@ecoswell.org` on the laptop's command line
+  3. When prompted to enter the password, enter `EcoSwell`
+
+  **Important:** *DO NOT* modify any files directly on the Raspberry Pi - instead, clone the GitHub repository to a seperate device and push these changes to the GitHub repository
+
+  
+
+-  Raspberry Pi details:
+
+  1. Hostname: *ecoswell.local*
+
+  2. Username: *ecoswell*
+
+  3. Password: *EcoSwell*
+
+     
+
+- SSH into Raspberry Pi remotely using SocketXP
+
+
+
+- Cloning GitHub repository onto Raspberry Pi
+  1. Clone HTTPS 
+  2. Run `chmod a+x RaspberryPi-Sensor` on Raspberry Pi command line
 
 
 
