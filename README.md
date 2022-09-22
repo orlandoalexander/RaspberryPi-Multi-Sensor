@@ -86,7 +86,7 @@ The sensor settings are adjusted in an online file called *sensor_settings.py* w
 
 <u>**Start sensor readings**</u>
 
-1. Power up sensor by plugging micro USB power cable into Raspberry Pi *micro USB port* (see **Raspberry Pi Diagram**) - the LCD should display this message as the sensor turns on:
+1. Power up sensor by plugging USB-C power cable into Raspberry Pi *USB-C port* (see **Raspberry Pi Diagram** - note labelled as micro-USB) - the LCD should display this message as the sensor turns on:
 
 <img width="1039" alt="image" src="https://user-images.githubusercontent.com/113472300/191482584-039154ca-5f2f-4e6a-bccf-6178654f1597.png">
 
