@@ -42,7 +42,7 @@ while True: # continually try to send email
         msg['Subject'] = SUBJECT # assign message subject 
 
         count = 0
-        directory = '/home/ecoswell/RaspberryPi-Sensor/data'
+        directory = '/home/ecoswell/RaspberryPi-Sensor/data_final'
         for file in os.listdir(directory):
             count+=1
             filename = os.path.join(directory, file)
