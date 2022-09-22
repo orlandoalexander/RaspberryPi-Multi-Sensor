@@ -65,3 +65,4 @@ while True: # continually try to send email
             break
     except:
         pass
+    
