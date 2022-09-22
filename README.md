@@ -39,13 +39,9 @@ The Raspberry Pi has loads of different ports and components, but luckily you do
 
 ## **GitHub Repository**
 
-The operational code and sensor settings are stored on an online platform called *GitHub* inside something called a repository. A repository (or 'repo') is essentially a collection of files (code, images, text files - anything goes) that is stored in an online server and can be accessed from anywhere in the world - think of it a bit like Microsoft OneDrive or Google Drive. For our EcoSwell Multi-Sensor, the repo is called [*RaspberryPi-Sensor*](https://github.com/EcoSwell/RaspberryPi-Sensor) and it belongs to the EcoSwell GitHub account. To edit any files inside this repo, you must be logged into the EcoSwell GitHub account - here are the login details:
+The operational code and sensor settings are stored on an online platform called *GitHub* inside something called a repository. A repository (or 'repo') is essentially a collection of files (code, images, text files - anything goes) that is stored in an online server and can be accessed from anywhere in the world - think of it a bit like Microsoft OneDrive or Google Drive. For our EcoSwell Multi-Sensor, the repo is called [*RaspberryPi-Sensor*](https://github.com/EcoSwell/RaspberryPi-Sensor) and it belongs to the EcoSwell GitHub account. To edit any files inside this repo, you must be logged into the EcoSwell GitHub account.
 
-​	*username:* EcoSwell	
 
-​	*email:* info@ecoswell.org
-
-​	*password*: *5u5t@1n@b1l1ty*
 
 The GitHub repo looks a little like this:
 
