@@ -37,7 +37,7 @@ The temperature reading must be adjusted slightly to compensate for the heating 
 To determine the factor required to correctly compensate the tenmperature reading, 
 set 'calculate_factor' to 'True' and follow the instructions in the documentation (README.md).
 '''
-calculate_factor = True
+calculate_factor = False
 
 factor = 1.31
 
