@@ -140,7 +140,7 @@ The sensor settings are adjusted in an online file called *sensor_settings.py* w
 
 The temperature reading must be adjusted slightly to compensate for the heating effect of the CPU (computer processing unit on the sensor). To tweak how much the temperature value is compensated, follow these steps:
 
-1. Set `calculate_factor` to `True` in the file *sensor_settings.py*, as shown below:
+1. Set `calculate_temp_factor` to `True` in the file *sensor_settings.py*, as shown below:
 <img width="1326" alt="image" src="https://user-images.githubusercontent.com/113472300/191482999-0b5d130a-1169-4b97-a460-90493e79d70e.png">
 
    

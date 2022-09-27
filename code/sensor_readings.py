@@ -10,6 +10,7 @@ import time
 import threading
 import os.path
 import csv
+import math
 from datetime import datetime
 from lcd_display import display_text, backlight_off, backlight_on
 
@@ -36,12 +37,19 @@ class SensorReadings(): # class containing methods to take sensor readings
         self.time = now.strftime("%H:%M:%S") # get time when sensor readings begin in correct format
         self.sensors = sensor_settings.sensors # access sensor settings defined by user in file 'sensor_settings.py' 
         self.factor = sensor_settings.factor # access factor by which temperature reading is compensated as defined by user in file 'sensor_settings.py' 
-        self.calculate_factor = sensor_settings.calculate_factor # boolean which stores whether user wishes to calculate the temperature compensation factor
+        self.calculate_temp_factor = sensor_settings.calculate_temp_factor # boolean which stores whether user wishes to calculate the temperature compensation factor
+        self.calculate_gas_factor = sensor_settings.calculate_gas_factor # boolean which stores whether user wishes to calibrate the gas sensors      
         self.sensors_dict = {1:self.temp_queue, 2:self.pressure_queue, 3:self.humidity_queue, 4:self.light_queue, 5:self.co_queue, 6:self.no2_queue, 7:self.nh3_queue, 8:self.pm_queue} # dictionary to translate between sensor number and sensor queue method (which triggers sensor execution)
         self.queue = [] # queue stores sensors which are due to take readings - this avoids multiple sensors taking readings simultaneously and therefore prevents collisions
         self.sensor_status = [False for i in range(8)] # queue stores status of each sensor (True = active, False = inactive)
         cpu_temp = self.get_cpu_temperature() # take initial reading to stabalise sensor
         self.cpu_temps = [self.get_cpu_temperature()] * 5 # get five readings of CPU temperature
+        self.co_factor, self.no2_factor, self.nh3_factor = None, None, None # assign each gas calibration factor to 'None' as default
+        if os.stat('gas_factors.txt').st_size != 0: # if user has calculated calibration factor for gas readings
+            with open('gas_factors.txt','r') as f: 
+                gas_factors = f.readlines()
+                self.co_R0, self.no2_R0, self.nh3_R0 = gas_factors[0].strip(), gas_factors[1].strip(), gas_factors[2].strip() # get R0 value for each gas 
+                f.close()
 
     def get_cpu_temperature(self): # get the temperature of the CPU for compensation
             with open("/sys/class/thermal/thermal_zone0/temp", "r") as f:
@@ -53,7 +61,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         raw_temp = bme280.get_temperature() # take initial reading to stabalise sensor
         time.sleep(2)
         for i in range(10): 
-            sensor = 'calculate_factor'
+            sensor = 'calculate_temp_factor'
             freq = 60
             dur = 10
             raw_temp = bme280.get_temperature() # get raw reading of temp
@@ -71,6 +79,32 @@ class SensorReadings(): # class containing methods to take sensor readings
         display_text('',1)
         backlight_off() # turn off LCD backlight
         return
+
+    def gas_factor(self): # calculate value of R0 in open space to use as calibration factor to convert readings of gas from Rs to ppm (using Roscoe's conversion)
+        gas_readings = [0 for i in range(3)] # empty list to store gas readings of co, no2 and nh3 
+        gas_data = gas.read_all() # take initial reading to stabalise sensor
+        for i in range (10): # take readings of R0 for each gas every minute for 10 mins
+            gas_data = gas.read_all() # get readings of concentration of all gasses
+            co = gas_data.reducing / 1000 # convert carbon monoxide gas concentration resistance into kOhm
+            no2 = gas_data.oxidising / 1000 # convert nitrogen dioxide gas concentration into kOhm
+            nh3 = gas_data.nh3 / 1000 # convert ammonia gas concentration resistance into kOhm
+            gas_readings[0] += co # add together all co readings
+            gas_readings[1] += no2 # add together all no2 readings
+            gas_readings[2] += nh3 # add together all nh3 readings
+            time.sleep(60)
+        co_R0 = str(round(gas_readings[0]/10,2)) # store average R0 value for co 
+        no2_R0 = str(round(gas_readings[1]/10,2)) # store average R0 value for no2 
+        nh3_R0 = str(round(gas_readings[2]/10,2)) # store average R0 value for nh3 
+        with open('code/gas_factors.txt','w') as f:
+            f.write(f'{co_R0}\n{no2_R0}\n{nh3_R0}') # write R0 value of each gas to text file
+            f.close()
+        backlight_on() # turn on LCD backlight
+        display_text('Gas calibration\n readings\n complete',17)
+        time.sleep(30)
+        display_text('',1)
+        backlight_off() # turn off LCD backlight
+        return
+        
 
     def temp_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
         raw_temp = bme280.get_temperature() # take initial reading to stabalise sensor
@@ -191,7 +225,11 @@ class SensorReadings(): # class containing methods to take sensor readings
         dur = list(filter(lambda x: x[0] == 5, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for co sensor (sensor number 5)
         data_heading = ['Carbon monoxide (arbitrary units)']
         gas_data = gas.read_all() # get readings of concentration of all gasses
-        co = gas_data.reducing / 1000 # convert carbon monoxide gas concentration from resistance to ppm
+        co_Rs = gas_data.reducing / 1000 # convert carbon monoxide gas concentration resistance into kOhm
+        if self.co_R0 != None: # if user has calculated calibration factor for gas readings
+            co = math.pow(10, -1.25 * math.log10(co_Rs/self.co_R0) + 0.64) # convert co reading from kOhm to ppm (Roscoe method)
+        else: 
+            co = co_Rs
         data = [co]
         self.save_data(sensor, freq, dur, data, data_heading)
         return
@@ -215,7 +253,11 @@ class SensorReadings(): # class containing methods to take sensor readings
         dur = list(filter(lambda x: x[0] == 6, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for no2 sensor (sensor number 6)
         data_heading = ['Nitrogen dioxide (arbitrary units)']
         gas_data = gas.read_all() # get readings of concentration of all gasses
-        no2 = gas_data.oxidising / 1000 # convert nitrogen dioxide gas concentration from resistance to ppm
+        no2_Rs = gas_data.oxidising / 1000 # convert nitrogen dioxide gas concentration into kOhm
+        if self.no2_R0 != None: # if user has calculated calibration factor for gas readings
+            no2 = math.pow(10, math.log10(no2_Rs/self.no2_R0) - 0.8129) # convert no2 reading from kOhm to ppm (Roscoe method)
+        else: 
+            no2 = no2_Rs
         data = [no2]
         self.save_data(sensor, freq, dur, data, data_heading)
         return
@@ -240,7 +282,11 @@ class SensorReadings(): # class containing methods to take sensor readings
         dur = list(filter(lambda x: x[0] == 7, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for nh3 sensor (sensor number 7)
         data_heading = ['Ammonia (arbitrary units)']
         gas_data = gas.read_all() # get readings of concentration of all gasses
-        nh3 = gas_data.nh3 / 1000 # convert ammonia gas concentration from resistance to ppm
+        nh3_Rs = gas_data.nh3 / 1000 # convert ammonia gas concentration resistance into kOhm
+        if self.nh3_R0 != None: # if user has calculated calibration factor for gas readings
+            nh3 = math.pow(10, -1.8 * math.log10(nh3_Rs/self.nh3_R0) - 0.163) # convert nh2 reading from kOhm to ppm (Roscoe method)
+        else: 
+            nh3 = nh3_Rs
         data = [nh3]
         self.save_data(sensor, freq, dur, data, data_heading)
         return
@@ -328,8 +374,12 @@ class SensorReadings(): # class containing methods to take sensor readings
             time.sleep(1)
 
     def main(self): # control operation of active sensors
-        if self.calculate_factor == True: # if user wishes to calculate the temperature compensation factor
+        if self.calculate_temp_factor == True and self.calculate_gas_factor == False: # if user wishes to calculate the temperature compensation factor
             self.temp_factor()
+        elif self.calculate_gas_factor == True and self.calculate_temp_factor == False: # if user wishes to calibrate the gas sensors
+            self.gas_factor()
+        elif self.calculate_gas_factor == True and self.calculate_temp_factor == True: # if user has accidently set both 'calculate_gas_factor' and 'calculate_temp_factor' to True 
+            display_text('Error!\nCannot calculate temp\nand gas factor.',15)
         else:
             for sensor in self.sensors: # iterate through active sensors as defined by user in 'sensor_settings.py'
                 sensor_num, sensor_freq, sensor_dur = sensor[0], sensor[1], sensor[2]*60 # first element in tuple stores sensor number, second element stores reading frequency for sensor, third element stores duration of sensor recordings (in minutes)

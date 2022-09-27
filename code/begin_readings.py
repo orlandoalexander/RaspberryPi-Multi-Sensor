@@ -9,6 +9,7 @@ sys.path.append(path) # enable importing module ('sensor_settings') from outside
 import time
 import threading
 import requests
+import sensor_settings
 from sensor_readings import SensorReadings
 from lcd_display import display_text, backlight_off, backlight_on
 
@@ -22,6 +23,8 @@ except ImportError:
 time.sleep(1)
 display_text('', 1)
 display_text('Sensor booting...', 19) 
+calculate_gas_factor = sensor_settings.calculate_gas_factor # boolean which stores whether user wishes to calibrate the gas sensors      
+
 
 time.sleep(10)
 
@@ -30,6 +33,15 @@ try:
     display_text('Welcome!\nInternet \nconnected', 20) 
 except:
     display_text('Welcome!\nInternet not\n connected', 20) 
+
+
+display_text('Sensor readings\n have started',20)
+sensor_thread = threading.Thread(target=SensorReadings().main) # create new thread to take sensor readings in background
+sensor_thread.start() # start background thread to take sensor readings
+time.sleep(10) 
+display_text('',1)
+backlight_off() # turn off LCD backlight
+
 
 
 while True: 
@@ -46,8 +58,12 @@ while True:
             else:
                 pass
         if button_pressed == True and threading.active_count() <= 1: # if user has held finger on proximity sensor for at least 5 seconds (i.e. pressed button to start sensor readings) and no other threads are currently active (i.e. sensor not currently taking readings)
-            display_text('Sensor readings\n starting in 2 mins',18) # display status message on LCD 
-            time.sleep(120) # delay to allow user to place sensor in desired location to take readings
+            if calculate_gas_factor == True:
+                display_text('Gas calibration\n starting in 10 mins',18) # display status message on LCD 
+                time.sleep(600) # delay to allow gas sensors to warm up
+            else:
+                display_text('Sensor readings\n starting in 2 mins',18) # display status message on LCD 
+                time.sleep(120) # delay to allow user to place sensor in desired location to take readings
             display_text('Sensor readings\n have started',20)
             sensor_thread = threading.Thread(target=SensorReadings().main) # create new thread to take sensor readings in background
             sensor_thread.start() # start background thread to take sensor readings

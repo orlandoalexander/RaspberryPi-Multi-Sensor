@@ -5,7 +5,7 @@ EMAIL ADDRESS
 
 Enter the email address to which the files storing the data readings should be sent:
 '''
-email_address = 'wauthio@gmail.com'
+email_address = 'itsorlando@outlook.com'
 
 
 '''
@@ -35,12 +35,22 @@ ADJUST TEMPERATURE TUNING FACTOR
 
 The temperature reading must be adjusted slightly to compensate for the heating effect of the CPU (computer processing unit on the sensor). 
 To determine the factor required to correctly compensate the tenmperature reading, 
-set 'calculate_factor' to 'True' and follow the instructions in the documentation (README.md).
+set 'calculate_temp_factor' to True and follow the instructions in the documentation (README.md).
+Note: if you want to calculate the temperature tuning factor, 'calculate_gas_factor' must be set to False.
 '''
-calculate_factor = False
+calculate_temp_factor = False
 
 factor = 1.31
 
+
+'''
+GAS CALIBRATION
+
+To obtain gas readings in ppm, you must first calibrate the sensors by taking readings of gas concentration in an open space away from buildings (e.g. a field).
+To calibrate the gas sensors, set 'calculate_gas_factor' to True and follow the instructions in the documentation (README.md).
+Note: if you want to calculate the gas calibration factor, 'calculate_temp_factor' must be set to False.
+'''
+calculate_gas_factor = True
 
 """
 TECHNICAL INFORMATION
