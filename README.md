@@ -1,6 +1,6 @@
 ## <u>EcoSwell Multi-Sensor Documentation</u> 
 
-The EcoSwell Multi-Sensor is easy to use and can measure eight different data types with adjustable parameters for data recording, including reading frequency and duration of data recording. The sensor can measure the following data types:
+The EcoSwell Multi-Sensor is easy to use and can measure up to eight different data types simultaneously. The sensor is versatile with adjustable parameters for data recording, including reading frequency and duration of data recording. The sensor can measure the following data types::
 
 | Data type           | Unit  | Unit description                                             |
 | ------------------- | ----- | ------------------------------------------------------------ |
