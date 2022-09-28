@@ -35,12 +35,12 @@ except:
     display_text('Welcome!\nInternet not\n connected', 20) 
 
 
-# display_text('Sensor readings\n have started',20)
-# sensor_thread = threading.Thread(target=SensorReadings().main) # create new thread to take sensor readings in background
-# sensor_thread.start() # start background thread to take sensor readings
-# time.sleep(10) 
-# display_text('',1)
-# backlight_off() # turn off LCD backlight
+display_text('Sensor readings\n have started',20)
+sensor_thread = threading.Thread(target=SensorReadings().main) # create new thread to take sensor readings in background
+sensor_thread.start() # start background thread to take sensor readings
+time.sleep(10) 
+display_text('',1)
+backlight_off() # turn off LCD backlight
 
 
 
