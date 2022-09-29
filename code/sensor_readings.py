@@ -107,7 +107,6 @@ class SensorReadings(): # class containing methods to take sensor readings
         
 
     def temp_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
-        time.sleep(2)        
         self.queue_op(freq, dur, stime, self.temp) # add 'temp' method to 'queue' at set intervals to take sensor readings at desired frequency
         time.sleep(dur)
         self.sensor_status[0] = False # change temp sensor status to False (i.e. inactive) as all readings are now complete
@@ -120,6 +119,7 @@ class SensorReadings(): # class containing methods to take sensor readings
 
     def temp(self): # measure temperature
         raw_temp = bme280.get_temperature() # take initial reading to stabalise sensor
+        time.sleep(2) 
         sensor = 'temp'
         freq = list(filter(lambda x: x[0] == 1, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for temp sensor (sensor number 1)
         dur = list(filter(lambda x: x[0] == 1, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for temp sensor (sensor number 1)
@@ -134,7 +134,6 @@ class SensorReadings(): # class containing methods to take sensor readings
         return
 
     def pressure_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'pressure' method to 'queue' at set intervals to take sensor readings at desired frequency
-        time.sleep(2) 
         self.queue_op(freq, dur, stime, self.pressure) # add 'pressure' method to 'queue' at set intervals to take sensor readings at desired frequency
         time.sleep(dur)
         self.sensor_status[1] = False # change pressure sensor status to False (i.e. inactive) as all readings are now complete
@@ -147,6 +146,7 @@ class SensorReadings(): # class containing methods to take sensor readings
 
     def pressure(self): # measure pressue
         pressure = bme280.get_pressure() # take initial reading to stabalise sensor
+        time.sleep(2) 
         sensor = 'pressure'
         freq = list(filter(lambda x: x[0] == 2, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for pressure sensor (sensor number 2)
         dur = list(filter(lambda x: x[0] == 2, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for pressure sensor (sensor number 2)
@@ -157,7 +157,6 @@ class SensorReadings(): # class containing methods to take sensor readings
         return
 
     def humidity_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'humidity' method to 'queue' at set intervals to take sensor readings at desired frequency
-        time.sleep(2) 
         self.queue_op(freq, dur, stime, self.humidity) # add 'humidity' method to 'queue' at set intervals to take sensor readings at desired frequency
         time.sleep(dur)
         self.sensor_status[2] = False # change humidity sensor status to False (i.e. inactive) as all readings are now complete
@@ -170,6 +169,7 @@ class SensorReadings(): # class containing methods to take sensor readings
 
     def humidity(self): # measure humidiity
         humidity = bme280.get_humidity() # take initial reading to stabalise sensor
+        time.sleep(2) 
         sensor = 'humidity'
         freq = list(filter(lambda x: x[0] == 3, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for humidity sensor (sensor number 3)
         dur = list(filter(lambda x: x[0] == 3, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for humidity sensor (sensor number 3)
@@ -180,7 +180,6 @@ class SensorReadings(): # class containing methods to take sensor readings
         return
 
     def light_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'light' method to 'queue' at set intervals to take sensor readings at desired frequency
-        time.sleep(2) 
         self.queue_op(freq, dur, stime, self.light) # add 'light' method to 'queue' at set intervals to take sensor readings at desired frequency
         time.sleep(dur)
         self.sensor_status[3] = False # change light sensor status to False (i.e. inactive) as all readings are now complete
@@ -193,6 +192,7 @@ class SensorReadings(): # class containing methods to take sensor readings
 
     def light(self): # measure light intensity
         light = ltr559.get_lux() # take initial reading to stabalise sensor
+        time.sleep(2) 
         sensor = 'light'
         freq = list(filter(lambda x: x[0] == 4, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for light sensor (sensor number 4)
         dur = list(filter(lambda x: x[0] == 4, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for light sensor (sensor number 4)
@@ -207,7 +207,6 @@ class SensorReadings(): # class containing methods to take sensor readings
         return
 
     def co_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'co' method to 'queue' at set intervals to take sensor readings at desired frequency
-        time.sleep(2) 
         self.queue_op(freq, dur, stime, self.co) # add 'co' method to 'queue' at set intervals to take sensor readings at desired frequency
         time.sleep(dur)
         self.sensor_status[4] = False # change co sensor status to False (i.e. inactive) as all readings are now complete
@@ -220,6 +219,7 @@ class SensorReadings(): # class containing methods to take sensor readings
 
     def co(self): # measures concentration of carbon monoxide (reducing) gas
         gas_data = gas.read_all() # take initial reading to stabalise sensor
+        time.sleep(2) 
         sensor = 'co'
         freq = list(filter(lambda x: x[0] == 5, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for co sensor (sensor number 5)
         dur = list(filter(lambda x: x[0] == 5, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for co sensor (sensor number 5)
@@ -235,7 +235,6 @@ class SensorReadings(): # class containing methods to take sensor readings
         return
     
     def no2_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'no2' method to 'queue' at set intervals to take sensor readings at desired frequency
-        time.sleep(2) 
         self.queue_op(freq, dur, stime, self.no2) # add 'no2' method to 'queue' at set intervals to take sensor readings at desired frequency
         time.sleep(dur)
         self.sensor_status[5] = False # change light sensor status to False (i.e. inactive) as all readings are now complete
@@ -248,6 +247,7 @@ class SensorReadings(): # class containing methods to take sensor readings
 
     def no2(self): # measures concentration of nitrogen dioxide (oxidising) gas
         gas_data = gas.read_all() # take initial reading to stabalise sensor
+        time.sleep(2) 
         sensor = 'no2'
         freq = list(filter(lambda x: x[0] == 6, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for no2 sensor (sensor number 6)
         dur = list(filter(lambda x: x[0] == 6, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for no2 sensor (sensor number 6)
@@ -263,7 +263,6 @@ class SensorReadings(): # class containing methods to take sensor readings
         return
     
     def nh3_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'nh3' method to 'queue' at set intervals to take sensor readings at desired frequency
-        time.sleep(2) 
         self.queue_op(freq, dur, stime, self.nh3) # add 'nh3' method to 'queue' at set intervals to take sensor readings at desired frequency
         time.sleep(dur)
         self.sensor_status[6] = False # change nh3 sensor status to False (i.e. inactive) as all readings are now complete
@@ -276,8 +275,8 @@ class SensorReadings(): # class containing methods to take sensor readings
         
     def nh3(self): # measures concentration of ammonia gas
         gas_data = gas.read_all() # take initial reading to stabalise sensor
-        sensor = 'nh3'
         time.sleep(2) 
+        sensor = 'nh3'
         freq = list(filter(lambda x: x[0] == 7, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for nh3 sensor (sensor number 7)
         dur = list(filter(lambda x: x[0] == 7, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for nh3 sensor (sensor number 7)
         data_heading = ['Ammonia (arbitrary units)']
@@ -292,7 +291,6 @@ class SensorReadings(): # class containing methods to take sensor readings
         return
 
     def pm_queue(self, freq, dur, stime): # calls 'queue_op' method with appropriate parameters to add 'pm' method to 'queue' at set intervals to take sensor readings at desired frequency
-        time.sleep(2) 
         self.queue_op(freq, dur, stime, self.pm) # add 'pm' method to 'queue' at set intervals to take sensor readings at desired frequency
         time.sleep(dur)
         self.sensor_status[7] = False # change pm sensor status to False (i.e. inactive) as all readings are now complete
@@ -308,6 +306,7 @@ class SensorReadings(): # class containing methods to take sensor readings
             data = pms5003.read() # take initial reading to stabalise sensor
         except pmsReadTimeoutError:
             pass
+        time.sleep(2) 
         sensor = 'pm'
         freq = list(filter(lambda x: x[0] == 8, self.sensors))[0][1] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for pm sensor (sensor number 8)
         dur = list(filter(lambda x: x[0] == 8, self.sensors))[0][2] # lambda function filters list 'self.sensors' (which stores active sensors, delay between sensor readings and sensor reading duration in tuple format: (active sensor number, delay between sensor readings, sensor reading duration)) to access reading frequency for pm sensor (sensor number 8)
