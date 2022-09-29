@@ -85,6 +85,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         gas_data = gas.read_all() # take initial reading to stabalise sensor
         for i in range (1): # take readings of R0 for each gas every minute for 10 mins
             gas_data = gas.read_all() # get readings of concentration of all gasses
+            print(gas_data)
             co = gas_data.reducing / 1000 # convert carbon monoxide gas concentration resistance into kOhm
             no2 = gas_data.oxidising / 1000 # convert nitrogen dioxide gas concentration into kOhm
             nh3 = gas_data.nh3 / 1000 # convert ammonia gas concentration resistance into kOhm
@@ -95,9 +96,11 @@ class SensorReadings(): # class containing methods to take sensor readings
         co_R0 = str(round(gas_readings[0]/10,2)) # store average R0 value for co 
         no2_R0 = str(round(gas_readings[1]/10,2)) # store average R0 value for no2 
         nh3_R0 = str(round(gas_readings[2]/10,2)) # store average R0 value for nh3 
+        print(co_R0)
         with open('code/gas_factors.txt','w') as f:
             f.write(f'{co_R0}\n{no2_R0}\n{nh3_R0}') # write R0 value of each gas to text file
             f.close()
+        print('file saved')
         backlight_on() # turn on LCD backlight
         display_text('Gas calibration\n readings\n complete',17)
         time.sleep(30)
@@ -377,6 +380,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         if self.calculate_temp_factor == True and self.calculate_gas_factor == False: # if user wishes to calculate the temperature compensation factor
             self.temp_factor()
         elif self.calculate_gas_factor == True and self.calculate_temp_factor == False: # if user wishes to calibrate the gas sensors
+            print('method called')
             self.gas_factor()
         elif self.calculate_gas_factor == True and self.calculate_temp_factor == True: # if user has accidently set both 'calculate_gas_factor' and 'calculate_temp_factor' to True 
             display_text('Error!\nCannot calculate temp\nand gas factor.',15)
