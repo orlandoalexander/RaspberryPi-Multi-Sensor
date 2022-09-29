@@ -45,8 +45,8 @@ class SensorReadings(): # class containing methods to take sensor readings
         cpu_temp = self.get_cpu_temperature() # take initial reading to stabalise sensor
         self.cpu_temps = [self.get_cpu_temperature()] * 5 # get five readings of CPU temperature
         self.co_factor, self.no2_factor, self.nh3_factor = None, None, None # assign each gas calibration factor to 'None' as default
-        if os.stat('code/gas_factors.txt').st_size != 0: # if user has calculated calibration factor for gas readings
-            with open('code/gas_factors.txt','r') as f: 
+        if os.stat('/home/ecoswell/RaspberryPi-Sensor/code/gas_factors.txt').st_size != 0: # if user has calculated calibration factor for gas readings
+            with open('/home/ecoswell/RaspberryPi-Sensor/code/gas_factors.txt','r') as f: 
                 gas_factors = f.readlines()
                 self.co_R0, self.no2_R0, self.nh3_R0 = float(gas_factors[0].strip()), float(gas_factors[1].strip()), float(gas_factors[2].strip()) # get R0 value for each gas 
                 f.close()
@@ -95,7 +95,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         co_R0 = str(round(gas_readings[0]/10,2)) # store average R0 value for co 
         no2_R0 = str(round(gas_readings[1]/10,2)) # store average R0 value for no2 
         nh3_R0 = str(round(gas_readings[2]/10,2)) # store average R0 value for nh3 
-        with open('code/gas_factors.txt','w') as f:
+        with open('/home/ecoswell/RaspberryPi-Sensor/code/gas_factors','w') as f:
             f.write(f'{co_R0}\n{no2_R0}\n{nh3_R0}') # write R0 value of each gas to text file
             f.close()
         backlight_on() # turn on LCD backlight
