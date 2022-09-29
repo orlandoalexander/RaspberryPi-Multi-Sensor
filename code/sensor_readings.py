@@ -48,7 +48,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         if os.stat('gas_factors.txt').st_size != 0: # if user has calculated calibration factor for gas readings
             with open('gas_factors.txt','r') as f: 
                 gas_factors = f.readlines()
-                self.co_R0, self.no2_R0, self.nh3_R0 = gas_factors[0].strip(), gas_factors[1].strip(), gas_factors[2].strip() # get R0 value for each gas 
+                self.co_R0, self.no2_R0, self.nh3_R0 = float(gas_factors[0].strip()), float(gas_factors[1].strip()), float(gas_factors[2].strip()) # get R0 value for each gas 
                 f.close()
 
     def get_cpu_temperature(self): # get the temperature of the CPU for compensation
@@ -365,7 +365,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         while True:
             if len(self.queue) >= 1: # if there are sensors readings to be taken
                 self.queue.pop(0)() # execute reading for front sensor in queue and remove sensor from queue
-                time.sleep(1) # 1 second delay between each sensor reading
+                time.sleep(2) # 2 second delay between each sensor reading
             elif True not in self.sensor_status: # if all sensors are inactive
                 time.sleep(5)
                 display_text('All readings \nnow complete.\nYou can safely unplug \n the sensor now.',15) # display sensor reading status on LCD screen
