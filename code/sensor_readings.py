@@ -83,7 +83,7 @@ class SensorReadings(): # class containing methods to take sensor readings
     def gas_factor(self): # calculate value of R0 in open space to use as calibration factor to convert readings of gas from Rs to ppm (using Roscoe's conversion)
         gas_readings = [0 for i in range(3)] # empty list to store gas readings of co, no2 and nh3 
         gas_data = gas.read_all() # take initial reading to stabalise sensor
-        for i in range (10): # take readings of R0 for each gas every minute for 10 mins
+        for i in range (1): # take readings of R0 for each gas every minute for 10 mins
             gas_data = gas.read_all() # get readings of concentration of all gasses
             co = gas_data.reducing / 1000 # convert carbon monoxide gas concentration resistance into kOhm
             no2 = gas_data.oxidising / 1000 # convert nitrogen dioxide gas concentration into kOhm
