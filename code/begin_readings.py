@@ -19,11 +19,7 @@ try:
     ltr559 = LTR559() # initialise LTR559 light/proximity sensor
 except ImportError:
     import ltr559
-
-time.sleep(1)
-display_text('', 1)
-display_text('Sensor booting...', 19) 
-calculate_gas_factor = sensor_settings.calculate_gas_factor # boolean which stores whether user wishes to calibrate the gas sensors      
+   
 
 
 time.sleep(10)
