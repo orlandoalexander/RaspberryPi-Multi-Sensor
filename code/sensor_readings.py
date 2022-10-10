@@ -95,7 +95,7 @@ class SensorReadings(): # class containing methods to take sensor readings
         co_R0 = str(round(gas_readings[0]/10,2)) # store average R0 value for co 
         no2_R0 = str(round(gas_readings[1]/10,2)) # store average R0 value for no2 
         nh3_R0 = str(round(gas_readings[2]/10,2)) # store average R0 value for nh3 
-        with open('/home/ecoswell/RaspberryPi-Sensor/code/gas_factors','w') as f:
+        with open('/home/ecoswell/RaspberryPi-Sensor/code/gas_factors.txt','w') as f:
             f.write(f'{co_R0}\n{no2_R0}\n{nh3_R0}') # write R0 value of each gas to text file
             f.close()
         backlight_on() # turn on LCD backlight

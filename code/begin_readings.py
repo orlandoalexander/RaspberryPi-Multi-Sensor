@@ -79,7 +79,7 @@ while True:
             if button_pressed == True: # if user held proximity sensor for 25 seconds in total
                 display_text('Sensor rebooting...',17) # display status message on LCD 
                 time.sleep(5)
-                #os.system("sudo reboot") # reboot Raspberry Pi
+                os.system("sudo reboot") # reboot Raspberry Pi
             else:
                 display_text('Reboot cancelled.\nSensor will continue\n with readings.',16) # display status message on LCD 
                 time.sleep(5)
