@@ -38,7 +38,7 @@ time.sleep(10)
 display_text('',1)
 backlight_off() # turn off LCD backlight
 
-
+calculate_gas_factor = sensor_settings.calculate_gas_factor # boolean which stores whether user wishes to calibrate the gas sensors      
 
 while True: 
     proximity = ltr559.get_proximity() # get proximity above proximity sensor
