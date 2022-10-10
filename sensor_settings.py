@@ -5,7 +5,7 @@ EMAIL ADDRESS
 
 Enter the email address to which the files storing the data readings should be sent:
 '''
-email_address = 'data@ecoswell.org'
+email_address = 'itsorlando@outlook.com'
 
 
 '''
@@ -50,7 +50,7 @@ To obtain gas readings in ppm, you must first calibrate the sensors by taking re
 To calibrate the gas sensors, set 'calculate_gas_factor' to True and follow the instructions in the documentation (README.md).
 Note: if you want to calculate the gas calibration factor, 'calculate_temp_factor' must be set to False.
 '''
-calculate_gas_factor = False
+calculate_gas_factor = True
 
 """
 TECHNICAL INFORMATION
