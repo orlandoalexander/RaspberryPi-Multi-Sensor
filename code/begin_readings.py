@@ -40,18 +40,6 @@ backlight_off() # turn off LCD backlight
 
 calculate_gas_factor = sensor_settings.calculate_gas_factor # boolean which stores whether user wishes to calibrate the gas sensors      
 
-if calculate_gas_factor == True:
-    display_text('Gas calibration\n starting in 10 mins',18) # display status message on LCD 
-    #time.sleep(600) # delay to allow gas sensors to warm up
-else:
-    display_text('Sensor readings\n starting in 2 mins',18) # display status message on LCD 
-    time.sleep(120) # delay to allow user to place sensor in desired location to take readings
-display_text('Sensor readings\n have started',20)
-sensor_thread = threading.Thread(target=SensorReadings().main) # create new thread to take sensor readings in background
-sensor_thread.start() # start background thread to take sensor readings
-time.sleep(10) 
-display_text('',1)
-backlight_off() # turn off LCD backlight
 
 while True: 
     proximity = ltr559.get_proximity() # get proximity above proximity sensor
