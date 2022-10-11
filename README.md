@@ -8,9 +8,9 @@ The EcoSwell Multi-Sensor is easy to use and can measure up to eight different d
 | Pressure            | hPa   | Hectopascal                                                  |
 | Humidity            | %     | Relative humidity as percentage                              |
 | Light               | Lux   | Luminious flux per unit area                                 |
-| Carbon monoxide*    | -     | Arbitrary - measure changes relative to baseline value (TODO) |
-| Nitrogen dioxide*   | -     | Arbitrary - measure changes relative to baseline value (TODO) |
-| Ammonia*            | -     | Arbitrary - measure changes relative to baseline value (TODO) |
+| Carbon monoxide*    | PPM   | Parts per million                                            |
+| Nitrogen dioxide*   | PPM   | Parts per million                                            |
+| Ammonia*            | PPM   | Parts per million                                            |
 | Particulate matter* | ug/m3 | Micrograms per cubic metre of air                            |
 
 *see section **Data Type Details** for more details
@@ -163,40 +163,54 @@ The temperature reading must be adjusted slightly to compensate for the heating 
 
 **<u>Gas Readings</u>**
 
-To calibrate the gas readings you need to set calculate_gas_factor to True. 
-Take the sensor to an open space and set up for taking readings. Allow the sensor time to calibrate.
+1. To calibrate the gas readings you need to set calculate_gas_factor to True. Save and leave the Raspberry Pi on for 2 minutes for changes to save.
 
-When going to take actual readings make sure to set calculate_gas_factor back to False.
-The calibration factor for all three gases will be calculated automatically so that next time you take gas readings they will be in ppm.
+2. Unplug the Raspberry Pi. Take the sensor to an open space and set up for taking readings. Power on the Raspberry Pi and the sensor LCD screen will display "Gas calibration starting in 10 mins" (after you hold your finger over the light sensor for 5 seconds). Allow the sensor time to calibrate after these 10 mins.
+
+3. Unplug Raspberry Pi. The calibration factor for all three gases will be calculated automatically so that next time you take gas readings they will be in ppm.
+
+4. When going to take actual readings make sure to set calculate_gas_factor back to False. Save and leave the Raspberry Pi on for 2 minutes for changes to save. Reboot to then take readings. The LCD screen should follow the pattern described in the section "Start sensor readings".
+
+
 
 **<u>Carbon monoxide</u>**
 
-The data values for the carbon monoxide readings are given in arbitrary units (technically, they are given as resistance values - but don't worry about this!). Therefore, it is not possible to measure exact concentrations of carbon monoxide in parts per million. Instead, you should use the results to measure the change in the concentration of carbon monoxide particles in the air relative to the baseline value of (TODO) - this value was calculated in an open space away from any buildings or sources of pollution.
+The data values for the carbon monoxide readings have been adjusted to Parts Per Million.
+
+Information before the above was done: ~~(The data values for the carbon monoxide readings are given in arbitrary units (technically, they are given as resistance values - but don't worry about this!). Therefore, it is not possible to measure exact concentrations of carbon monoxide in parts per million. Instead, you should use the results to measure the change in the concentration of carbon monoxide particles in the air relative to the baseline value of - this value was calculated in an open space away from any buildings or sources of pollution.)~~
 
 **Important**: the carbon monoxide gas readings will *drop* with increasing concentration of carbon monoxide gas detected.
 
 **Important**: the sensor takes around 10 minutes to stabalise, so ignore all readings taken within the first 10 minutes.
 
+**Important**: the first reading is an anomaly so ignore this.
+
 
 
 **<u>Nitrogen dioxide</u>**
 
-The data values for the nitrogen dioxide readings are given in arbitrary units (technically, they are given as resistance values - but don't worry about this!). Therefore, it is not possible to measure exact concentrations of nitrogen dioxide in parts per million. Instead, you should use the results to measure the change in the concentration of nitrogen dioxide particles in the air relative to the baseline value of (TODO) - this value was calculated in an open space away from any buildings or sources of pollution.
+The data values for the nitrogen dioxide readings have been adjusted to Parts Per Million.
+
+Information before the above was done: ~~(The data values for the nitrogen dioxide readings are given in arbitrary units (technically, they are given as resistance values - but don't worry about this!). Therefore, it is not possible to measure exact concentrations of nitrogen dioxide in parts per million. Instead, you should use the results to measure the change in the concentration of nitrogen dioxide particles in the air relative to the baseline value of (TODO) - this value was calculated in an open space away from any buildings or sources of pollution.)~~
 
 **Important**: the nitrogen dioxide gas readings will *increase* with increasing concentration of the nitrogen dioxide gas detected. 
 
 **Important**: the sensor takes around 10 minutes to stabalise, so ignore all readings taken within the first 10 minutes.
 
+**Important**: the first reading is an anomaly so ignore this.
 
 
 **<u>Ammonia</u>**
 
-The data values for the ammonia readings are given in arbitrary units (technically, they are given as resistance values - but don't worry about this!). Therefore, it is not possible to measure exact concentrations of ammonia in parts per million. Instead, you should use the results to measure the change in the concentration of ammonia particles in the air relative to the baseline value of (TODO) - this value was calculated in an open space away from any buildings or sources of pollution.
+The data values for the ammonia readings have been adjusted to Parts Per Million.
+
+Information before the above was done: ~~(The data values for the ammonia readings are given in arbitrary units (technically, they are given as resistance values - but don't worry about this!). Therefore, it is not possible to measure exact concentrations of ammonia in parts per million. Instead, you should use the results to measure the change in the concentration of ammonia particles in the air relative to the baseline value of (TODO) - this value was calculated in an open space away from any buildings or sources of pollution.~~
 
 **Important**: the ammonia gas readings will *drop* with increasing concentration of the ammonia gas detected. 
 
 **Important**: the sensor takes around 10 minutes to stabalise, so ignore all readings taken within the first 10 minutes.
 
+**Important**: the first reading is an anomaly so ignore this.
 
 
 **<u>Particulate matter</u>**
