@@ -163,8 +163,9 @@ The temperature reading must be adjusted slightly to compensate for the heating 
 
 **<u>Gas Readings</u>**
 
-To calibrate the gas readings you need to set calculate_gas_factor to True). 
+To calibrate the gas readings you need to set calculate_gas_factor to True. 
 Take the sensor to an open space and set up for taking readings. Allow the sensor time to calibrate.
+
 When going to take actual readings make sure to set calculate_gas_factor back to False.
 The calibration factor for all three gases will be calculated automatically so that next time you take gas readings they will be in ppm.
 
