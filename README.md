@@ -173,7 +173,7 @@ The temperature reading must be adjusted slightly to compensate for the heating 
 
 
 
-**<u>Carbon monoxide</u>**
+<u>**Carbon monoxide**</u>
 
 The data values for the carbon monoxide readings are given in Parts Per Million.
 
