@@ -177,11 +177,11 @@ The temperature reading must be adjusted slightly to compensate for the heating 
 
 The data values for the carbon monoxide readings are given in Parts Per Million.
 
-**Important**: the carbon monoxide gas readings will *drop* with increasing concentration of carbon monoxide gas detected.
+_Important_: the carbon monoxide gas readings will *drop* with increasing concentration of carbon monoxide gas detected.
 
-**Important**: the sensor takes around 10 minutes to stabalise, so ignore all readings taken within the first 10 minutes.
+_Important_: the sensor takes around 10 minutes to stabalise, so ignore all readings taken within the first 10 minutes.
 
-**Important**: the first reading is an anomaly so ignore this.
+_Important_: the first reading is an anomaly so ignore this.
 
 
 
@@ -189,22 +189,22 @@ The data values for the carbon monoxide readings are given in Parts Per Million.
 
 The data values for the nitrogen dioxide readings are given in Parts Per Million.
 
-**Important**: the nitrogen dioxide gas readings will *increase* with increasing concentration of the nitrogen dioxide gas detected. 
+_Important_: the nitrogen dioxide gas readings will *increase* with increasing concentration of the nitrogen dioxide gas detected. 
 
-**Important**: the sensor takes around 10 minutes to stabalise, so ignore all readings taken within the first 10 minutes.
+_Important_: the sensor takes around 10 minutes to stabalise, so ignore all readings taken within the first 10 minutes.
 
-**Important**: the first reading is an anomaly so ignore this.
+_Important_: the first reading is an anomaly so ignore this.
 
 
 **<u>Ammonia</u>**
 
 The data values for the ammonia readings are given in Parts Per Million.
 
-**Important**: the ammonia gas readings will *drop* with increasing concentration of the ammonia gas detected. 
+_Important_: the ammonia gas readings will *drop* with increasing concentration of the ammonia gas detected. 
 
-**Important**: the sensor takes around 10 minutes to stabalise, so ignore all readings taken within the first 10 minutes.
+_Important_: the sensor takes around 10 minutes to stabalise, so ignore all readings taken within the first 10 minutes.
 
-**Important**: the first reading is an anomaly so ignore this.
+_Important_: the first reading is an anomaly so ignore this.
 
 
 **<u>Particulate matter</u>**
