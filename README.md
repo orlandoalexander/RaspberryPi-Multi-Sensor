@@ -1,6 +1,6 @@
 ## <u>EcoSwell Multi-Sensor Documentation</u> 
 
-The EcoSwell Multi-Sensor is easy to use and can measure up to eight different data types simultaneously. The sensor is versatile with adjustable parameters for data recording, including reading frequency and duration of data recording. The sensor can measure the following data types::
+The EcoSwell Multi-Sensor is easy to use and can measure up to eight different data types simultaneously. The sensor is versatile with adjustable parameters for data recording, including reading frequency and duration of data recording. The sensor can measure the following data types:
 
 | Data type           | Unit  | Unit description                                             |
 | ------------------- | ----- | ------------------------------------------------------------ |
@@ -175,9 +175,7 @@ The temperature reading must be adjusted slightly to compensate for the heating 
 
 **<u>Carbon monoxide</u>**
 
-The data values for the carbon monoxide readings have been adjusted to Parts Per Million.
-
-Information before the above was done: ~~(The data values for the carbon monoxide readings are given in arbitrary units (technically, they are given as resistance values - but don't worry about this!). Therefore, it is not possible to measure exact concentrations of carbon monoxide in parts per million. Instead, you should use the results to measure the change in the concentration of carbon monoxide particles in the air relative to the baseline value of - this value was calculated in an open space away from any buildings or sources of pollution.)~~
+The data values for the carbon monoxide readings are given in Parts Per Million.
 
 **Important**: the carbon monoxide gas readings will *drop* with increasing concentration of carbon monoxide gas detected.
 
@@ -189,9 +187,7 @@ Information before the above was done: ~~(The data values for the carbon monoxid
 
 **<u>Nitrogen dioxide</u>**
 
-The data values for the nitrogen dioxide readings have been adjusted to Parts Per Million.
-
-Information before the above was done: ~~(The data values for the nitrogen dioxide readings are given in arbitrary units (technically, they are given as resistance values - but don't worry about this!). Therefore, it is not possible to measure exact concentrations of nitrogen dioxide in parts per million. Instead, you should use the results to measure the change in the concentration of nitrogen dioxide particles in the air relative to the baseline value of (TODO) - this value was calculated in an open space away from any buildings or sources of pollution.)~~
+The data values for the nitrogen dioxide readings are given in Parts Per Million.
 
 **Important**: the nitrogen dioxide gas readings will *increase* with increasing concentration of the nitrogen dioxide gas detected. 
 
@@ -202,9 +198,7 @@ Information before the above was done: ~~(The data values for the nitrogen dioxi
 
 **<u>Ammonia</u>**
 
-The data values for the ammonia readings have been adjusted to Parts Per Million.
-
-Information before the above was done: ~~(The data values for the ammonia readings are given in arbitrary units (technically, they are given as resistance values - but don't worry about this!). Therefore, it is not possible to measure exact concentrations of ammonia in parts per million. Instead, you should use the results to measure the change in the concentration of ammonia particles in the air relative to the baseline value of (TODO) - this value was calculated in an open space away from any buildings or sources of pollution.~~
+The data values for the ammonia readings are given in Parts Per Million.
 
 **Important**: the ammonia gas readings will *drop* with increasing concentration of the ammonia gas detected. 
 
