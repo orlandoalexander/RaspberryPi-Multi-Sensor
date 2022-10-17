@@ -30,6 +30,7 @@ and a data recording duration of 4 hours and 7 hours respectively, you should wr
 sensors = [(1,60,60), (2,60,60), (3,60,60), (4,60,60), (5,60,60), (6,60,60), (7,60,60), (8,60,60)]
 
 
+
 '''
 ADJUST TEMPERATURE TUNING FACTOR
 
