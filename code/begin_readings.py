@@ -19,6 +19,7 @@ try:
     ltr559 = LTR559() # initialise LTR559 light/proximity sensor
     display_text('Light initialised', 20)
 except ImportError:
+    display_text('Light not initialised', 20)
     import ltr559
    
 
