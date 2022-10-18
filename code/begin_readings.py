@@ -36,13 +36,13 @@ calculate_gas_factor = sensor_settings.calculate_gas_factor # boolean which stor
 
 while True: 
     proximity = ltr559.get_proximity() # get proximity above proximity sensor
-    if proximity > 1000: # if proximity crosses threshold, indicates that user has put finger on proximity sensor (i.e. starts pressing 'button')
+    if proximity > 1500: # if proximity crosses threshold, indicates that user has put finger on proximity sensor (i.e. starts pressing 'button')
         stime = time.time() # initial time when user put finger on proximity sensor
         button_pressed = True
         backlight_on() # turn on LCD backlight
         while time.time() - stime < 5: # loop for 5 seconds, checking whether user's finger is still on proximity sensor
             proximity = ltr559.get_proximity() # get proximity above proximity sensor
-            if proximity < 500: # if user takes finger off proxmity sensor (i.e. stops pressing 'button')
+            if proximity < 1000: # if user takes finger off proxmity sensor (i.e. stops pressing 'button')
                 button_pressed = False
                 break
             else:
@@ -64,7 +64,7 @@ while True:
             display_text('Sensor currently active!\nContinue to hold for 20\n to reboot sensor.',13)
             while time.time() - stime < 25: # continue looping for 25 seconds after user first pressed proximity sensor, checking whether user's finger is still on proximity sensor
                 proximity = ltr559.get_proximity() # get proximity above proximity sensor
-                if proximity < 500: # if user takes finger off proxmity sensor (i.e. stops pressing 'button')
+                if proximity < 1000: # if user takes finger off proxmity sensor (i.e. stops pressing 'button')
                     button_pressed = False
                     break
                 else:
