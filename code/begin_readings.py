@@ -17,6 +17,7 @@ try:
     # transitional fix for breaking change in LTR559
     from ltr559 import LTR559
     ltr559 = LTR559() # initialise LTR559 light/proximity sensor
+    display_text('Light initialised', 20)
 except ImportError:
     import ltr559
    
