@@ -26,6 +26,7 @@ time.sleep(10)
 
 try:
     requests.get('https://www.google.com/') # check if Raspberry Pi is connected to internet (request will cause error if not connected to internet --> except statement triggered)
+    requests.get('https://www.github.com/') # check if Raspberry Pi is connected to internet (request will cause error if not connected to internet --> except statement triggered)
     display_text('Welcome!\nInternet \nconnected', 20) 
 except:
     display_text('Welcome!\nInternet not\n connected', 20) 
