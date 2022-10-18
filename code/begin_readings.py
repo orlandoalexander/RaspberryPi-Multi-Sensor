@@ -44,7 +44,7 @@ while True:
         while time.time() - stime < 5: # loop for 5 seconds, checking whether user's finger is still on proximity sensor
             proximity = ltr559.get_proximity() # get proximity above proximity sensor
             if proximity < 1000: # if user takes finger off proxmity sensor (i.e. stops pressing 'button')
-                button_pressed = False
+                button_pressed = True
                 break
             else:
                 pass
