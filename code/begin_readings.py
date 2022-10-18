@@ -36,7 +36,6 @@ calculate_gas_factor = sensor_settings.calculate_gas_factor # boolean which stor
 
 while True: 
     proximity = ltr559.get_proximity() # get proximity above proximity sensor
-    button_pressed = True
     if proximity > 1500: # if proximity crosses threshold, indicates that user has put finger on proximity sensor (i.e. starts pressing 'button')
         stime = time.time() # initial time when user put finger on proximity sensor
         button_pressed = True
@@ -44,7 +43,7 @@ while True:
         while time.time() - stime < 5: # loop for 5 seconds, checking whether user's finger is still on proximity sensor
             proximity = ltr559.get_proximity() # get proximity above proximity sensor
             if proximity < 1000: # if user takes finger off proxmity sensor (i.e. stops pressing 'button')
-                button_pressed = True
+                button_pressed = False
                 break
             else:
                 pass
