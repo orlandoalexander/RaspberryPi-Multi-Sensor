@@ -221,7 +221,7 @@ Please ignore this section, unless you need to make changes to sensor's core cod
 - All files on Raspberry Pi can be accessed over SSH from a laptop:
 
   1. Connect to *EcoHouse* wifi
-  2. Enter `ssh ecoswell@ecoswell.org` on the laptop's command line
+  2. Enter `ssh ecoswell@ecoswell.local` on the laptop's command line
   3. When prompted to enter the password, enter `EcoSwell`
 
   **Important:** *DO NOT* modify any files directly on the Raspberry Pi - instead, clone the GitHub repository to a seperate device and push these changes to the GitHub repository
