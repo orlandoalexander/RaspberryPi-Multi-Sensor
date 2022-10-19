@@ -56,7 +56,7 @@ calculate_gas_factor = True
 """
 TECHNICAL INFORMATION
 
-All files on Raspberry Pi can be accessed over SSH from a laptop by entering 'ecoswell@ecoswell.local' on the laptop's command line. 
+All files on Raspberry Pi can be accessed over SSH from a laptop by entering 'ssh ecoswell@ecoswell.local' on the laptop's command line. 
 When prompted to enter the password, enter 'EcoSwell'
 
 Raspberry Pi details:
