@@ -31,10 +31,10 @@ except:
     display_text('Welcome!\nInternet not\n connected', 20) 
 
 
+display_text('Before loop', 20)
 calculate_gas_factor = sensor_settings.calculate_gas_factor # boolean which stores whether user wishes to calibrate the gas sensors      
 
 while True: 
-    display_text('Place finger over prox sensor', 20) 
     proximity = ltr559.get_proximity() # get proximity above proximity sensor
     if proximity > 1500: # if proximity crosses threshold, indicates that user has put finger on proximity sensor (i.e. starts pressing 'button')
         stime = time.time() # initial time when user put finger on proximity sensor
