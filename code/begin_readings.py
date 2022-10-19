@@ -21,7 +21,6 @@ except ImportError:
     import ltr559
    
 
-
 time.sleep(10)
 
 try:
@@ -30,8 +29,6 @@ try:
 except:
     display_text('Welcome!\nInternet not\n connected', 20) 
 
-
-display_text('Before loop', 20)
 calculate_gas_factor = sensor_settings.calculate_gas_factor # boolean which stores whether user wishes to calibrate the gas sensors      
 
 while True: 
