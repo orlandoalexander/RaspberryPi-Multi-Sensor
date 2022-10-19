@@ -26,7 +26,6 @@ time.sleep(10)
 
 try:
     requests.get('https://www.google.com/') # check if Raspberry Pi is connected to internet (request will cause error if not connected to internet --> except statement triggered)
-    requests.get('https://www.github.com/') # check if Raspberry Pi is connected to internet (request will cause error if not connected to internet --> except statement triggered)
     display_text('Welcome!\nInternet \nconnected', 20) 
 except:
     display_text('Welcome!\nInternet not\n connected', 20) 
@@ -34,8 +33,8 @@ except:
 
 calculate_gas_factor = sensor_settings.calculate_gas_factor # boolean which stores whether user wishes to calibrate the gas sensors      
 
-loop = True
-while loop == True: 
+while True: 
+    display_text('Place finger over prox sensor', 20) 
     proximity = ltr559.get_proximity() # get proximity above proximity sensor
     if proximity > 1500: # if proximity crosses threshold, indicates that user has put finger on proximity sensor (i.e. starts pressing 'button')
         stime = time.time() # initial time when user put finger on proximity sensor
