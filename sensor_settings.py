@@ -5,7 +5,7 @@ EMAIL ADDRESS
 
 Enter the email address to which the files storing the data readings should be sent:
 '''
-email_address = 'data@ecoswell.org'
+email_address = 'datalogger@ecoswell.org'
 
 
 '''
