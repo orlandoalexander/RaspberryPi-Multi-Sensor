@@ -39,12 +39,6 @@ class SensorReadings(): # class containing methods to take sensor readings
         self.factor = sensor_settings.factor # access factor by which temperature reading is compensated as defined by user in file 'sensor_settings.py' 
         self.calculate_temp_factor = sensor_settings.calculate_temp_factor # boolean which stores whether user wishes to calculate the temperature compensation factor
         self.calculate_gas_factor = sensor_settings.calculate_gas_factor # boolean which stores whether user wishes to calibrate the gas sensors      
-        if self.calculate_temp_factor == True and self.calculate_gas_factor == False: # if user wishes to calculate the temperature compensation factor
-            self.temp_factor()
-        elif self.calculate_gas_factor == True and self.calculate_temp_factor == False: # if user wishes to calibrate the gas sensors
-            self.gas_factor()
-        elif self.calculate_gas_factor == True and self.calculate_temp_factor == True: # if user has accidently set both 'calculate_gas_factor' and 'calculate_temp_factor' to True 
-            display_text('Error!\nCannot calculate temp\nand gas factor.',15)
         self.sensors_dict = {1:self.temp_queue, 2:self.pressure_queue, 3:self.humidity_queue, 4:self.light_queue, 5:self.co_queue, 6:self.no2_queue, 7:self.nh3_queue, 8:self.pm_queue} # dictionary to translate between sensor number and sensor queue method (which triggers sensor execution)
         self.queue = [] # queue stores sensors which are due to take readings - this avoids multiple sensors taking readings simultaneously and therefore prevents collisions
         self.sensor_status = [False for i in range(8)] # queue stores status of each sensor (True = active, False = inactive)
@@ -380,11 +374,9 @@ class SensorReadings(): # class containing methods to take sensor readings
 
     def main(self): # control operation of active sensors
         if self.calculate_temp_factor == True and self.calculate_gas_factor == False: # if user wishes to calculate the temperature compensation factor
-            '''self.temp_factor()'''
-            display_text('Temp Factor Calculated.',15)
+            self.temp_factor()
         elif self.calculate_gas_factor == True and self.calculate_temp_factor == False: # if user wishes to calibrate the gas sensors
-            '''self.gas_factor()'''
-            display_text('Gas Factor Calculated.',15)
+            self.gas_factor()
         elif self.calculate_gas_factor == True and self.calculate_temp_factor == True: # if user has accidently set both 'calculate_gas_factor' and 'calculate_temp_factor' to True 
             display_text('Error!\nCannot calculate temp\nand gas factor.',15)
         else:
