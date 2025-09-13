@@ -164,7 +164,7 @@ The temperature reading must be adjusted slightly to compensate for the heating 
 
 3. Open the Excel file [*Calculate temp factor*](https://docs.google.com/spreadsheets/d/1BLTTYUCHuqEoowzhjQEQhzlOlSYHIbCMgoVQX1paT3U/edit?usp=sharing):
 
- <img width="854" alt="image" src="https://user-images.githubusercontent.com/113472300/191829640-ca0add3e-b732-4bd6-9100-6787fab487e1.png">
+ <img width="200" alt="image" src="https://user-images.githubusercontent.com/113472300/191829640-ca0add3e-b732-4bd6-9100-6787fab487e1.png">
 
    
 
