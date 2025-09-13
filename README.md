@@ -1,6 +1,5 @@
 # <u>IoT Environmental Data Logger</u> 
 
-<img src="https://github.com/user-attachments/assets/dd89e23f-ba3d-43f0-a257-f903d59a38e4" width="400">
 <img src="https://github.com/user-attachments/assets/6e42dd99-2b8f-46f3-bef2-1557f0a0f5c2" width="400">
 
 
