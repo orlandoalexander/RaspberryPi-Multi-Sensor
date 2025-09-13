@@ -1,4 +1,20 @@
-## <u>EcoSwell Multi-Sensor Documentation</u> 
+# <u>IoT Environmental Data Logger</u> 
+
+**Multi-sensor environmental monitoring device** capable of recording up to 8 data types (temperature, humidity, pressure, light, CO, NO₂, NH₃, particulate matter). Designed for fieldwork in remote areas with **offline data logging** and **automated email reporting**, providing real-time and historical insights into **air quality** and **climate conditions**, supporting **UN SDG impact reporting**.
+
+Built with a Raspberry Pi 4, Enviro+ Sensor Board, and PMS5003 Air Quality Sensor, enclosed in a waterproof case with an integrated LCD for live feedback. Supports adjustable parameters such as sensor selection, reading frequency, and duration, managed via a GitHub-based configuration file.  
+
+Deevloped for **EcoSwell** (Peru) as a **Renewable Energy Intern**.<br><br>
+
+## 🛠 Tech Stack
+
+- **Hardware**: Raspberry Pi 4, Enviro+ Sensor Board, PMS5003 Air Quality Sensor
+- **Software**: Python (sensor control, data processing, email automation)
+- **Data Storage**: Local CSV logging, automated email export
+- **Tools**: GitHub (remote configuration), LCD display (real-time status)
+
+
+## Documentation
 
 The EcoSwell Multi-Sensor is easy to use and can measure up to eight different data types simultaneously. The sensor is versatile with adjustable parameters for data recording, including reading frequency and duration of data recording. The sensor can measure the following data types:
 
