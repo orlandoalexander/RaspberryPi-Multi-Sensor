@@ -14,7 +14,7 @@ Deevloped for **EcoSwell** (Peru) as a **Renewable Energy Intern**.<br><br>
 - **Tools**: GitHub (remote configuration), LCD display (real-time status)
 
 
-## Documentation
+## 📝 Documentation
 
 The EcoSwell Multi-Sensor is easy to use and can measure up to eight different data types simultaneously. The sensor is versatile with adjustable parameters for data recording, including reading frequency and duration of data recording. The sensor can measure the following data types:
 
