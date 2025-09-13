@@ -103,23 +103,23 @@ The sensor settings are adjusted in an online file called *sensor_settings.py* w
 
 1. Power up sensor by plugging USB-C power cable into Raspberry Pi *USB-C port* (see **Raspberry Pi Diagram**) - the LCD should display this message as the sensor turns on:
 
-<img width="1039" alt="image" src="https://user-images.githubusercontent.com/113472300/191482584-039154ca-5f2f-4e6a-bccf-6178654f1597.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/113472300/191482584-039154ca-5f2f-4e6a-bccf-6178654f1597.png">
 
 
 
 2. Wait until the LCD screen displays a welcome message - this also states whether the sensor is connected to the internet (remember, the sensor does not need to be connected to the internet to take data readings):
-<img width="1030" alt="image" src="https://user-images.githubusercontent.com/113472300/191482642-7a5d2f3c-bc9c-43ba-b220-7a00f2ff6f34.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/113472300/191482642-7a5d2f3c-bc9c-43ba-b220-7a00f2ff6f34.png">
 
 3. To start the readings, place finger on proximity sensor (labelled `LIGHT` on sensor) for 5 seconds, or until the sensor's LCD screen displays the following message:
-<img width="958" alt="image" src="https://user-images.githubusercontent.com/113472300/191482688-7de9cb1a-c813-4f87-8f66-4e6408e1ca22.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/113472300/191482688-7de9cb1a-c813-4f87-8f66-4e6408e1ca22.png">
 
 4. You now have 2 minutes to position the sensor in the desired location - after these 2 minutes, the readings will begin
- <img width="960" alt="image" src="https://user-images.githubusercontent.com/113472300/191821833-d4838901-a1af-425a-b67c-9c5c705e7513.png">
+ <img width="500" alt="image" src="https://user-images.githubusercontent.com/113472300/191821833-d4838901-a1af-425a-b67c-9c5c705e7513.png">
 
 
 5. Leave the sensor in place until all the readings are complete, which will be indicated on the LCD screen by the following message:
 
-<img width="300" alt="image" src="https://user-images.githubusercontent.com/113472300/191482802-450dc9c1-9d06-436f-beda-b4395cd111f2.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/113472300/191482802-450dc9c1-9d06-436f-beda-b4395cd111f2.png">
 
 
 
