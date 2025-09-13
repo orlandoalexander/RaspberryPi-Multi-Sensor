@@ -12,8 +12,8 @@ Deevloped for **EcoSwell** (Peru) as a **Renewable Energy Intern**.<br><br>
 ## 🛠 Tech Stack
 
 - **Hardware**: Raspberry Pi 4, Enviro+ Sensor Board, PMS5003 Air Quality Sensor
-- **Software**: Python (sensor control, data processing, email automation)
-- **Data Storage**: Local CSV logging, automated email export using Ethernet<br><br>
+- **Software**: Python (sensor control, data processing, automated email reporting)
+- **Data Storage**: Local CSV logging with automated email export via Ethernet<br><br>
 
 ## 📝 Documentation
 
