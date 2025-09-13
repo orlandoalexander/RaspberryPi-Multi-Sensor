@@ -32,7 +32,7 @@ The EcoSwell Multi-Sensor is easy to use and can measure up to eight different d
 
 
 
-## **Overview** 
+### **Overview** 
 
 The sensor is contained within a plastic container and comprises of three components: Raspberry Pi (model 4), [Enviro+ Sensor Board](https://shop.pimoroni.com/products/enviro?variant=31155658457171) and [PMS5003 Air Quality Sensor](https://www.adafruit.com/product/3686), all of which are stored inside a waterproof storage box for ease of transport and monitoring. The Raspberry Pi is the 'brain' of the sensor; it executes the code which controls the sensors, processes the data recorded by the sensors and emails the data to you when it's finished. The two sensors together contain the components which measure the eight data types listed above. 
 
@@ -42,7 +42,7 @@ The sensor also contains an LCD screen which will display status updates and fee
 
 
 
-## **Raspberry Pi Diagram**
+### **Raspberry Pi Diagram**
 
 <img width="1185" alt="image" src="https://user-images.githubusercontent.com/113472300/191482319-f8906cb5-15f9-4cae-9df4-d2081a99f952.png">
 
@@ -52,7 +52,7 @@ The Raspberry Pi has loads of different ports and components, but luckily you do
 
 
 
-## **GitHub Repository**
+### **GitHub Repository**
 
 The operational code and sensor settings are stored on an online platform called *GitHub* inside something called a repository. A repository (or 'repo') is essentially a collection of files (code, images, text files - anything goes) that is stored in an online server and can be accessed from anywhere in the world - think of it a bit like Microsoft OneDrive or Google Drive. For our EcoSwell Multi-Sensor, the repo is called [*RaspberryPi-Sensor*](https://github.com/EcoSwell/RaspberryPi-Sensor) and it belongs to the EcoSwell GitHub account. To edit any files inside this repo, you must be logged into the EcoSwell GitHub account.
 
@@ -73,7 +73,7 @@ You will see three important things in the GitHub repo:
 
 
 
-## **How To Use The Sensor**
+### **How To Use The Sensor**
 
 
 
@@ -149,7 +149,7 @@ The sensor settings are adjusted in an online file called *sensor_settings.py* w
 
 
 
-## **Data Type Details**
+### **Data Type Details**
 
 **<u>Temperature</u>**
 
@@ -229,7 +229,7 @@ Unlike the other data types, the particulate matter sensor records three data va
 
 
 
-## **Technical Info**
+### **Technical Info**
 
 Please ignore this section, unless you need to make changes to sensor's core code.
 
