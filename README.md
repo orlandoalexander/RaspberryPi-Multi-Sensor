@@ -1,13 +1,22 @@
 # <u>IoT Environmental Data Logger</u> 
 
-<img src="https://github.com/user-attachments/assets/dd89e23f-ba3d-43f0-a257-f903d59a38e4" width="400">
+<div style="display: flex; align-items: center; gap: 20px;">
+  <img src="https://github.com/user-attachments/assets/dd89e23f-ba3d-43f0-a257-f903d59a38e4" width="350">
 
-
-**Multi-sensor environmental monitoring device** capturing **10,000+ data points weekly** across **8 key data types** (temperature, humidity, pressure, light, CO, NO₂, NH₃, particulate matter). Designed for fieldwork in remote areas with **offline data logging** and **automated digital reporting**, providing real-time and historical insights into **air quality** and **climate conditions**, supporting **UN SDG impact reporting**.
-
-Built with a Raspberry Pi 4, Enviro+ Sensor Board, and PMS5003 Air Quality Sensor, enclosed in a waterproof case with an integrated LCD for live feedback. Supports adjustable parameters such as sensor selection, reading frequency, and duration, managed via a GitHub-based configuration file.  
-
-Deevloped for **EcoSwell** (Peru) as a **Renewable Energy Intern**.<br><br>
+  <div>
+    <strong>Multi-sensor environmental monitoring device</strong> capturing <strong>10,000+ data points weekly</strong> across 
+    <strong>8 key data types</strong> (temperature, humidity, pressure, light, CO, NO₂, NH₃, particulate matter).  
+    Designed for fieldwork in remote areas with <strong>offline data logging</strong> and 
+    <strong>automated digital reporting</strong>, providing real-time and historical insights into 
+    <strong>air quality</strong> and <strong>climate conditions</strong>, supporting <strong>UN SDG impact reporting</strong>.
+    <br><br>
+    Built with a Raspberry Pi 4, Enviro+ Sensor Board, and PMS5003 Air Quality Sensor, enclosed in a waterproof case with 
+    an integrated LCD for live feedback. Supports adjustable parameters such as sensor selection, reading frequency, and duration, 
+    managed via a GitHub-based configuration file.
+    <br><br>
+    Developed for <strong>EcoSwell</strong> (Peru) as a <strong>Renewable Energy Intern</strong>.
+  </div>
+</div>
 
 ## 🛠 Tech Stack
 
