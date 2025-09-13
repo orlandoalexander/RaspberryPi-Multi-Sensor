@@ -1,6 +1,8 @@
 # <u>IoT Environmental Data Logger</u> 
 
 <img src="https://github.com/user-attachments/assets/dd89e23f-ba3d-43f0-a257-f903d59a38e4" width="400">
+<img src="https://github.com/user-attachments/assets/6e42dd99-2b8f-46f3-bef2-1557f0a0f5c2" width="400">
+
 
 **Multi-sensor environmental monitoring device** capturing **10,000+ data points weekly** across **8 key data types** (temperature, humidity, pressure, light, CO, NO₂, NH₃, particulate matter). Designed for fieldwork in remote areas with **offline data logging** and **automated digital reporting**, providing real-time and historical insights into **air quality** and **climate conditions**, supporting **UN SDG impact reporting**.
 
