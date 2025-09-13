@@ -141,11 +141,11 @@ The sensor settings are adjusted in an online file called *sensor_settings.py* w
 
 2. The LCD display will show the following message:
 
-<img width="1031" alt="image" src="https://user-images.githubusercontent.com/113472300/191482855-0a3bec87-2350-460b-9091-c3358c05bfc7.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/113472300/191482855-0a3bec87-2350-460b-9091-c3358c05bfc7.png">
 
 
 3. To cancel the restart, simply remove your finger from the proximity sensor (labelled `Light`) - the LED display will show the following response:
-<img width="1039" alt="image" src="https://user-images.githubusercontent.com/113472300/191482888-7d2fb44c-f42d-45d1-b67d-788fc3791bf0.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/113472300/191482888-7d2fb44c-f42d-45d1-b67d-788fc3791bf0.png">
 
 
 
