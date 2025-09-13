@@ -119,7 +119,7 @@ The sensor settings are adjusted in an online file called *sensor_settings.py* w
 
 5. Leave the sensor in place until all the readings are complete, which will be indicated on the LCD screen by the following message:
 
-<img width="1038" alt="image" src="https://user-images.githubusercontent.com/113472300/191482802-450dc9c1-9d06-436f-beda-b4395cd111f2.png">
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/113472300/191482802-450dc9c1-9d06-436f-beda-b4395cd111f2.png">
 
 
 
@@ -164,7 +164,7 @@ The temperature reading must be adjusted slightly to compensate for the heating 
 
 3. Open the Excel file [*Calculate temp factor*](https://docs.google.com/spreadsheets/d/1BLTTYUCHuqEoowzhjQEQhzlOlSYHIbCMgoVQX1paT3U/edit?usp=sharing):
 
- <img width="200" alt="image" src="https://user-images.githubusercontent.com/113472300/191829640-ca0add3e-b732-4bd6-9100-6787fab487e1.png">
+ <img width="834" alt="image" src="https://user-images.githubusercontent.com/113472300/191829640-ca0add3e-b732-4bd6-9100-6787fab487e1.png">
 
    
 
