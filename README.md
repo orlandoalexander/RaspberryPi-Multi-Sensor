@@ -1,8 +1,6 @@
 # <u>IoT Environmental Data Logger</u> 
 
 <div style="display: flex; align-items: center; gap: 20px;">
-  <img src="https://github.com/user-attachments/assets/dd89e23f-ba3d-43f0-a257-f903d59a38e4" width="350">
-
   <div>
     <strong>Multi-sensor environmental monitoring device</strong> capturing <strong>10,000+ data points weekly</strong> across 
     <strong>8 key data types</strong> (temperature, humidity, pressure, light, CO, NO₂, NH₃, particulate matter).  
@@ -16,6 +14,8 @@
     <br><br>
     Developed for <strong>EcoSwell</strong> (Peru) as a <strong>Renewable Energy Intern</strong>.
   </div>
+    <img src="https://github.com/user-attachments/assets/dd89e23f-ba3d-43f0-a257-f903d59a38e4" width="250">
+
 </div>
 
 ## 🛠 Tech Stack
